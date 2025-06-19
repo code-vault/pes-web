@@ -1,49 +1,51 @@
-
 import { Home, Building, Factory, Wrench, Calculator, HeadphonesIcon } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { useTranslations } from 'next-intl';
 
 const Services = () => {
+  const t = useTranslations('services');
+
   const services = [
     {
       Icon: Home,
-      title: "Residential Solar",
-      description: "Custom solar solutions for homes. Reduce your electricity bills and increase property value with our premium residential installations.",
-      features: ["Roof-mounted systems", "Ground-mount options", "Battery storage", "Smart monitoring"],
+      title: t('residential.title'),
+      description: t('residential.description'),
+      features: t.raw('residential.features') as string[],
       gradient: "from-blue-500 to-cyan-500"
     },
     {
       Icon: Building,
-      title: "Commercial Solar",
-      description: "Scalable solar solutions for businesses. Cut operational costs and demonstrate environmental responsibility with commercial solar.",
-      features: ["Large-scale installations", "Energy storage", "Power purchase agreements", "Tax incentives"],
+      title: t('commercial.title'),
+      description: t('commercial.description'),
+      features: t.raw('commercial.features') as string[],
       gradient: "from-green-500 to-emerald-500"
     },
     {
       Icon: Factory,
-      title: "Industrial Solar",
-      description: "High-capacity solar systems for industrial facilities. Maximize energy savings with robust, industrial-grade solar solutions.",
-      features: ["Megawatt installations", "Grid-tie systems", "Energy management", "Performance monitoring"],
+      title: t('industrial.title'),
+      description: t('industrial.description'),
+      features: t.raw('industrial.features') as string[],
       gradient: "from-purple-500 to-violet-500"
     },
     {
       Icon: Calculator,
-      title: "Energy Audits",
-      description: "Comprehensive energy assessments to optimize your solar investment. Identify savings opportunities and system requirements.",
-      features: ["Site assessment", "Energy analysis", "ROI calculations", "Custom proposals"],
+      title: t('audits.title'),
+      description: t('audits.description'),
+      features: t.raw('audits.features') as string[],
       gradient: "from-orange-500 to-red-500"
     },
     {
       Icon: Wrench,
-      title: "Maintenance & Repair",
-      description: "Keep your solar system performing at peak efficiency with our professional maintenance and repair services.",
-      features: ["System cleaning", "Performance optimization", "Component replacement", "Warranty support"],
+      title: t('maintenance.title'),
+      description: t('maintenance.description'),
+      features: t.raw('maintenance.features') as string[],
       gradient: "from-teal-500 to-cyan-500"
     },
     {
       Icon: HeadphonesIcon,
-      title: "24/7 Support",
-      description: "Round-the-clock monitoring and support for your solar system. Peace of mind with our comprehensive service guarantee.",
-      features: ["Remote monitoring", "Technical support", "Emergency repairs", "System optimization"],
+      title: t('support.title'),
+      description: t('support.description'),
+      features: t.raw('support.features') as string[],
       gradient: "from-indigo-500 to-blue-500"
     }
   ];
@@ -59,14 +61,13 @@ const Services = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-20">
           <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-orange-200/50 shadow-lg mb-6">
-            <span className="text-sm font-semibold text-orange-600">Our Services</span>
+            <span className="text-sm font-semibold text-orange-600">{t('badge')}</span>
           </div>
           <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 tracking-tight">
-            Complete Solar Solutions
+            {t('title')}
           </h2>
           <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto font-light leading-relaxed">
-            From initial consultation to ongoing maintenance, we provide comprehensive solar services 
-            for residential, commercial, and industrial customers.
+            {t('subtitle')}
           </p>
         </div>
 

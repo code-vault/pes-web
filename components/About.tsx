@@ -1,34 +1,36 @@
-
 import { Award, Users, Zap, Leaf, CheckCircle } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 const About = () => {
+  const t = useTranslations('about');
+  
   const stats = [
-    { icon: Users, number: "2,500+", label: "Happy Customers", gradient: "from-blue-500 to-cyan-500" },
-    { icon: Zap, number: "15MW+", label: "Solar Installed", gradient: "from-orange-500 to-amber-500" },
-    { icon: Award, number: "12+", label: "Years Experience", gradient: "from-purple-500 to-violet-500" },
-    { icon: Leaf, number: "50M+", label: "lbs CO₂ Saved", gradient: "from-green-500 to-emerald-500" }
+    { icon: Users, number: "2,500+", label: t('stats.customers'), gradient: "from-blue-500 to-cyan-500" },
+    { icon: Zap, number: "15MW+", label: t('stats.installed'), gradient: "from-orange-500 to-amber-500" },
+    { icon: Award, number: "12+", label: t('stats.experience'), gradient: "from-purple-500 to-violet-500" },
+    { icon: Leaf, number: "50M+", label: t('stats.co2Saved'), gradient: "from-green-500 to-emerald-500" }
   ];
 
   const highlights = [
     {
       icon: CheckCircle,
-      title: "Licensed & Insured",
-      description: "Fully certified solar installers with comprehensive insurance coverage"
+      title: t('highlights.licensed.title'),
+      description: t('highlights.licensed.description')
     },
     {
       icon: CheckCircle,
-      title: "Premium Equipment",
-      description: "Top-tier solar panels and components from industry-leading manufacturers"
+      title: t('highlights.equipment.title'),
+      description: t('highlights.equipment.description')
     },
     {
       icon: CheckCircle,
-      title: "25-Year Warranty",
-      description: "Comprehensive warranty coverage on all installations and components"
+      title: t('highlights.warranty.title'),
+      description: t('highlights.warranty.description')
     },
     {
       icon: CheckCircle,
-      title: "Transparent Pricing",
-      description: "No hidden fees, no pressure sales - just honest, upfront pricing"
+      title: t('highlights.pricing.title'),
+      description: t('highlights.pricing.description')
     }
   ];
 
@@ -46,20 +48,16 @@ const About = () => {
           <div className="space-y-8">
             <div>
               <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-orange-200/50 shadow-lg mb-6">
-                <span className="text-sm font-semibold text-orange-600">About Us</span>
+                <span className="text-sm font-semibold text-orange-600">{t('badge')}</span>
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8 tracking-tight leading-tight">
-                Leading Solar Innovators 
-                <span className="bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent"> Since 2012</span>
+                {t('title')}
               </h2>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                SolarTech Pro has been at the forefront of the renewable energy revolution, 
-                helping thousands of families and businesses transition to clean, affordable solar power.
+                {t('subtitle')}
               </p>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Our certified team of solar experts combines cutting-edge technology with 
-                exceptional service to deliver solar solutions that exceed expectations. 
-                We're not just installing solar panels – we're building a sustainable future.
+                {t('description')}
               </p>
             </div>
 

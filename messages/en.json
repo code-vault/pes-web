@@ -1,0 +1,225 @@
+{
+  "metadata": {
+    "title": "SolarTech Pro | Your Future, Powered by the Sun",
+    "description": "Premium solar solutions for residential, commercial, and industrial needs. Get your free quote today!"
+  },
+  "header": {
+    "home": "Home",
+    "services": "Services",
+    "about": "About",
+    "testimonials": "Reviews",
+    "contact": "Contact",
+    "getQuote": "Get Free Quote",
+    "companyName": "Purvodaya Energy Solutions"
+  },
+  "hero": {
+    "badge": "#1 Solar Installation Company",
+    "title": "Power Your Future with Solar Energy",
+    "subtitle": "Transform your home or business with clean, renewable solar energy. Save money, reduce your carbon footprint, and gain energy independence with our premium solar solutions.",
+    "save": "Save 70%+",
+    "saveBills": "On Energy Bills",
+    "warranty": "25-Year",
+    "warrantyText": "Warranty",
+    "clean": "Clean",
+    "cleanEnergy": "Energy Source",
+    "getQuoteBtn": "Get Free Solar Quote",
+    "watchDemo": "Watch Demo",
+    "calculator": {
+      "title": "Solar Savings Calculator",
+      "currentBill": "Current Monthly Bill:",
+      "withSolar": "With Solar:",
+      "monthlySavings": "Monthly Savings:",
+      "annualSavings": "Annual Savings:",
+      "yearSavings": "25-year savings:"
+    }
+  },
+  "services": {
+    "badge": "Our Services",
+    "title": "Complete Solar Solutions",
+    "subtitle": "From initial consultation to ongoing maintenance, we provide comprehensive solar services for residential, commercial, and industrial customers.",
+    "residential": {
+      "title": "Residential Solar",
+      "description": "Custom solar solutions for homes. Reduce your electricity bills and increase property value with our premium residential installations.",
+      "features": ["Roof-mounted systems", "Ground-mount options", "Battery storage", "Smart monitoring"]
+    },
+    "commercial": {
+      "title": "Commercial Solar",
+      "description": "Scalable solar solutions for businesses. Cut operational costs and demonstrate environmental responsibility with commercial solar.",
+      "features": ["Large-scale installations", "Energy storage", "Power purchase agreements", "Tax incentives"]
+    },
+    "industrial": {
+      "title": "Industrial Solar",
+      "description": "High-capacity solar systems for industrial facilities. Maximize energy savings with robust, industrial-grade solar solutions.",
+      "features": ["Megawatt installations", "Grid-tie systems", "Energy management", "Performance monitoring"]
+    },
+    "audits": {
+      "title": "Energy Audits",
+      "description": "Comprehensive energy assessments to optimize your solar investment. Identify savings opportunities and system requirements.",
+      "features": ["Site assessment", "Energy analysis", "ROI calculations", "Custom proposals"]
+    },
+    "maintenance": {
+      "title": "Maintenance & Repair",
+      "description": "Keep your solar system performing at peak efficiency with our professional maintenance and repair services.",
+      "features": ["System cleaning", "Performance optimization", "Component replacement", "Warranty support"]
+    },
+    "support": {
+      "title": "24/7 Support",
+      "description": "Round-the-clock monitoring and support for your solar system. Peace of mind with our comprehensive service guarantee.",
+      "features": ["Remote monitoring", "Technical support", "Emergency repairs", "System optimization"]
+    }
+  },
+  "about": {
+    "badge": "About Us",
+    "title": "Leading Solar Innovators Since 2012",
+    "subtitle": "SolarTech Pro has been at the forefront of the renewable energy revolution, helping thousands of families and businesses transition to clean, affordable solar power.",
+    "description": "Our certified team of solar experts combines cutting-edge technology with exceptional service to deliver solar solutions that exceed expectations. We're not just installing solar panels – we're building a sustainable future.",
+    "stats": {
+      "customers": "Happy Customers",
+      "installed": "Solar Installed",
+      "experience": "Years Experience",
+      "co2Saved": "lbs CO₂ Saved"
+    },
+    "highlights": {
+      "licensed": {
+        "title": "Licensed & Insured",
+        "description": "Fully certified solar installers with comprehensive insurance coverage"
+      },
+      "equipment": {
+        "title": "Premium Equipment",
+        "description": "Top-tier solar panels and components from industry-leading manufacturers"
+      },
+      "warranty": {
+        "title": "25-Year Warranty",
+        "description": "Comprehensive warranty coverage on all installations and components"
+      },
+      "pricing": {
+        "title": "Transparent Pricing",
+        "description": "No hidden fees, no pressure sales - just honest, upfront pricing"
+      }
+    }
+  },
+  "testimonials": {
+    "badge": "Customer Reviews",
+    "title": "What Our Customers Say",
+    "subtitle": "Don't just take our word for it. Here's what real customers have to say about their experience with SolarTech Pro.",
+    "reviews": [
+      {
+        "name": "Sarah Johnson",
+        "location": "Residential Customer",
+        "text": "SolarTech Pro exceeded our expectations! The installation was seamless, and we're already seeing 80% reduction in our electricity bills. The team was professional and knowledgeable throughout the entire process."
+      },
+      {
+        "name": "Mike Chen",
+        "location": "Business Owner",
+        "text": "Outstanding service from start to finish. They handled all the permits and paperwork, and the installation was completed on schedule. Our commercial facility is now saving thousands monthly on energy costs."
+      },
+      {
+        "name": "Lisa Rodriguez",
+        "location": "Homeowner",
+        "text": "I was hesitant about solar, but SolarTech Pro made the process so easy. Their financing options made it affordable, and the system has been performing better than promised. Highly recommend!"
+      },
+      {
+        "name": "David Thompson",
+        "location": "Property Manager",
+        "text": "We've worked with SolarTech Pro on multiple properties. Their attention to detail and customer service is unmatched. Every installation has been flawless, and maintenance support is excellent."
+      },
+      {
+        "name": "Amanda Foster",
+        "location": "Residential Customer",
+        "text": "The solar system has transformed our home's energy efficiency. SolarTech Pro's team was incredibly professional, and they took care of everything from design to final inspection. Love our new solar panels!"
+      },
+      {
+        "name": "Robert Martinez",
+        "location": "Restaurant Owner",
+        "text": "Our restaurant's energy costs were killing our margins. SolarTech Pro designed a perfect system for our needs. Now we're saving over $2,000 monthly and showcasing our commitment to sustainability."
+      }
+    ]
+  },
+  "contact": {
+    "badge": "Get Started",
+    "title": "Ready to Go Solar?",
+    "subtitle": "Get your free solar consultation today. Our experts will assess your property and provide a custom quote tailored to your energy needs.",
+    "form": {
+      "title": "Get Your Free Quote",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "address": "Property Address",
+      "bill": "Average Monthly Electric Bill",
+      "additional": "Additional Information",
+      "placeholder": {
+        "firstName": "John",
+        "lastName": "Doe",
+        "email": "john@example.com",
+        "phone": "(555) 123-4567",
+        "address": "123 Main St, City, State ZIP",
+        "bill": "$150",
+        "additional": "Tell us about your property, energy goals, or any questions you have..."
+      },
+      "submit": "Get My Free Solar Quote"
+    },
+    "info": {
+      "call": {
+        "title": "Call Us",
+        "description": "Ready to talk? Give us a call for immediate assistance.",
+        "phone": "(555) SOLAR-NOW",
+        "phoneNumber": "(555) 765-2766"
+      },
+      "email": {
+        "title": "Email Us",
+        "description": "Send us an email and we'll respond within 24 hours.",
+        "address": "info@solartechpro.com"
+      },
+      "visit": {
+        "title": "Visit Our Office",
+        "description": "Come see our solar displays and meet our team.",
+        "address": "1234 Solar Avenue\nGreen City, CA 90210"
+      },
+      "hours": {
+        "title": "Business Hours",
+        "schedule": {
+          "weekdays": "Monday - Friday: 8:00 AM - 6:00 PM",
+          "saturday": "Saturday: 9:00 AM - 4:00 PM",
+          "sunday": "Sunday: Closed",
+          "emergency": "Emergency service available 24/7"
+        }
+      }
+    }
+  },
+  "footer": {
+    "description": "Leading the renewable energy revolution with premium solar solutions for homes and businesses since 2012.",
+    "services": {
+      "title": "Services",
+      "residential": "Residential Solar",
+      "commercial": "Commercial Solar",
+      "industrial": "Industrial Solar",
+      "audits": "Energy Audits",
+      "maintenance": "Maintenance & Repair",
+      "storage": "Battery Storage"
+    },
+    "quickLinks": {
+      "title": "Quick Links",
+      "about": "About Us",
+      "services": "Our Services",
+      "testimonials": "Testimonials",
+      "financing": "Financing Options",
+      "warranties": "Warranties",
+      "contact": "Contact"
+    },
+    "getInTouch": {
+      "title": "Get In Touch",
+      "quote": {
+        "title": "Get Your Free Quote Today!",
+        "description": "Call now or fill out our contact form.",
+        "button": "Back to Top"
+      }
+    },
+    "copyright": "© 2024 SolarTech Pro. All rights reserved.",
+    "legal": {
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "cookies": "Cookie Policy"
+    }
+  }
+}
