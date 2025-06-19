@@ -11,6 +11,9 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatingClickToCall from '@/components/FloatingClickToCall';
 
+// Toast Provider - ADD THIS IMPORT
+import { ToastProvider } from '@/components/ui/toast';
+
 // Font optimization
 const inter = Inter({ subsets: ['latin'] });
 
@@ -63,18 +66,21 @@ export default async function LocaleLayout({
     <html lang={locale} dir={locale === 'hi' ? 'ltr' : 'ltr'}>
       <body className={inter.className}>
         <NextIntlClientProvider messages={messages}>
-          {/* This UI is shared across ALL pages */}
-          <Header />
+          {/* WRAP EVERYTHING WITH TOASTPROVIDER */}
+          <ToastProvider>
+            {/* This UI is shared across ALL pages */}
+            <Header />
 
-          <main>
-            {children}
-          </main>
-          
-          {/* This UI is also shared across ALL pages */}
-          <Footer />
+            <main>
+              {children}
+            </main>
+            
+            {/* This UI is also shared across ALL pages */}
+            <Footer />
 
-          {/* Floating Click-to-Call Button - appears on all pages */}
-          <FloatingClickToCall />
+            {/* Floating Click-to-Call Button - appears on all pages */}
+            <FloatingClickToCall />
+          </ToastProvider>
         </NextIntlClientProvider>
       </body>
     </html>
