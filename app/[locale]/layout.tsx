@@ -9,6 +9,7 @@ import {setRequestLocale} from 'next-intl/server';
 // Your shared layout components
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import FloatingClickToCall from '@/components/FloatingClickToCall';
 
 // Font optimization
 const inter = Inter({ subsets: ['latin'] });
@@ -31,7 +32,7 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
   
   return {
     title: {
-      template: `%s | ${locale === 'hi' ? 'सोलरटेक प्रो' : 'SolarTech Pro'}`,
+      template: `%s | ${locale === 'hi' ? 'पूर्वोदय एनर्जी सॉल्यूशंस' : 'Purvodaya Energy Solutions'}`,
       default: metadata.title,
     },
     description: metadata.description,
@@ -71,6 +72,9 @@ export default async function LocaleLayout({
           
           {/* This UI is also shared across ALL pages */}
           <Footer />
+
+          {/* Floating Click-to-Call Button - appears on all pages */}
+          <FloatingClickToCall />
         </NextIntlClientProvider>
       </body>
     </html>

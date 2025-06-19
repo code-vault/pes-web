@@ -10,20 +10,20 @@ const Services = () => {
   const services = [
     {
       Icon: Home,
-      title: "Residential Solar",
-      description: "Custom solar solutions for homes. Reduce electricity bills and increase property value.",
+      title: t('residential.title'),
+      description: t('residential.description'),
       gradient: "from-blue-500 to-cyan-500"
     },
     {
       Icon: Building,
-      title: "Commercial Solar",
-      description: "Scalable solar solutions for businesses. Cut operational costs and go green.",
+      title: t('commercial.title'),
+      description: t('commercial.description'),
       gradient: "from-green-500 to-emerald-500"
     },
     {
       Icon: Factory,
-      title: "Industrial Solar",
-      description: "High-capacity solar systems for industrial facilities. Maximum energy savings.",
+      title: t('industrial.title'),
+      description: t('industrial.description'),
       gradient: "from-purple-500 to-violet-500"
     }
   ];
@@ -33,13 +33,13 @@ const Services = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-12">
           <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-orange-200/50 shadow-lg mb-6">
-            <span className="text-sm font-semibold text-orange-600">Our Services</span>
+            <span className="text-sm font-semibold text-orange-600">{t('badge')}</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
-            Complete Solar Solutions
+            {t('title')}
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            From residential to industrial, we provide comprehensive solar services.
+            {t('subtitle')}
           </p>
         </div>
 
@@ -62,7 +62,7 @@ const Services = () => {
         <div className="text-center">
           <Link href="/services">
             <Button size="lg" className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              View All Services
+              {t('viewAll')}
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </Link>

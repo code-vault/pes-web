@@ -1,63 +1,64 @@
-
 import { Award, Users, Zap, Leaf, CheckCircle, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from '@/i18n/navigation';
+import { useTranslations } from 'next-intl';
 
 const AboutPage = () => {
+  const t = useTranslations('aboutPage');
+  
   const stats = [
-    { icon: Users, number: "2,500+", label: "Happy Customers", gradient: "from-blue-500 to-cyan-500" },
-    { icon: Zap, number: "15MW+", label: "Solar Installed", gradient: "from-orange-500 to-amber-500" },
-    { icon: Award, number: "12+", label: "Years Experience", gradient: "from-purple-500 to-violet-500" },
-    { icon: Leaf, number: "50M+", label: "lbs CO₂ Saved", gradient: "from-green-500 to-emerald-500" }
+    { icon: Users, number: "2,500+", label: t('stats.customers'), gradient: "from-blue-500 to-cyan-500" },
+    { icon: Zap, number: "15MW+", label: t('stats.installed'), gradient: "from-orange-500 to-amber-500" },
+    { icon: Award, number: "12+", label: t('stats.experience'), gradient: "from-purple-500 to-violet-500" },
+    { icon: Leaf, number: "50M+", label: t('stats.co2Saved'), gradient: "from-green-500 to-emerald-500" }
   ];
 
   const highlights = [
     {
       icon: CheckCircle,
-      title: "Licensed & Insured",
-      description: "Fully certified solar installers with comprehensive insurance coverage for your peace of mind."
+      title: t('highlights.0.title'),
+      description: t('highlights.0.description')
     },
     {
       icon: CheckCircle,
-      title: "Premium Equipment",
-      description: "Top-tier solar panels and components from industry-leading manufacturers like Tesla, SunPower, and LG."
+      title: t('highlights.1.title'),
+      description: t('highlights.1.description')
     },
     {
       icon: CheckCircle,
-      title: "25-Year Warranty",
-      description: "Comprehensive warranty coverage on all installations and components with full performance guarantees."
+      title: t('highlights.2.title'),
+      description: t('highlights.2.description')
     },
     {
       icon: CheckCircle,
-      title: "Transparent Pricing",
-      description: "No hidden fees, no pressure sales - just honest, upfront pricing with detailed cost breakdowns."
+      title: t('highlights.3.title'),
+      description: t('highlights.3.description')
     }
   ];
 
   const timeline = [
-    { year: "2012", title: "Company Founded", description: "Started with a vision to make solar accessible to everyone" },
-    { year: "2015", title: "1,000 Installations", description: "Reached our first major milestone in residential solar" },
-    { year: "2018", title: "Commercial Expansion", description: "Expanded into commercial and industrial solar solutions" },
-    { year: "2021", title: "Battery Storage", description: "Added comprehensive energy storage solutions" },
-    { year: "2024", title: "Industry Leader", description: "Recognized as the top solar installer in the region" }
+    { year: "2012", title: t('timeline.0.title'), description: t('timeline.0.description') },
+    { year: "2015", title: t('timeline.1.title'), description: t('timeline.1.description') },
+    { year: "2018", title: t('timeline.2.title'), description: t('timeline.2.description') },
+    { year: "2021", title: t('timeline.3.title'), description: t('timeline.3.description') },
+    { year: "2024", title: t('timeline.4.title'), description: t('timeline.4.description') }
   ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-orange-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="mb-12">
-          <Link to="/">
+          <Link href="/">
             <Button variant="outline" className="mb-6">
               <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Home
+              {t('backToHome')}
             </Button>
           </Link>
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 tracking-tight">
-            About SolarTech Pro
+            {t('title')}
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl leading-relaxed">
-            Leading the solar revolution since 2012, transforming how homes and businesses
-            power their future with clean, renewable energy.
+            {t('subtitle')}
           </p>
         </div>
 
@@ -76,28 +77,23 @@ const AboutPage = () => {
 
         {/* Story Section */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">Our Story</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">{t('ourStory')}</h2>
           <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 shadow-xl">
             <p className="text-lg text-gray-700 leading-relaxed mb-6">
-              SolarTech Pro was born from a simple belief: everyone deserves access to clean, affordable energy.
-              Founded in 2012 by a team of renewable energy engineers, we've grown from a small startup to
-              the region's most trusted solar installation company.
+              {t('story.paragraph1')}
             </p>
             <p className="text-lg text-gray-700 leading-relaxed mb-6">
-              Our mission goes beyond just installing solar panels. We're building a sustainable future,
-              one installation at a time. Every project we complete brings us closer to a world powered
-              entirely by renewable energy.
+              {t('story.paragraph2')}
             </p>
             <p className="text-lg text-gray-700 leading-relaxed">
-              Today, we're proud to have helped thousands of families and businesses make the switch to solar,
-              saving millions in energy costs and preventing tons of CO₂ emissions.
+              {t('story.paragraph3')}
             </p>
           </div>
         </div>
 
         {/* Timeline */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">Our Journey</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">{t('ourJourney')}</h2>
           <div className="space-y-8">
             {timeline.map((milestone, index) => (
               <div key={index} className="flex items-start space-x-6">
@@ -115,7 +111,7 @@ const AboutPage = () => {
 
         {/* Highlights */}
         <div>
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">Why Choose Us</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">{t('whyChooseUs')}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {highlights.map((highlight, index) => (
               <div key={index} className="flex items-start space-x-4 p-6 bg-white/60 backdrop-blur-sm rounded-xl shadow-lg">

@@ -7,10 +7,10 @@ const About = () => {
   const t = useTranslations('about');
   
   const stats = [
-    { icon: Users, number: "2,500+", label: "Happy Customers", gradient: "from-blue-500 to-cyan-500" },
-    { icon: Zap, number: "15MW+", label: "Solar Installed", gradient: "from-orange-500 to-amber-500" },
-    { icon: Award, number: "12+", label: "Years Experience", gradient: "from-purple-500 to-violet-500" },
-    { icon: Leaf, number: "50M+", label: "lbs CO₂ Saved", gradient: "from-green-500 to-emerald-500" }
+    { icon: Users, number: "2,500+", label: t('stats.customers'), gradient: "from-blue-500 to-cyan-500" },
+    { icon: Zap, number: "15MW+", label: t('stats.installed'), gradient: "from-orange-500 to-amber-500" },
+    { icon: Award, number: "12+", label: t('stats.experience'), gradient: "from-purple-500 to-violet-500" },
+    { icon: Leaf, number: "50M+", label: t('stats.co2Saved'), gradient: "from-green-500 to-emerald-500" }
   ];
 
   return (
@@ -19,19 +19,17 @@ const About = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-12">
           <div className="space-y-6">
             <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-orange-200/50 shadow-lg mb-6">
-              <span className="text-sm font-semibold text-orange-600">About Us</span>
+              <span className="text-sm font-semibold text-orange-600">{t('badge')}</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight leading-tight">
-              Leading Solar Innovators 
-              <span className="bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent"> Since 2012</span>
+              {t('title')}
             </h2>
             <p className="text-xl text-gray-600 leading-relaxed">
-              SolarTech Pro has been at the forefront of the renewable energy revolution, 
-              helping thousands transition to clean, affordable solar power.
+              {t('subtitle')}
             </p>
             <Link href="/about">
               <Button size="lg" className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg hover:shadow-xl transition-all duration-300">
-                Learn More About Us
+                {t('learnMore')}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>

@@ -84,25 +84,25 @@ const Hero = () => {
                   <div className="bg-gray-50/80 backdrop-blur-sm p-4 rounded-xl border border-gray-200/50">
                     <div className="flex justify-between items-center">
                       <span className="text-gray-600 font-medium">{t('calculator.currentBill')}</span>
-                      <span className="font-bold text-xl text-gray-900">$180</span>
+                      <span className="font-bold text-xl text-gray-900">₹15,000</span>
                     </div>
                   </div>
                   
                   <div className="bg-green-50/80 backdrop-blur-sm p-4 rounded-xl border border-green-200/50">
                     <div className="flex justify-between items-center">
                       <span className="text-gray-600 font-medium">{t('calculator.withSolar')}</span>
-                      <span className="font-bold text-xl text-green-600">$45</span>
+                      <span className="font-bold text-xl text-green-600">₹3,750</span>
                     </div>
                   </div>
                   
                   <div className="bg-gradient-to-r from-orange-500 to-amber-500 p-6 rounded-xl text-white">
                     <div className="flex justify-between items-center mb-2">
                       <span className="font-medium">{t('calculator.monthlySavings')}</span>
-                      <span className="font-bold text-2xl">$135</span>
+                      <span className="font-bold text-2xl">₹11,250</span>
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="font-medium">{t('calculator.annualSavings')}</span>
-                      <span className="font-bold text-2xl">$1,620</span>
+                      <span className="font-bold text-2xl">₹1,35,000</span>
                     </div>
                   </div>
                 </div>
@@ -110,7 +110,7 @@ const Hero = () => {
                 <div className="pt-4">
                   <div className="bg-gradient-to-r from-blue-50 to-cyan-50 p-4 rounded-xl border border-blue-200/50">
                     <p className="text-sm text-gray-600 text-center">
-                      <span className="font-semibold text-gray-900">{t('calculator.yearSavings')}</span> $40,500
+                      <span className="font-semibold text-gray-900">{t('calculator.yearSavings')}</span> ₹33,75,000
                     </p>
                   </div>
                 </div>
@@ -122,4 +122,5 @@ const Hero = () => {
     </section>
   );
 };
+
 export default Hero;

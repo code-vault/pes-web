@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "title": "SolarTech Pro | Your Future, Powered by the Sun",
+    "title": "Purvodaya Energy Solutions | Your Future, Powered by the Sun",
     "description": "Premium solar solutions for residential, commercial, and industrial needs. Get your free quote today!"
   },
   "header": {
@@ -9,6 +9,7 @@
     "about": "About",
     "testimonials": "Reviews",
     "contact": "Contact",
+    "gallery": "Gallery",
     "getQuote": "Get Free Quote",
     "companyName": "Purvodaya Energy Solutions"
   },
@@ -37,76 +38,199 @@
     "badge": "Our Services",
     "title": "Complete Solar Solutions",
     "subtitle": "From initial consultation to ongoing maintenance, we provide comprehensive solar services for residential, commercial, and industrial customers.",
+    "viewAll": "View All Services",
     "residential": {
       "title": "Residential Solar",
-      "description": "Custom solar solutions for homes. Reduce your electricity bills and increase property value with our premium residential installations.",
+      "description": "Custom solar solutions for homes. Reduce electricity bills and increase property value.",
       "features": ["Roof-mounted systems", "Ground-mount options", "Battery storage", "Smart monitoring"]
     },
     "commercial": {
       "title": "Commercial Solar",
-      "description": "Scalable solar solutions for businesses. Cut operational costs and demonstrate environmental responsibility with commercial solar.",
+      "description": "Scalable solar solutions for businesses. Cut operational costs and go green.",
       "features": ["Large-scale installations", "Energy storage", "Power purchase agreements", "Tax incentives"]
     },
     "industrial": {
       "title": "Industrial Solar",
-      "description": "High-capacity solar systems for industrial facilities. Maximize energy savings with robust, industrial-grade solar solutions.",
+      "description": "High-capacity solar systems for industrial facilities. Maximum energy savings.",
       "features": ["Megawatt installations", "Grid-tie systems", "Energy management", "Performance monitoring"]
-    },
-    "audits": {
-      "title": "Energy Audits",
-      "description": "Comprehensive energy assessments to optimize your solar investment. Identify savings opportunities and system requirements.",
-      "features": ["Site assessment", "Energy analysis", "ROI calculations", "Custom proposals"]
-    },
-    "maintenance": {
-      "title": "Maintenance & Repair",
-      "description": "Keep your solar system performing at peak efficiency with our professional maintenance and repair services.",
-      "features": ["System cleaning", "Performance optimization", "Component replacement", "Warranty support"]
-    },
-    "support": {
-      "title": "24/7 Support",
-      "description": "Round-the-clock monitoring and support for your solar system. Peace of mind with our comprehensive service guarantee.",
-      "features": ["Remote monitoring", "Technical support", "Emergency repairs", "System optimization"]
     }
+  },
+  "servicesPage": {
+    "title": "Our Complete Solar Services",
+    "subtitle": "From consultation to installation and ongoing support, we provide end-to-end solar solutions tailored to your specific needs and requirements.",
+    "backToHome": "Back to Home",
+    "whatsIncluded": "What's Included:",
+    "services": [
+      {
+        "title": "Residential Solar",
+        "description": "Custom solar solutions for homes. Reduce your electricity bills and increase property value with our premium residential installations.",
+        "detailedDescription": "Our residential solar solutions are designed to maximize your home's energy efficiency while providing significant cost savings. We handle everything from initial consultation to final installation and ongoing maintenance.",
+        "features": ["Roof-mounted systems", "Ground-mount options", "Battery storage", "Smart monitoring"]
+      },
+      {
+        "title": "Commercial Solar",
+        "description": "Scalable solar solutions for businesses. Cut operational costs and demonstrate environmental responsibility with commercial solar.",
+        "detailedDescription": "Transform your business operations with our comprehensive commercial solar solutions. Reduce overhead costs, improve your company's sustainability profile, and take advantage of available tax incentives.",
+        "features": ["Large-scale installations", "Energy storage", "Power purchase agreements", "Tax incentives"]
+      },
+      {
+        "title": "Industrial Solar",
+        "description": "High-capacity solar systems for industrial facilities. Maximize energy savings with robust, industrial-grade solar solutions.",
+        "detailedDescription": "Our industrial solar installations are engineered for maximum efficiency and durability. We provide comprehensive energy management solutions that can handle the demanding requirements of industrial operations.",
+        "features": ["Megawatt installations", "Grid-tie systems", "Energy management", "Performance monitoring"]
+      },
+      {
+        "title": "Energy Audits",
+        "description": "Comprehensive energy assessments to optimize your solar investment. Identify savings opportunities and system requirements.",
+        "detailedDescription": "Our detailed energy audits provide you with a complete understanding of your energy usage patterns and potential savings. We use advanced modeling software to create accurate projections and recommendations.",
+        "features": ["Site assessment", "Energy analysis", "ROI calculations", "Custom proposals"]
+      },
+      {
+        "title": "Maintenance & Repair",
+        "description": "Keep your solar system performing at peak efficiency with our professional maintenance and repair services.",
+        "detailedDescription": "Ensure your solar investment continues to deliver optimal returns with our comprehensive maintenance services. Our certified technicians provide regular inspections, cleaning, and performance optimization.",
+        "features": ["System cleaning", "Performance optimization", "Component replacement", "Warranty support"]
+      },
+      {
+        "title": "24/7 Support",
+        "description": "Round-the-clock monitoring and support for your solar system. Peace of mind with our comprehensive service guarantee.",
+        "detailedDescription": "Our 24/7 support ensures your solar system operates at peak performance around the clock. With remote monitoring and immediate response capabilities, we keep your system running smoothly.",
+        "features": ["Remote monitoring", "Technical support", "Emergency repairs", "System optimization"]
+      }
+    ]
   },
   "about": {
     "badge": "About Us",
     "title": "Leading Solar Innovators Since 2012",
-    "subtitle": "SolarTech Pro has been at the forefront of the renewable energy revolution, helping thousands of families and businesses transition to clean, affordable solar power.",
-    "description": "Our certified team of solar experts combines cutting-edge technology with exceptional service to deliver solar solutions that exceed expectations. We're not just installing solar panels – we're building a sustainable future.",
+    "subtitle": "Purvodaya Energy Solutions has been at the forefront of the renewable energy revolution, helping thousands transition to clean, affordable solar power.",
+    "learnMore": "Learn More About Us",
     "stats": {
       "customers": "Happy Customers",
       "installed": "Solar Installed",
       "experience": "Years Experience",
       "co2Saved": "lbs CO₂ Saved"
-    },
-    "highlights": {
-      "licensed": {
-        "title": "Licensed & Insured",
-        "description": "Fully certified solar installers with comprehensive insurance coverage"
-      },
-      "equipment": {
-        "title": "Premium Equipment",
-        "description": "Top-tier solar panels and components from industry-leading manufacturers"
-      },
-      "warranty": {
-        "title": "25-Year Warranty",
-        "description": "Comprehensive warranty coverage on all installations and components"
-      },
-      "pricing": {
-        "title": "Transparent Pricing",
-        "description": "No hidden fees, no pressure sales - just honest, upfront pricing"
-      }
     }
+  },
+  "aboutPage": {
+    "title": "About Purvodaya Energy Solutions",
+    "subtitle": "Leading the solar revolution since 2012, transforming how homes and businesses power their future with clean, renewable energy.",
+    "backToHome": "Back to Home",
+    "ourStory": "Our Story",
+    "ourJourney": "Our Journey",
+    "whyChooseUs": "Why Choose Us",
+     "stats": {
+      "customers": "Happy Customers",
+      "installed": "Solar Installed",
+      "experience": "Years Experience",
+      "co2Saved": "lbs CO₂ Saved"
+    },
+    "story": {
+      "paragraph1": "Purvodaya Energy Solutions was born from a simple belief: everyone deserves access to clean, affordable energy. Founded in 2012 by a team of renewable energy engineers, we've grown from a small startup to the region's most trusted solar installation company.",
+      "paragraph2": "Our mission goes beyond just installing solar panels. We're building a sustainable future, one installation at a time. Every project we complete brings us closer to a world powered entirely by renewable energy.",
+      "paragraph3": "Today, we're proud to have helped thousands of families and businesses make the switch to solar, saving millions in energy costs and preventing tons of CO₂ emissions."
+    },
+    "timeline": [
+      {
+        "year": "2012",
+        "title": "Company Founded",
+        "description": "Started with a vision to make solar accessible to everyone"
+      },
+      {
+        "year": "2015",
+        "title": "1,000 Installations",
+        "description": "Reached our first major milestone in residential solar"
+      },
+      {
+        "year": "2018",
+        "title": "Commercial Expansion",
+        "description": "Expanded into commercial and industrial solar solutions"
+      },
+      {
+        "year": "2021",
+        "title": "Battery Storage",
+        "description": "Added comprehensive energy storage solutions"
+      },
+      {
+        "year": "2024",
+        "title": "Industry Leader",
+        "description": "Recognized as the top solar installer in the region"
+      }
+    ],
+    "highlights": [
+      {
+        "title": "Licensed & Insured",
+        "description": "Fully certified solar installers with comprehensive insurance coverage for your peace of mind."
+      },
+      {
+        "title": "Premium Equipment",
+        "description": "Top-tier solar panels and components from industry-leading manufacturers like Tesla, SunPower, and LG."
+      },
+      {
+        "title": "25-Year Warranty",
+        "description": "Comprehensive warranty coverage on all installations and components with full performance guarantees."
+      },
+      {
+        "title": "Transparent Pricing",
+        "description": "No hidden fees, no pressure sales - just honest, upfront pricing with detailed cost breakdowns."
+      }
+    ]
+  },
+  "gallery": {
+    "badge": "Gallery",
+    "title": "Our Work in Action",
+    "subtitle": "Explore our portfolio of solar installations and see the difference we make.",
+    "viewFullGallery": "View Full Gallery"
+  },
+  "galleryPage": {
+    "title": "Our Work Gallery",
+    "subtitle": "Explore our comprehensive portfolio of solar installations across residential, commercial, and industrial projects. See the quality and craftsmanship that sets us apart.",
+    "backToHome": "Back to Home",
+    "photo": "Photo",
+    "video": "Video",
+    "categories": {
+      "residential": "Residential",
+      "commercial": "Commercial",
+      "industrial": "Industrial",
+      "technology": "Technology",
+      "process": "Process"
+    },
+    "projects": [
+      {
+        "title": "Solar Panel Installation",
+        "category": "Residential"
+      },
+      {
+        "title": "Solar Installation Process",
+        "category": "Process"
+      },
+      {
+        "title": "Residential Solar System",
+        "category": "Residential"
+      },
+      {
+        "title": "Commercial Solar Installation",
+        "category": "Commercial"
+      },
+      {
+        "title": "Solar Technology Overview",
+        "category": "Technology"
+      },
+      {
+        "title": "Clean Energy Solutions",
+        "category": "Technology"
+      }
+    ]
   },
   "testimonials": {
     "badge": "Customer Reviews",
     "title": "What Our Customers Say",
-    "subtitle": "Don't just take our word for it. Here's what real customers have to say about their experience with SolarTech Pro.",
+    "subtitle": "Real stories from satisfied customers who made the switch to solar.",
+    "readAllReviews": "Read All Reviews",
     "reviews": [
       {
         "name": "Sarah Johnson",
         "location": "Residential Customer",
-        "text": "SolarTech Pro exceeded our expectations! The installation was seamless, and we're already seeing 80% reduction in our electricity bills. The team was professional and knowledgeable throughout the entire process."
+        "text": "Purvodaya Energy Solutions exceeded our expectations! The installation was seamless, and we're already seeing 80% reduction in our electricity bills. The team was professional and knowledgeable throughout the entire process."
       },
       {
         "name": "Mike Chen",
@@ -116,22 +240,58 @@
       {
         "name": "Lisa Rodriguez",
         "location": "Homeowner",
-        "text": "I was hesitant about solar, but SolarTech Pro made the process so easy. Their financing options made it affordable, and the system has been performing better than promised. Highly recommend!"
+        "text": "I was hesitant about solar, but Purvodaya Energy Solutions made the process so easy. Their financing options made it affordable, and the system has been performing better than promised. Highly recommend!"
+      }
+    ]
+  },
+  "testimonialsPage": {
+    "title": "Customer Testimonials",
+    "subtitle": "Read what our satisfied customers have to say about their solar experience. Real stories from real people who made the switch to clean energy.",
+    "backToHome": "Back to Home",
+    "project": "Project:",
+    "annualSavings": "Annual Savings:",
+    "testimonials": [
+      {
+        "name": "Sarah Johnson",
+        "location": "Residential Customer",
+        "text": "Purvodaya Energy Solutions exceeded our expectations! The installation was seamless, and we're already seeing 80% reduction in our electricity bills. The team was professional and knowledgeable throughout the entire process.",
+        "project": "5kW Residential System",
+        "savings": "$1,200/year"
+      },
+      {
+        "name": "Mike Chen",
+        "location": "Business Owner",
+        "text": "Outstanding service from start to finish. They handled all the permits and paperwork, and the installation was completed on schedule. Our commercial facility is now saving thousands monthly on energy costs.",
+        "project": "50kW Commercial System",
+        "savings": "$8,500/year"
+      },
+      {
+        "name": "Lisa Rodriguez",
+        "location": "Homeowner",
+        "text": "I was hesitant about solar, but Purvodaya Energy Solutions made the process so easy. Their financing options made it affordable, and the system has been performing better than promised. Highly recommend!",
+        "project": "7kW Residential System",
+        "savings": "$1,680/year"
       },
       {
         "name": "David Thompson",
         "location": "Property Manager",
-        "text": "We've worked with SolarTech Pro on multiple properties. Their attention to detail and customer service is unmatched. Every installation has been flawless, and maintenance support is excellent."
+        "text": "We've worked with Purvodaya Energy Solutions on multiple properties. Their attention to detail and customer service is unmatched. Every installation has been flawless, and maintenance support is excellent.",
+        "project": "Multiple Commercial Projects",
+        "savings": "$25,000/year"
       },
       {
         "name": "Amanda Foster",
         "location": "Residential Customer",
-        "text": "The solar system has transformed our home's energy efficiency. SolarTech Pro's team was incredibly professional, and they took care of everything from design to final inspection. Love our new solar panels!"
+        "text": "The solar system has transformed our home's energy efficiency. Purvodaya Energy Solutions' team was incredibly professional, and they took care of everything from design to final inspection. Love our new solar panels!",
+        "project": "6kW Residential System",
+        "savings": "$1,440/year"
       },
       {
         "name": "Robert Martinez",
         "location": "Restaurant Owner",
-        "text": "Our restaurant's energy costs were killing our margins. SolarTech Pro designed a perfect system for our needs. Now we're saving over $2,000 monthly and showcasing our commitment to sustainability."
+        "text": "Our restaurant's energy costs were killing our margins. Purvodaya Energy Solutions designed a perfect system for our needs. Now we're saving over $2,000 monthly and showcasing our commitment to sustainability.",
+        "project": "25kW Commercial System",
+        "savings": "$24,000/year"
       }
     ]
   },
@@ -157,7 +317,8 @@
         "bill": "$150",
         "additional": "Tell us about your property, energy goals, or any questions you have..."
       },
-      "submit": "Get My Free Solar Quote"
+      "submit": "Get My Free Solar Quote",
+      "submitting": "Submitting..."
     },
     "info": {
       "call": {
@@ -169,7 +330,7 @@
       "email": {
         "title": "Email Us",
         "description": "Send us an email and we'll respond within 24 hours.",
-        "address": "info@solartechpro.com"
+        "address": "info@purvodayaenergy.com"
       },
       "visit": {
         "title": "Visit Our Office",
@@ -205,7 +366,8 @@
       "testimonials": "Testimonials",
       "financing": "Financing Options",
       "warranties": "Warranties",
-      "contact": "Contact"
+      "contact": "Contact",
+      "gallery": "Gallery"
     },
     "getInTouch": {
       "title": "Get In Touch",
@@ -215,11 +377,22 @@
         "button": "Back to Top"
       }
     },
-    "copyright": "© 2024 SolarTech Pro. All rights reserved.",
+    "copyright": "© 2024 Purvodaya Energy Solutions. All rights reserved.",
     "legal": {
       "privacy": "Privacy Policy",
       "terms": "Terms of Service",
       "cookies": "Cookie Policy"
     }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong. Please try again.",
+    "success": "Success!",
+    "backToHome": "Back to Home",
+    "learnMore": "Learn More",
+    "getStarted": "Get Started",
+    "contactUs": "Contact Us",
+    "readMore": "Read More",
+    "viewAll": "View All"
   }
 }

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Play, X, ChevronLeft, ChevronRight, Maximize, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from '@/i18n/navigation';
+import { useTranslations } from 'next-intl';
 import {
   Carousel,
   CarouselContent,
@@ -12,6 +13,8 @@ import {
 } from '@/components/ui/carousel';
 
 const Gallery = () => {
+  const t = useTranslations('gallery');
+  const tGalleryPage = useTranslations('galleryPage');
   const [selectedMedia, setSelectedMedia] = useState<{type: 'image' | 'video', src: string, title: string} | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -20,37 +23,37 @@ const Gallery = () => {
       type: 'image' as const,
       src: 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       thumbnail: 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-      title: 'Solar Panel Installation'
+      title: tGalleryPage('projects.0.title')
     },
     {
       type: 'video' as const,
       src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
       thumbnail: 'https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-      title: 'Solar Installation Process'
+      title: tGalleryPage('projects.1.title')
     },
     {
       type: 'image' as const,
       src: 'https://images.unsplash.com/photo-1559302504-64aae6ca6909?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       thumbnail: 'https://images.unsplash.com/photo-1559302504-64aae6ca6909?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-      title: 'Residential Solar System'
+      title: tGalleryPage('projects.2.title')
     },
     {
       type: 'image' as const,
       src: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       thumbnail: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-      title: 'Commercial Solar Installation'
+      title: tGalleryPage('projects.3.title')
     },
     {
       type: 'image' as const,
       src: 'https://images.unsplash.com/photo-1513107990900-ed83fbe91e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       thumbnail: 'https://images.unsplash.com/photo-1513107990900-ed83fbe91e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-      title: 'Clean Energy Solutions'
+      title: tGalleryPage('projects.5.title')
     },
     {
       type: 'video' as const,
       src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
       thumbnail: 'https://images.unsplash.com/photo-1497440001374-f26997328c1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-      title: 'Solar Technology Overview'
+      title: tGalleryPage('projects.4.title')
     }
   ];
 
@@ -81,14 +84,13 @@ const Gallery = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-12">
             <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-orange-200/50 shadow-lg mb-6">
-              <span className="text-sm font-semibold text-orange-600">Gallery</span>
+              <span className="text-sm font-semibold text-orange-600">{t('badge')}</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
-              Our Work in
-              <span className="bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent"> Action</span>
+              {t('title')}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Explore our portfolio of solar installations and see the difference we make.
+              {t('subtitle')}
             </p>
           </div>
 
@@ -127,7 +129,7 @@ const Gallery = () => {
                               ? 'bg-red-500/80 text-white' 
                               : 'bg-blue-500/80 text-white'
                           } backdrop-blur-sm`}>
-                            {item.type === 'video' ? 'Video' : 'Photo'}
+                            {item.type === 'video' ? tGalleryPage('video') : tGalleryPage('photo')}
                           </span>
                         </div>
                       </div>
@@ -141,9 +143,9 @@ const Gallery = () => {
           </div>
 
           <div className="text-center">
-            <Link to="/gallery">
+            <Link href="/gallery">
               <Button size="lg" className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg hover:shadow-xl transition-all duration-300">
-                View Full Gallery
+                {t('viewFullGallery')}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>

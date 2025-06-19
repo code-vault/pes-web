@@ -1,59 +1,60 @@
-
 import { Home, Building, Factory, Wrench, Calculator, HeadphonesIcon, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import {Link} from '@/i18n/navigation';
-
+import { useTranslations } from 'next-intl';
 
 const ServicesPage = () => {
+  const t = useTranslations('servicesPage');
+
   const services = [
     {
       Icon: Home,
-      title: "Residential Solar",
-      description: "Custom solar solutions for homes. Reduce your electricity bills and increase property value with our premium residential installations.",
-      features: ["Roof-mounted systems", "Ground-mount options", "Battery storage", "Smart monitoring"],
+      title: t('services.0.title'),
+      description: t('services.0.description'),
+      features: t('services.0.features'),
       gradient: "from-blue-500 to-cyan-500",
-      detailedDescription: "Our residential solar solutions are designed to maximize your home's energy efficiency while providing significant cost savings. We handle everything from initial consultation to final installation and ongoing maintenance."
+      detailedDescription: t('services.0.detailedDescription')
     },
     {
       Icon: Building,
-      title: "Commercial Solar",
-      description: "Scalable solar solutions for businesses. Cut operational costs and demonstrate environmental responsibility with commercial solar.",
-      features: ["Large-scale installations", "Energy storage", "Power purchase agreements", "Tax incentives"],
+      title: t('services.1.title'),
+      description: t('services.1.description'),
+      features: t('services.1.features'),
       gradient: "from-green-500 to-emerald-500",
-      detailedDescription: "Transform your business operations with our comprehensive commercial solar solutions. Reduce overhead costs, improve your company's sustainability profile, and take advantage of available tax incentives."
+      detailedDescription: t('services.1.detailedDescription')
     },
     {
       Icon: Factory,
-      title: "Industrial Solar",
-      description: "High-capacity solar systems for industrial facilities. Maximize energy savings with robust, industrial-grade solar solutions.",
-      features: ["Megawatt installations", "Grid-tie systems", "Energy management", "Performance monitoring"],
+      title: t('services.2.title'),
+      description: t('services.2.description'),
+      features: t('services.2.features'),
       gradient: "from-purple-500 to-violet-500",
-      detailedDescription: "Our industrial solar installations are engineered for maximum efficiency and durability. We provide comprehensive energy management solutions that can handle the demanding requirements of industrial operations."
+      detailedDescription: t('services.2.detailedDescription')
     },
     {
       Icon: Calculator,
-      title: "Energy Audits",
-      description: "Comprehensive energy assessments to optimize your solar investment. Identify savings opportunities and system requirements.",
-      features: ["Site assessment", "Energy analysis", "ROI calculations", "Custom proposals"],
+      title: t('services.3.title'),
+      description: t('services.3.description'),
+      features: t('services.3.features'),
       gradient: "from-orange-500 to-red-500",
-      detailedDescription: "Our detailed energy audits provide you with a complete understanding of your energy usage patterns and potential savings. We use advanced modeling software to create accurate projections and recommendations."
+      detailedDescription: t('services.3.detailedDescription')
     },
     {
       Icon: Wrench,
-      title: "Maintenance & Repair",
-      description: "Keep your solar system performing at peak efficiency with our professional maintenance and repair services.",
-      features: ["System cleaning", "Performance optimization", "Component replacement", "Warranty support"],
+      title: t('services.4.title'),
+      description: t('services.4.description'),
+      features: t('services.4.features'),
       gradient: "from-teal-500 to-cyan-500",
-      detailedDescription: "Ensure your solar investment continues to deliver optimal returns with our comprehensive maintenance services. Our certified technicians provide regular inspections, cleaning, and performance optimization."
+      detailedDescription: t('services.4.detailedDescription')
     },
     {
       Icon: HeadphonesIcon,
-      title: "24/7 Support",
-      description: "Round-the-clock monitoring and support for your solar system. Peace of mind with our comprehensive service guarantee.",
-      features: ["Remote monitoring", "Technical support", "Emergency repairs", "System optimization"],
+      title: t('services.5.title'),
+      description: t('services.5.description'),
+      features: t('services.5.features'),
       gradient: "from-indigo-500 to-blue-500",
-      detailedDescription: "Our 24/7 support ensures your solar system operates at peak performance around the clock. With remote monitoring and immediate response capabilities, we keep your system running smoothly."
+      detailedDescription: t('services.5.detailedDescription')
     }
   ];
 
@@ -61,18 +62,17 @@ const ServicesPage = () => {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="mb-8">
-          <Link to="/">
+          <Link href="/">
             <Button variant="outline" className="mb-6">
               <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Home
+              {t('backToHome')}
             </Button>
           </Link>
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 tracking-tight">
-            Our Complete Solar Services
+            {t('title')}
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl leading-relaxed">
-            From consultation to installation and ongoing support, we provide end-to-end solar solutions
-            tailored to your specific needs and requirements.
+            {t('subtitle')}
           </p>
         </div>
 
@@ -92,9 +92,9 @@ const ServicesPage = () => {
                 </p>
               </CardHeader>
               <CardContent>
-                <h4 className="font-semibold text-gray-900 mb-4">What's Included:</h4>
+                <h4 className="font-semibold text-gray-900 mb-4">{t('whatsIncluded')}</h4>
                 <ul className="space-y-3">
-                  {service.features.map((feature, featureIndex) => (
+                  {service.features.map((feature: string, featureIndex: number) => (
                     <li key={featureIndex} className="flex items-center text-gray-700">
                       <div className={`w-2 h-2 bg-gradient-to-r ${service.gradient} rounded-full mr-4 shadow-sm`}></div>
                       <span className="font-medium">{feature}</span>

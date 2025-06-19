@@ -3,8 +3,10 @@ import { useState } from 'react';
 import { Play, X, ChevronLeft, ChevronRight, Maximize, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from '@/i18n/navigation';
+import { useTranslations } from 'next-intl';
 
 const GalleryPage = () => {
+  const t = useTranslations('galleryPage');
   const [selectedMedia, setSelectedMedia] = useState<{type: 'image' | 'video', src: string, title: string} | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -13,51 +15,51 @@ const GalleryPage = () => {
       type: 'image' as const,
       src: 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       thumbnail: 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-      title: 'Solar Panel Installation',
-      category: 'Residential'
+      title: t('projects.0.title'),
+      category: t('projects.0.category')
     },
     {
       type: 'video' as const,
       src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
       thumbnail: 'https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-      title: 'Solar Installation Process',
-      category: 'Process'
+      title: t('projects.1.title'),
+      category: t('projects.1.category')
     },
     {
       type: 'image' as const,
       src: 'https://images.unsplash.com/photo-1559302504-64aae6ca6909?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       thumbnail: 'https://images.unsplash.com/photo-1559302504-64aae6ca6909?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-      title: 'Residential Solar System',
-      category: 'Residential'
+      title: t('projects.2.title'),
+      category: t('projects.2.category')
     },
     {
       type: 'image' as const,
       src: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       thumbnail: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-      title: 'Commercial Solar Installation',
-      category: 'Commercial'
+      title: t('projects.3.title'),
+      category: t('projects.3.category')
     },
     {
       type: 'video' as const,
       src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
       thumbnail: 'https://images.unsplash.com/photo-1497440001374-f26997328c1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-      title: 'Solar Technology Overview',
-      category: 'Technology'
+      title: t('projects.4.title'),
+      category: t('projects.4.category')
     },
     {
       type: 'image' as const,
       src: 'https://images.unsplash.com/photo-1513107990900-ed83fbe91e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       thumbnail: 'https://images.unsplash.com/photo-1513107990900-ed83fbe91e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-      title: 'Clean Energy Solutions',
-      category: 'Technology'
+      title: t('projects.5.title'),
+      category: t('projects.5.category')
     },
     // Add more media items...
     ...Array.from({ length: 12 }, (_, i) => ({
       type: 'image' as const,
       src: `https://images.unsplash.com/photo-${1500000000000 + i}?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80`,
       thumbnail: `https://images.unsplash.com/photo-${1500000000000 + i}?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80`,
-      title: `Project ${i + 7}`,
-      category: i % 2 === 0 ? 'Residential' : 'Commercial'
+      title: `${t('projects.0.title')} ${i + 7}`,
+      category: i % 2 === 0 ? t('categories.residential') : t('categories.commercial')
     }))
   ];
 
@@ -90,15 +92,14 @@ const GalleryPage = () => {
             <Link href="/">
               <Button variant="outline" className="mb-6 bg-white/10 border-white/20 text-white hover:bg-white/20">
                 <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to Home
+                {t('backToHome')}
               </Button>
             </Link>
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight">
-              Our Work Gallery
+              {t('title')}
             </h1>
             <p className="text-xl text-gray-300 max-w-3xl leading-relaxed">
-              Explore our comprehensive portfolio of solar installations across residential, commercial,
-              and industrial projects. See the quality and craftsmanship that sets us apart.
+              {t('subtitle')}
             </p>
           </div>
 
@@ -136,7 +137,7 @@ const GalleryPage = () => {
                         ? 'bg-red-500/80 text-white' 
                         : 'bg-blue-500/80 text-white'
                     } backdrop-blur-sm`}>
-                      {item.type === 'video' ? 'Video' : 'Photo'}
+                      {item.type === 'video' ? t('video') : t('photo')}
                     </span>
                   </div>
 

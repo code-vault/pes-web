@@ -68,6 +68,7 @@ const Footer = () => {
             <ul className="space-y-3 text-gray-300">
               <li><Link href="#about" className="hover:text-orange-400 transition-colors duration-300 font-medium">{t('quickLinks.about')}</Link></li>
               <li><Link href="#services" className="hover:text-orange-400 transition-colors duration-300 font-medium">{t('quickLinks.services')}</Link></li>
+              <li><Link href="#gallery" className="hover:text-orange-400 transition-colors duration-300 font-medium">{t('quickLinks.gallery')}</Link></li>
               <li><Link href="#testimonials" className="hover:text-orange-400 transition-colors duration-300 font-medium">{t('quickLinks.testimonials')}</Link></li>
               <li><Link href="#" className="hover:text-orange-400 transition-colors duration-300 font-medium">{t('quickLinks.financing')}</Link></li>
               <li><Link href="#" className="hover:text-orange-400 transition-colors duration-300 font-medium">{t('quickLinks.warranties')}</Link></li>
@@ -83,19 +84,19 @@ const Footer = () => {
                 <div className="bg-gradient-to-br from-green-400 to-emerald-500 p-2 rounded-lg">
                   <Phone className="h-5 w-5 text-white" />
                 </div>
-                <span className="font-medium">(555) 765-2766</span>
+                <span className="font-medium">+91 98765 43210</span>
               </div>
               <div className="flex items-center space-x-3">
                 <div className="bg-gradient-to-br from-blue-400 to-cyan-500 p-2 rounded-lg">
                   <Mail className="h-5 w-5 text-white" />
                 </div>
-                <span className="font-medium">info@solartechpro.com</span>
+                <span className="font-medium">info@purvodayaenergy.com</span>
               </div>
               <div className="flex items-start space-x-3">
                 <div className="bg-gradient-to-br from-purple-400 to-violet-500 p-2 rounded-lg mt-1">
                   <MapPin className="h-5 w-5 text-white" />
                 </div>
-                <span className="font-medium leading-relaxed">1234 Solar Avenue<br />Green City, CA 90210</span>
+                <span className="font-medium leading-relaxed">1234 Solar Avenue<br />Green City, Delhi 110001</span>
               </div>
             </div>
             <div className="mt-6 p-6 bg-gradient-to-r from-orange-500 to-amber-500 rounded-2xl shadow-xl">

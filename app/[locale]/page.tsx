@@ -2,9 +2,10 @@ import {setRequestLocale} from 'next-intl/server';
 import Hero from '@/components/Hero';
 import Services from '@/components/Services';
 import About from '@/components/About';
-import Testimonials from '@/components/Testimonials';
-import Contact from '@/components/Contact';
 import Gallery from '@/components/Gallery';
+import UnifiedTestimonials from '@/components/Testimonials';
+import FAQSection from '@/components/FAQSection';
+import MobileOptimizedContact from '@/components/MobileOptimizedContact';
 
 type Props = {
   params: Promise<{locale: string}>;
@@ -25,8 +26,15 @@ export default async function HomePage({params}: Props) {
       <Services />
       <About />
       <Gallery />
-      <Testimonials />
-      <Contact />
+      
+      {/* Unified Testimonials with Text and Video Carousel */}
+      <UnifiedTestimonials />
+      
+      {/* FAQ Section */}
+      {/* <FAQSection /> */}
+      
+      {/* Updated Mobile-Optimized Contact Form */}
+      <MobileOptimizedContact />
     </>
   );
 }
