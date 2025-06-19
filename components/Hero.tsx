@@ -1,12 +1,23 @@
-import { ArrowRight, Zap, Shield, DollarSign, Play } from 'lucide-react';
+"use client";
+import { ArrowRight, Zap, Shield, DollarSign, Play, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useTranslations } from 'next-intl';
+import { useState } from 'react';
 
 const Hero = () => {
   const t = useTranslations('hero');
+  const [showDemoModal, setShowDemoModal] = useState(false);
+
+  const openDemoModal = () => {
+    setShowDemoModal(true);
+  };
+
+  const closeDemoModal = () => {
+    setShowDemoModal(false);
+  };
 
   return (
-    <section id="home" className="pt-24 pb-20 bg-gradient-to-br from-slate-50 via-blue-50 to-orange-50 min-h-screen flex items-center relative overflow-hidden">
+    <section id="home" className="pt-32 pb-20 bg-gradient-to-br from-slate-50 via-blue-50 to-orange-50 min-h-screen flex items-center relative overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-r from-orange-400/20 to-yellow-400/20 rounded-full blur-3xl animate-pulse"></div>
@@ -63,7 +74,12 @@ const Hero = () => {
                 {t('getQuoteBtn')}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button size="lg" variant="outline" className="border-2 border-gray-300 text-gray-700 hover:bg-white hover:shadow-xl bg-white/60 backdrop-blur-sm transition-all duration-300 px-8 py-4 text-lg font-semibold rounded-xl">
+              <Button 
+                size="lg" 
+                variant="outline" 
+                onClick={openDemoModal}
+                className="border-2 border-gray-300 text-gray-700 hover:bg-white hover:shadow-xl bg-white/60 backdrop-blur-sm transition-all duration-300 px-8 py-4 text-lg font-semibold rounded-xl"
+              >
                 <Play className="mr-2 h-5 w-5" />
                 {t('watchDemo')}
               </Button>
@@ -121,6 +137,72 @@ const Hero = () => {
           </div>
         </div>
       </div>
+
+      {/* Demo Modal */}
+      {showDemoModal && (
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between p-6 border-b border-gray-200">
+              <h3 className="text-2xl font-bold text-gray-900">Solar Energy Demo</h3>
+              <button
+                onClick={closeDemoModal}
+                className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                aria-label="Close modal"
+              >
+                <X className="h-6 w-6 text-gray-500" />
+              </button>
+            </div>
+
+            {/* Modal Content */}
+            <div className="p-6">
+              <div className="text-center space-y-6">
+                {/* Placeholder Video Area */}
+                <div className="aspect-video bg-gradient-to-br from-orange-100 to-amber-100 rounded-xl border-2 border-dashed border-orange-300 flex items-center justify-center">
+                  <div className="text-center">
+                    <Play className="h-16 w-16 text-orange-500 mx-auto mb-4" />
+                    <h4 className="text-xl font-semibold text-gray-700 mb-2">Demo Video Coming Soon</h4>
+                    <p className="text-gray-500">
+                      Watch how solar energy can transform your home<br />
+                      and reduce your electricity bills by up to 90%
+                    </p>
+                  </div>
+                </div>
+
+                {/* Demo Features */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+                  <div className="text-center p-4 bg-blue-50 rounded-lg">
+                    <Zap className="h-8 w-8 text-blue-600 mx-auto mb-2" />
+                    <h5 className="font-semibold text-gray-800">Installation Process</h5>
+                    <p className="text-sm text-gray-600">See our professional installation in action</p>
+                  </div>
+                  <div className="text-center p-4 bg-green-50 rounded-lg">
+                    <Shield className="h-8 w-8 text-green-600 mx-auto mb-2" />
+                    <h5 className="font-semibold text-gray-800">Quality Assurance</h5>
+                    <p className="text-sm text-gray-600">Premium components with 25-year warranty</p>
+                  </div>
+                  <div className="text-center p-4 bg-orange-50 rounded-lg">
+                    <DollarSign className="h-8 w-8 text-orange-600 mx-auto mb-2" />
+                    <h5 className="font-semibold text-gray-800">Cost Savings</h5>
+                    <p className="text-sm text-gray-600">Real customer savings and ROI examples</p>
+                  </div>
+                </div>
+
+                {/* CTA */}
+                <div className="mt-8 pt-6 border-t border-gray-200">
+                  <p className="text-gray-600 mb-4">Ready to start your solar journey?</p>
+                  <Button 
+                    onClick={closeDemoModal}
+                    className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white px-6 py-3 rounded-lg font-semibold"
+                  >
+                    Get Your Free Quote Now
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
