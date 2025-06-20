@@ -31,10 +31,10 @@ const Header = () => {
 
   // Main navigation items (center)
   const mainNavItems = [
-    { href: "#about", label: t('about') },
-    { href: "#services", label: t('services') },
-    { href: "#gallery", label: t('gallery') },
-    { href: "#testimonials", label: t('testimonials') }
+    { href: "/about", label: t('about') },
+    { href: "/services", label: t('services') },
+    { href: "/gallery", label: t('gallery') },
+    { href: "/testimonials", label: t('testimonials') }
   ];
 
   // Right side navigation items (before CTA button)

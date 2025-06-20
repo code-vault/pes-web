@@ -9,9 +9,10 @@ import {setRequestLocale} from 'next-intl/server';
 // Your shared layout components
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+// CORRECTED IMPORT - Use the actual FloatingClickToCall component
 import FloatingClickToCall from '@/components/FloatingClickToCall';
 
-// Toast Provider - ADD THIS IMPORT
+// Toast Provider
 import { ToastProvider } from '@/components/ui/toast';
 
 // Font optimization
