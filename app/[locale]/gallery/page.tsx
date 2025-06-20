@@ -11,7 +11,8 @@ const GalleryPage = () => {
   const [selectedMedia, setSelectedMedia] = useState<{type: 'image' | 'video', src: string, title: string} | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const mediaItems = [
+  // Base media items from translations
+  const baseMediaItems = [
     {
       type: 'image' as const,
       src: 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
@@ -53,16 +54,20 @@ const GalleryPage = () => {
       thumbnail: 'https://images.unsplash.com/photo-1513107990900-ed83fbe91e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
       title: t('projects.5.title'),
       category: t('projects.5.category')
-    },
-    // Add more media items...
-    ...Array.from({ length: 12 }, (_, i) => ({
-      type: 'image' as const,
-      src: `https://images.unsplash.com/photo-${1500000000000 + i}?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80`,
-      thumbnail: `https://images.unsplash.com/photo-${1500000000000 + i}?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80`,
-      title: `${t('projects.0.title')} ${i + 7}`,
-      category: i % 2 === 0 ? t('categories.residential') : t('categories.commercial')
-    }))
+    }
   ];
+
+  // Additional media items from translations
+  const additionalMediaItems = Array.from({ length: 12 }, (_, i) => ({
+    type: 'image' as const,
+    src: `https://images.unsplash.com/photo-${1500000000000 + i}?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80`,
+    thumbnail: `https://images.unsplash.com/photo-${1500000000000 + i}?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80`,
+    title: t(`additionalProjects.${i}.title`),
+    category: t(`additionalProjects.${i}.category`)
+  }));
+
+  // Combine all media items
+  const mediaItems = [...baseMediaItems, ...additionalMediaItems];
 
   const openLightbox = (item: typeof mediaItems[0], index: number) => {
     setSelectedMedia(item);
@@ -219,7 +224,7 @@ const GalleryPage = () => {
                 autoPlay
                 className="max-w-full max-h-full rounded-lg shadow-2xl animate-scale-in"
               >
-                Your browser does not support the video tag.
+                {t('videoNotSupported')}
               </video>
             )}
           </div>
@@ -227,7 +232,7 @@ const GalleryPage = () => {
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-center">
             <h3 className="text-white text-xl font-semibold mb-2">{selectedMedia.title}</h3>
             <p className="text-gray-300 text-sm">
-              {currentIndex + 1} of {mediaItems.length}
+              {t('imageCounter', { current: currentIndex + 1, total: mediaItems.length })}
             </p>
           </div>
         </div>

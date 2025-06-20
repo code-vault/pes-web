@@ -11,62 +11,22 @@ const TestimonialsPage = () => {
   const t = useTranslations('testimonialsPage');
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
 
-  // Video testimonials data
-  const videoTestimonials = [
-    {
-      id: 1,
-      name: "Raj Sharma",
-      location: "Mumbai, Maharashtra",
-      title: "From ₹25,000 to ₹3,000 Monthly Bills!",
-      youtubeId: "dQw4w9WgXcQ",
-      thumbnail: `https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg`,
-      duration: "2:45",
-      rating: 5,
-      savings: "₹2,64,000/year",
-      systemSize: "8kW Residential",
-      description: "See how Raj transformed his home energy costs with our solar solution."
-    },
-    {
-      id: 2,
-      name: "Priya Patel",
-      location: "Ahmedabad, Gujarat",
-      title: "Best Investment We Ever Made",
-      youtubeId: "9bZkp7q19f0",
-      thumbnail: `https://img.youtube.com/vi/9bZkp7q19f0/maxresdefault.jpg`,
-      duration: "3:12",
-      rating: 5,
-      savings: "₹1,80,000/year",
-      systemSize: "6kW Residential",
-      description: "Priya shares her amazing experience with our solar installation team."
-    },
-    {
-      id: 3,
-      name: "Amit Kumar",
-      location: "Delhi NCR",
-      title: "Professional Service, Amazing Results",
-      youtubeId: "ScMzIvxBSi4",
-      thumbnail: `https://img.youtube.com/vi/ScMzIvxBSi4/maxresdefault.jpg`,
-      duration: "1:58",
-      rating: 5,
-      savings: "₹3,60,000/year",
-      systemSize: "12kW Commercial",
-      description: "Commercial client Amit explains the ROI of his solar investment."
-    },
-    {
-      id: 4,
-      name: "Sunita Gupta",
-      location: "Pune, Maharashtra",
-      title: "Exceeded All Our Expectations",
-      youtubeId: "kJQP7kiw5Fk",
-      thumbnail: `https://img.youtube.com/vi/kJQP7kiw5Fk/maxresdefault.jpg`,
-      duration: "2:30",
-      rating: 5,
-      savings: "₹2,10,000/year",
-      systemSize: "7kW Residential",
-      description: "Sunita talks about the seamless installation process and ongoing support."
-    }
-  ];
+  // Video testimonials data from translations
+  const videoTestimonials = Array.from({ length: 4 }, (_, i) => ({
+    id: i + 1,
+    name: t(`videoTestimonials.${i}.name`),
+    location: t(`videoTestimonials.${i}.location`),
+    title: t(`videoTestimonials.${i}.title`),
+    youtubeId: t(`videoTestimonials.${i}.youtubeId`),
+    thumbnail: `https://img.youtube.com/vi/${t(`videoTestimonials.${i}.youtubeId`)}/maxresdefault.jpg`,
+    duration: t(`videoTestimonials.${i}.duration`),
+    rating: 5,
+    savings: t(`videoTestimonials.${i}.savings`),
+    systemSize: t(`videoTestimonials.${i}.systemSize`),
+    description: t(`videoTestimonials.${i}.description`)
+  }));
 
+  // Written testimonials from existing translations
   const testimonials = [
     {
       name: t('testimonials.0.name'),
@@ -124,13 +84,13 @@ const TestimonialsPage = () => {
     },
     // Add more testimonials...
     ...Array.from({ length: 6 }, (_, i) => ({
-      name: `Customer ${i + 7}`,
-      location: i % 2 === 0 ? "Residential Customer" : "Business Owner",
+      name: t(`additionalTestimonials.${i}.name`),
+      location: t(`additionalTestimonials.${i}.location`),
       rating: 5,
-      text: "Amazing experience with Purvodaya Energy Solutions. The installation was smooth, and we're seeing great savings on our energy bills. Professional team and excellent customer service throughout the process.",
+      text: t(`additionalTestimonials.${i}.text`),
       gradient: `from-${['blue', 'green', 'purple', 'orange', 'teal', 'indigo'][i % 6]}-500 to-${['cyan', 'emerald', 'violet', 'red', 'cyan', 'blue'][i % 6]}-500`,
-      project: `${5 + i}kW ${i % 2 === 0 ? 'Residential' : 'Commercial'} System`,
-      savings: `₹${90000 + i * 15000}/year`
+      project: t(`additionalTestimonials.${i}.project`),
+      savings: t(`additionalTestimonials.${i}.savings`)
     }))
   ];
 
@@ -181,19 +141,19 @@ const TestimonialsPage = () => {
             <div className="text-center mb-12">
               <ScrollReveal direction="up" delay={700}>
                 <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-orange-200/50 shadow-lg mb-6">
-                  <span className="text-sm font-semibold text-orange-600">Video Reviews</span>
+                  <span className="text-sm font-semibold text-orange-600">{t('videoReviews')}</span>
                 </div>
               </ScrollReveal>
 
               <ScrollReveal direction="up" delay={900}>
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                  Watch Customer Stories
+                  {t('watchCustomerStories')}
                 </h2>
               </ScrollReveal>
 
               <ScrollReveal direction="up" delay={1100}>
                 <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                  See real customers share their solar journey and savings
+                  {t('seeRealCustomers')}
                 </p>
               </ScrollReveal>
             </div>
@@ -267,11 +227,11 @@ const TestimonialsPage = () => {
                       <div className="bg-gradient-to-r from-green-50 to-blue-50 p-4 rounded-xl">
                         <div className="grid grid-cols-2 gap-4 text-center">
                           <div>
-                            <p className="text-xs text-gray-500 uppercase tracking-wider">System Size</p>
+                            <p className="text-xs text-gray-500 uppercase tracking-wider">{t('systemSize')}</p>
                             <p className="font-bold text-gray-900">{testimonial.systemSize}</p>
                           </div>
                           <div>
-                            <p className="text-xs text-gray-500 uppercase tracking-wider">Annual Savings</p>
+                            <p className="text-xs text-gray-500 uppercase tracking-wider">{t('annualSavings')}</p>
                             <p className="font-bold text-green-600">{testimonial.savings}</p>
                           </div>
                         </div>
@@ -282,7 +242,7 @@ const TestimonialsPage = () => {
                         className="w-full mt-4 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white transition-all duration-300"
                       >
                         <Play className="mr-2 h-4 w-4" />
-                        Watch Full Story
+                        {t('watchFullStory')}
                       </Button>
                     </CardContent>
                   </Card>
@@ -296,19 +256,19 @@ const TestimonialsPage = () => {
             <div className="text-center mb-12">
               <ScrollReveal direction="up" delay={2100}>
                 <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-orange-200/50 shadow-lg mb-6">
-                  <span className="text-sm font-semibold text-orange-600">Written Reviews</span>
+                  <span className="text-sm font-semibold text-orange-600">{t('writtenReviews')}</span>
                 </div>
               </ScrollReveal>
 
               <ScrollReveal direction="up" delay={2300}>
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                  Detailed Customer Reviews
+                  {t('detailedCustomerReviews')}
                 </h2>
               </ScrollReveal>
 
               <ScrollReveal direction="up" delay={2500}>
                 <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                  Read comprehensive feedback from our satisfied customers
+                  {t('readComprehensiveFeedback')}
                 </p>
               </ScrollReveal>
             </div>
@@ -371,10 +331,10 @@ const TestimonialsPage = () => {
           <ScrollReveal direction="up" delay={4000}>
             <div className="mt-16 text-center">
               <div className="bg-gradient-to-r from-orange-500 to-amber-500 rounded-2xl p-8 text-white">
-                <h3 className="text-2xl font-bold mb-4">Ready to Join Our Happy Customers?</h3>
-                <p className="text-orange-100 mb-6">Get your free solar consultation today and start saving!</p>
+                <h3 className="text-2xl font-bold mb-4">{t('cta.title')}</h3>
+                <p className="text-orange-100 mb-6">{t('cta.description')}</p>
                 <Button className="bg-white text-orange-600 hover:bg-orange-50 transition-all duration-300 transform hover:scale-105 shadow-lg">
-                  Get Free Quote Now
+                  {t('cta.button')}
                 </Button>
               </div>
             </div>
@@ -398,7 +358,7 @@ const TestimonialsPage = () => {
             {/* YouTube Embed */}
             <iframe
               src={`https://www.youtube.com/embed/${selectedVideo}?autoplay=1&rel=0&modestbranding=1`}
-              title="Customer Testimonial"
+              title={t('customerTestimonial')}
               className="w-full h-full rounded-lg shadow-2xl"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -408,7 +368,7 @@ const TestimonialsPage = () => {
           
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-center">
             <p className="text-white text-sm opacity-75">
-              Press ESC to close • Click outside to close
+              {t('modalInstructions')}
             </p>
           </div>
         </div>

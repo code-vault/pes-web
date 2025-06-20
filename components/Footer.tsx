@@ -38,22 +38,22 @@ const Footer = () => {
               <div className="flex space-x-4">
                 <ScrollReveal direction="scale" delay={300}>
                   <div className="bg-white/10 backdrop-blur-sm p-3 rounded-xl hover:bg-white/20 transition-all duration-300 cursor-pointer group">
-                    <Facebook className="h-6 w-6 text-gray-300 group-hover:text-orange-400 transition-colors" />
+                    <Facebook className="h-6 w-6 text-gray-300 group-hover:text-orange-400 transition-colors" aria-label={t('social.facebook')} />
                   </div>
                 </ScrollReveal>
                 <ScrollReveal direction="scale" delay={400}>
                   <div className="bg-white/10 backdrop-blur-sm p-3 rounded-xl hover:bg-white/20 transition-all duration-300 cursor-pointer group">
-                    <Twitter className="h-6 w-6 text-gray-300 group-hover:text-orange-400 transition-colors" />
+                    <Twitter className="h-6 w-6 text-gray-300 group-hover:text-orange-400 transition-colors" aria-label={t('social.twitter')} />
                   </div>
                 </ScrollReveal>
                 <ScrollReveal direction="scale" delay={500}>
                   <div className="bg-white/10 backdrop-blur-sm p-3 rounded-xl hover:bg-white/20 transition-all duration-300 cursor-pointer group">
-                    <Linkedin className="h-6 w-6 text-gray-300 group-hover:text-orange-400 transition-colors" />
+                    <Linkedin className="h-6 w-6 text-gray-300 group-hover:text-orange-400 transition-colors" aria-label={t('social.linkedin')} />
                   </div>
                 </ScrollReveal>
                 <ScrollReveal direction="scale" delay={600}>
                   <div className="bg-white/10 backdrop-blur-sm p-3 rounded-xl hover:bg-white/20 transition-all duration-300 cursor-pointer group">
-                    <Instagram className="h-6 w-6 text-gray-300 group-hover:text-orange-400 transition-colors" />
+                    <Instagram className="h-6 w-6 text-gray-300 group-hover:text-orange-400 transition-colors" aria-label={t('social.instagram')} />
                   </div>
                 </ScrollReveal>
               </div>
@@ -127,7 +127,7 @@ const Footer = () => {
                     <div className="bg-gradient-to-br from-green-400 to-emerald-500 p-2 rounded-lg">
                       <Phone className="h-5 w-5 text-white" />
                     </div>
-                    <span className="font-medium">+91 98765 43210</span>
+                    <span className="font-medium">{t('contact.phone')}</span>
                   </div>
                 </ScrollReveal>
                 <ScrollReveal direction="left" delay={700}>
@@ -135,7 +135,7 @@ const Footer = () => {
                     <div className="bg-gradient-to-br from-blue-400 to-cyan-500 p-2 rounded-lg">
                       <Mail className="h-5 w-5 text-white" />
                     </div>
-                    <span className="font-medium">info@purvodayaenergy.com</span>
+                    <span className="font-medium">{t('contact.email')}</span>
                   </div>
                 </ScrollReveal>
                 <ScrollReveal direction="left" delay={800}>
@@ -143,7 +143,7 @@ const Footer = () => {
                     <div className="bg-gradient-to-br from-purple-400 to-violet-500 p-2 rounded-lg mt-1">
                       <MapPin className="h-5 w-5 text-white" />
                     </div>
-                    <span className="font-medium leading-relaxed">1234 Solar Avenue<br />Green City, Delhi 110001</span>
+                    <span className="font-medium leading-relaxed">{t('contact.address')}</span>
                   </div>
                 </ScrollReveal>
               </div>

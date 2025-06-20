@@ -39,7 +39,7 @@ const Header = () => {
 
   // Right side navigation items (before CTA button)
   const rightNavItems = [
-    { href: "#contact", label: locale === 'hi' ? 'संपर्क' : 'Contact' },
+    { href: "#contact", label: t('contact') },
     { href: "/faq", label: "FAQ" }
   ];
 
@@ -54,24 +54,24 @@ const Header = () => {
             {/* Left side - Contact */}
             <div className="hidden md:flex items-center space-x-1 text-gray-600">
               <Phone className="h-3 w-3" />
-              <span>+91 98765 43210</span>
+              <span>{t('topBar.phone')}</span>
             </div>
             
             {/* Right side - Social Media & Language */}
             <div className="flex items-center space-x-4">
               {/* Social media links */}
               <div className="flex items-center space-x-2">
-                <a href="#" className="text-gray-500 hover:text-orange-500 transition-colors" aria-label="Facebook">
+                <a href="#" className="text-gray-500 hover:text-orange-500 transition-colors" aria-label={t('social.facebook')}>
                   <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                   </svg>
                 </a>
-                <a href="#" className="text-gray-500 hover:text-orange-500 transition-colors" aria-label="LinkedIn">
+                <a href="#" className="text-gray-500 hover:text-orange-500 transition-colors" aria-label={t('social.linkedin')}>
                   <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                   </svg>
                 </a>
-                <a href="#" className="text-gray-500 hover:text-orange-500 transition-colors" aria-label="Instagram">
+                <a href="#" className="text-gray-500 hover:text-orange-500 transition-colors" aria-label={t('social.instagram')}>
                   <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.49-3.323-1.297C3.85 14.724 3.85 12.78 5.126 11.504c1.276-1.276 3.091-1.453 4.543-.532 1.297.824 1.985 2.27 1.628 3.611-.356 1.341-1.628 2.405-3.023 2.405h-.825zm7.07 0c-1.297 0-2.448-.49-3.323-1.297-1.276-1.276-1.276-3.22 0-4.496 1.276-1.276 3.091-1.453 4.543-.532 1.297.824 1.985 2.27 1.628 3.611-.356 1.341-1.628 2.405-3.023 2.405h-.825z"/>
                   </svg>
@@ -85,10 +85,10 @@ const Header = () => {
               <button
                 onClick={toggleLanguage}
                 className="flex items-center space-x-1 px-3 py-1 text-gray-600 hover:text-orange-500 transition-colors group rounded"
-                aria-label="Toggle language"
+                aria-label={t('languageSwitcher.toggle')}
               >
                 <Globe className="h-3 w-3 group-hover:text-orange-500 transition-colors" />
-                <span className="font-medium">{locale === 'en' ? 'हिंदी' : 'English'}</span>
+                <span className="font-medium">{t('languageSwitcher.current')}</span>
               </button>
             </div>
           </div>
@@ -139,10 +139,10 @@ const Header = () => {
                 {/* Show logo text on all screen sizes */}
                 <div>
                   <div className="text-lg sm:text-xl lg:text-3xl font-black bg-gradient-to-r from-orange-700 via-amber-600 to-orange-800 bg-clip-text text-transparent leading-tight tracking-tight">
-                    PURVODAYA
+                    {t('logo.main')}
                   </div>
                   <div className="text-xs sm:text-sm lg:text-base bg-gradient-to-r from-gray-600 to-gray-700 bg-clip-text text-transparent font-semibold tracking-[0.1em] sm:tracking-[0.15em] lg:tracking-[0.2em] uppercase">
-                    Energy Solutions
+                    {t('logo.tagline')}
                   </div>
                 </div>
               </Link>
@@ -175,7 +175,7 @@ const Header = () => {
               
               {/* CTA Button */}
               <Button className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 px-6 py-3 font-semibold rounded-lg ml-3 whitespace-nowrap">
-                {locale === 'hi' ? 'मुफ्त कोटेशन' : 'Get Quote'}
+                {t('getQuote')}
               </Button>
             </div>
 
@@ -184,7 +184,7 @@ const Header = () => {
               <button
                 className="p-3 rounded-xl hover:bg-gray-100 transition-colors"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                aria-label="Toggle menu"
+                aria-label={t('mobileMenu.toggle')}
               >
                 {isMenuOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
               </button>
@@ -228,7 +228,7 @@ const Header = () => {
                     className="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg py-4 rounded-xl font-semibold"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    {locale === 'hi' ? 'मुफ्त कोटेशन' : 'Get Quote'}
+                    {t('getQuote')}
                   </Button>
                 </div>
               </div>

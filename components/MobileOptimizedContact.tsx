@@ -27,9 +27,9 @@ const MobileOptimizedContact = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const steps = [
-    { id: 1, title: locale === 'hi' ? 'व्यक्तिगत जानकारी' : 'Personal Info', icon: User },
-    { id: 2, title: locale === 'hi' ? 'संपत्ति विवरण' : 'Property Details', icon: Home },
-    { id: 3, title: locale === 'hi' ? 'ऊर्जा उपयोग' : 'Energy Usage', icon: CreditCard }
+    { id: 1, title: t('form.steps.0.title'), icon: User },
+    { id: 2, title: t('form.steps.1.title'), icon: Home },
+    { id: 3, title: t('form.steps.2.title'), icon: CreditCard }
   ];
 
   // Contact info cards data
@@ -39,7 +39,7 @@ const MobileOptimizedContact = () => {
       title: t('info.call.title'),
       description: t('info.call.description'),
       action: "tel:+919876543210",
-      actionText: locale === 'hi' ? 'विशेषज्ञ को कॉल करें' : 'Call Expert',
+      actionText: t('info.call.actionText'),
       gradient: "from-green-500 to-emerald-600",
       delay: 200
     },
@@ -48,7 +48,7 @@ const MobileOptimizedContact = () => {
       title: t('info.email.title'),
       description: t('info.email.description'),
       action: "mailto:info@purvodayaenergy.com?subject=Solar Installation Inquiry",
-      actionText: locale === 'hi' ? 'ईमेल करें' : 'Email Us',
+      actionText: t('info.email.actionText'),
       gradient: "from-blue-400 to-cyan-500",
       delay: 400
     },
@@ -72,27 +72,27 @@ const MobileOptimizedContact = () => {
   const trustIndicators = [
     {
       icon: Check,
-      title: locale === 'hi' ? 'लाइसेंसयुक्त' : 'Licensed',
-      description: locale === 'hi' ? 'पूर्ण प्रमाणन' : 'Fully Certified',
+      title: t('trustIndicators.0.title'),
+      description: t('trustIndicators.0.description'),
       gradient: "from-green-400 to-emerald-500"
     },
     {
       icon: Clock,
-      title: locale === 'hi' ? 'साल वारंटी' : 'Year Warranty',
+      title: t('trustIndicators.1.title'),
       number: "25",
-      description: locale === 'hi' ? 'व्यापक कवरेज' : 'Comprehensive Coverage',
+      description: t('trustIndicators.1.description'),
       gradient: "from-blue-400 to-cyan-500"
     },
     {
       icon: Phone,
       title: "24/7",
-      description: locale === 'hi' ? 'ग्राहक सहायता' : 'Customer Support',
+      description: t('trustIndicators.2.description'),
       gradient: "from-orange-400 to-red-500"
     },
     {
       icon: CreditCard,
       title: "₹0",
-      description: locale === 'hi' ? 'डाउन पेमेंट' : 'Down Payment',
+      description: t('trustIndicators.3.description'),
       gradient: "from-purple-400 to-violet-500"
     }
   ];
@@ -113,26 +113,26 @@ const MobileOptimizedContact = () => {
 
     if (step === 1) {
       if (!formData.firstName.trim()) {
-        newErrors.firstName = locale === 'hi' ? 'पहला नाम आवश्यक है' : 'First name is required';
+        newErrors.firstName = t('form.validation.firstName');
       }
       if (!formData.lastName.trim()) {
-        newErrors.lastName = locale === 'hi' ? 'अंतिम नाम आवश्यक है' : 'Last name is required';
+        newErrors.lastName = t('form.validation.lastName');
       }
       if (!formData.email.trim()) {
-        newErrors.email = locale === 'hi' ? 'ईमेल आवश्यक है' : 'Email is required';
+        newErrors.email = t('form.validation.email.required');
       } else if (!validateEmail(formData.email)) {
-        newErrors.email = locale === 'hi' ? 'वैध ईमेल दर्ज करें' : 'Please enter a valid email';
+        newErrors.email = t('form.validation.email.invalid');
       }
       if (!formData.phone.trim()) {
-        newErrors.phone = locale === 'hi' ? 'फोन नंबर आवश्यक है' : 'Phone number is required';
+        newErrors.phone = t('form.validation.phone.required');
       } else if (!validatePhone(formData.phone)) {
-        newErrors.phone = locale === 'hi' ? 'वैध फोन नंबर दर्ज करें' : 'Please enter a valid phone number';
+        newErrors.phone = t('form.validation.phone.invalid');
       }
     }
 
     if (step === 2) {
       if (!formData.address.trim()) {
-        newErrors.address = locale === 'hi' ? 'पता आवश्यक है' : 'Address is required';
+        newErrors.address = t('form.validation.address');
       }
     }
 
@@ -169,11 +169,7 @@ const MobileOptimizedContact = () => {
 
   const handleSubmit = async () => {
     if (!validateStep(1) || !validateStep(2)) {
-      setSubmitMessage(
-        locale === 'hi' 
-          ? '❌ कृपया सभी आवश्यक फ़ील्ड भरें और पिछले चरणों की जांच करें।'
-          : '❌ Please fill in all required fields and check previous steps.'
-      );
+      setSubmitMessage(t('form.validation.fillAllFields'));
       return;
     }
 
@@ -197,11 +193,7 @@ const MobileOptimizedContact = () => {
       const result = await response.json();
       
       if (response.ok) {
-        setSubmitMessage(
-          locale === 'hi' 
-            ? `🎉 धन्यवाद ${formData.firstName}! आपका संदेश सफलतापूर्वक भेजा गया है। हमारी टीम 24 घंटे के भीतर आपसे संपर्क करेगी।`
-            : `🎉 Thank you ${formData.firstName}! Your message has been sent successfully. Our team will contact you within 24 hours.`
-        );
+        setSubmitMessage(t('form.success', { firstName: formData.firstName }));
         
         setTimeout(() => {
           setFormData({
@@ -222,11 +214,7 @@ const MobileOptimizedContact = () => {
       }
     } catch (error) {
       console.error('Contact form error:', error);
-      setSubmitMessage(
-        locale === 'hi' 
-          ? '❌ क्षमा करें, कुछ गलत हुआ। कृपया पुनः प्रयास करें या हमें +91 98765 43210 पर कॉल करें।'
-          : '❌ Sorry, something went wrong. Please try again or call us at +91 98765 43210.'
-      );
+      setSubmitMessage(t('form.error'));
     } finally {
       setIsSubmitting(false);
     }
@@ -466,7 +454,7 @@ const MobileOptimizedContact = () => {
 
                   {submitMessage && (
                     <div className={`p-4 rounded-lg animate-in slide-in-from-top duration-300 ${
-                      submitMessage.includes('🎉') || submitMessage.includes('सफलतापूर्वक') 
+                      submitMessage.includes('🎉') || submitMessage.includes(t('form.successIndicator')) 
                         ? 'bg-green-50 text-green-800 border border-green-200' 
                         : 'bg-red-50 text-red-800 border border-red-200'
                     }`}>
@@ -488,7 +476,7 @@ const MobileOptimizedContact = () => {
                         className="flex-1 h-12 text-base"
                         disabled={isSubmitting}
                       >
-                        {locale === 'hi' ? 'पिछला' : 'Previous'}
+                        {t('form.previous')}
                       </Button>
                     )}
                     
@@ -500,7 +488,7 @@ const MobileOptimizedContact = () => {
                           currentStep === 1 ? 'w-full' : 'flex-1'
                         }`}
                       >
-                        {locale === 'hi' ? 'अगला चरण' : 'Next Step'}
+                        {t('form.nextStep')}
                       </Button>
                     ) : (
                       <Button 
@@ -570,7 +558,7 @@ const MobileOptimizedContact = () => {
           <div className="mt-20 text-center">
             <div className="bg-white/60 backdrop-blur-xl rounded-2xl p-8 shadow-xl">
               <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                {locale === 'hi' ? 'हमारे पर भरोसा क्यों करें?' : 'Why Trust Us?'}
+                {t('trustIndicators.title')}
               </h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 {trustIndicators.map((indicator, index) => (

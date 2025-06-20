@@ -276,11 +276,11 @@ const Hero = () => {
           <div className="bg-white rounded-xl shadow-2xl max-w-xl w-full max-h-[70vh] overflow-y-auto animate-in slide-in-from-bottom duration-500">
             {/* Modal Header */}
             <div className="flex items-center justify-between p-5 border-b border-gray-200">
-              <h3 className="text-xl font-bold text-gray-900">Solar Energy Demo</h3>
+              <h3 className="text-xl font-bold text-gray-900">{t('demoModal.title')}</h3>
               <button
                 onClick={closeDemoModal}
                 className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-                aria-label="Close modal"
+                aria-label={t('demoModal.closeButton')}
               >
                 <X className="h-5 w-5 text-gray-500" />
               </button>
@@ -293,10 +293,9 @@ const Hero = () => {
                 <div className="aspect-video bg-gradient-to-br from-orange-100 to-amber-100 rounded-lg border-2 border-dashed border-orange-300 flex items-center justify-center">
                   <div className="text-center">
                     <Play className="h-12 w-12 text-orange-500 mx-auto mb-3" />
-                    <h4 className="text-lg font-semibold text-gray-700 mb-2">Demo Video Coming Soon</h4>
+                    <h4 className="text-lg font-semibold text-gray-700 mb-2">{t('demoModal.comingSoon')}</h4>
                     <p className="text-gray-500 text-sm">
-                      Watch how solar energy can transform your home<br />
-                      and reduce your electricity bills by up to 90%
+                      {t('demoModal.description')}
                     </p>
                   </div>
                 </div>
@@ -305,29 +304,29 @@ const Hero = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-6">
                   <div className="text-center p-3 bg-blue-50 rounded-lg">
                     <Zap className="h-6 w-6 text-blue-600 mx-auto mb-2" />
-                    <h5 className="font-semibold text-gray-800 text-sm">Installation Process</h5>
-                    <p className="text-xs text-gray-600">See our professional installation in action</p>
+                    <h5 className="font-semibold text-gray-800 text-sm">{t('demoModal.features.0.title')}</h5>
+                    <p className="text-xs text-gray-600">{t('demoModal.features.0.description')}</p>
                   </div>
                   <div className="text-center p-3 bg-green-50 rounded-lg">
                     <Shield className="h-6 w-6 text-green-600 mx-auto mb-2" />
-                    <h5 className="font-semibold text-gray-800 text-sm">Quality Assurance</h5>
-                    <p className="text-xs text-gray-600">Premium components with 25-year warranty</p>
+                    <h5 className="font-semibold text-gray-800 text-sm">{t('demoModal.features.1.title')}</h5>
+                    <p className="text-xs text-gray-600">{t('demoModal.features.1.description')}</p>
                   </div>
                   <div className="text-center p-3 bg-orange-50 rounded-lg">
                     <DollarSign className="h-6 w-6 text-orange-600 mx-auto mb-2" />
-                    <h5 className="font-semibold text-gray-800 text-sm">Cost Savings</h5>
-                    <p className="text-xs text-gray-600">Real customer savings and ROI examples</p>
+                    <h5 className="font-semibold text-gray-800 text-sm">{t('demoModal.features.2.title')}</h5>
+                    <p className="text-xs text-gray-600">{t('demoModal.features.2.description')}</p>
                   </div>
                 </div>
 
                 {/* CTA */}
                 <div className="mt-6 pt-4 border-t border-gray-200">
-                  <p className="text-gray-600 mb-3 text-sm">Ready to start your solar journey?</p>
+                  <p className="text-gray-600 mb-3 text-sm">{t('demoModal.cta.question')}</p>
                   <Button 
                     onClick={closeDemoModal}
                     className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white px-5 py-2 rounded-lg font-semibold"
                   >
-                    Get Your Free Quote Now
+                    {t('demoModal.cta.button')}
                   </Button>
                 </div>
               </div>
