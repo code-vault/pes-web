@@ -12,7 +12,12 @@ const ServicesPage = () => {
       Icon: Home,
       title: t('services.0.title'),
       description: t('services.0.description'),
-      features: t('services.0.features'),
+      features: [
+        t('services.0.features.0'),
+        t('services.0.features.1'),
+        t('services.0.features.2'),
+        t('services.0.features.3')
+      ],
       gradient: "from-blue-500 to-cyan-500",
       detailedDescription: t('services.0.detailedDescription')
     },
@@ -20,7 +25,12 @@ const ServicesPage = () => {
       Icon: Building,
       title: t('services.1.title'),
       description: t('services.1.description'),
-      features: t('services.1.features'),
+      features: [
+        t('services.1.features.0'),
+        t('services.1.features.1'),
+        t('services.1.features.2'),
+        t('services.1.features.3')
+      ],
       gradient: "from-green-500 to-emerald-500",
       detailedDescription: t('services.1.detailedDescription')
     },
@@ -28,7 +38,12 @@ const ServicesPage = () => {
       Icon: Factory,
       title: t('services.2.title'),
       description: t('services.2.description'),
-      features: t('services.2.features'),
+      features: [
+        t('services.2.features.0'),
+        t('services.2.features.1'),
+        t('services.2.features.2'),
+        t('services.2.features.3')
+      ],
       gradient: "from-purple-500 to-violet-500",
       detailedDescription: t('services.2.detailedDescription')
     },
@@ -36,7 +51,12 @@ const ServicesPage = () => {
       Icon: Calculator,
       title: t('services.3.title'),
       description: t('services.3.description'),
-      features: t('services.3.features'),
+      features: [
+        t('services.3.features.0'),
+        t('services.3.features.1'),
+        t('services.3.features.2'),
+        t('services.3.features.3')
+      ],
       gradient: "from-orange-500 to-red-500",
       detailedDescription: t('services.3.detailedDescription')
     },
@@ -44,7 +64,12 @@ const ServicesPage = () => {
       Icon: Wrench,
       title: t('services.4.title'),
       description: t('services.4.description'),
-      features: t('services.4.features'),
+      features: [
+        t('services.4.features.0'),
+        t('services.4.features.1'),
+        t('services.4.features.2'),
+        t('services.4.features.3')
+      ],
       gradient: "from-teal-500 to-cyan-500",
       detailedDescription: t('services.4.detailedDescription')
     },
@@ -52,7 +77,12 @@ const ServicesPage = () => {
       Icon: HeadphonesIcon,
       title: t('services.5.title'),
       description: t('services.5.description'),
-      features: t('services.5.features'),
+      features: [
+        t('services.5.features.0'),
+        t('services.5.features.1'),
+        t('services.5.features.2'),
+        t('services.5.features.3')
+      ],
       gradient: "from-indigo-500 to-blue-500",
       detailedDescription: t('services.5.detailedDescription')
     }

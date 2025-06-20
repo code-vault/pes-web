@@ -65,37 +65,67 @@
         "title": "Residential Solar",
         "description": "Custom solar solutions for homes. Reduce your electricity bills and increase property value with our premium residential installations.",
         "detailedDescription": "Our residential solar solutions are designed to maximize your home's energy efficiency while providing significant cost savings. We handle everything from initial consultation to final installation and ongoing maintenance.",
-        "features": ["Roof-mounted systems", "Ground-mount options", "Battery storage", "Smart monitoring"]
+        "features": [
+          "Roof-mounted systems",
+          "Ground-mount options",
+          "Battery storage",
+          "Smart monitoring"
+        ]
       },
       {
         "title": "Commercial Solar",
         "description": "Scalable solar solutions for businesses. Cut operational costs and demonstrate environmental responsibility with commercial solar.",
         "detailedDescription": "Transform your business operations with our comprehensive commercial solar solutions. Reduce overhead costs, improve your company's sustainability profile, and take advantage of available tax incentives.",
-        "features": ["Large-scale installations", "Energy storage", "Power purchase agreements", "Tax incentives"]
+        "features": [
+          "Large-scale installations",
+          "Energy storage",
+          "Power purchase agreements",
+          "Tax incentives"
+        ]
       },
       {
         "title": "Industrial Solar",
         "description": "High-capacity solar systems for industrial facilities. Maximize energy savings with robust, industrial-grade solar solutions.",
         "detailedDescription": "Our industrial solar installations are engineered for maximum efficiency and durability. We provide comprehensive energy management solutions that can handle the demanding requirements of industrial operations.",
-        "features": ["Megawatt installations", "Grid-tie systems", "Energy management", "Performance monitoring"]
+        "features": [
+          "Megawatt installations",
+          "Grid-tie systems",
+          "Energy management",
+          "Performance monitoring"
+        ]
       },
       {
         "title": "Energy Audits",
         "description": "Comprehensive energy assessments to optimize your solar investment. Identify savings opportunities and system requirements.",
         "detailedDescription": "Our detailed energy audits provide you with a complete understanding of your energy usage patterns and potential savings. We use advanced modeling software to create accurate projections and recommendations.",
-        "features": ["Site assessment", "Energy analysis", "ROI calculations", "Custom proposals"]
+        "features": [
+          "Site assessment",
+          "Energy analysis",
+          "ROI calculations",
+          "Custom proposals"
+        ]
       },
       {
         "title": "Maintenance & Repair",
         "description": "Keep your solar system performing at peak efficiency with our professional maintenance and repair services.",
         "detailedDescription": "Ensure your solar investment continues to deliver optimal returns with our comprehensive maintenance services. Our certified technicians provide regular inspections, cleaning, and performance optimization.",
-        "features": ["System cleaning", "Performance optimization", "Component replacement", "Warranty support"]
+        "features": [
+          "System cleaning",
+          "Performance optimization",
+          "Component replacement",
+          "Warranty support"
+        ]
       },
       {
         "title": "24/7 Support",
         "description": "Round-the-clock monitoring and support for your solar system. Peace of mind with our comprehensive service guarantee.",
         "detailedDescription": "Our 24/7 support ensures your solar system operates at peak performance around the clock. With remote monitoring and immediate response capabilities, we keep your system running smoothly.",
-        "features": ["Remote monitoring", "Technical support", "Emergency repairs", "System optimization"]
+        "features": [
+          "Remote monitoring",
+          "Technical support",
+          "Emergency repairs",
+          "System optimization"
+        ]
       }
     ]
   },
