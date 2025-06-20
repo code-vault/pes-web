@@ -4,6 +4,7 @@ import { Play, X, ChevronLeft, ChevronRight, Maximize, ArrowLeft } from 'lucide-
 import { Button } from '@/components/ui/button';
 import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
+import ScrollReveal from '@/components/ScrollReveal';
 
 const GalleryPage = () => {
   const t = useTranslations('galleryPage');
@@ -86,74 +87,95 @@ const GalleryPage = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-800 pt-32">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-800 pt-32 relative overflow-hidden">
+        {/* Animated background elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-20 left-1/4 w-96 h-96 bg-gradient-to-r from-orange-400/20 to-amber-400/20 rounded-full blur-3xl animate-pulse-slow"></div>
+          <div className="absolute bottom-20 right-1/4 w-72 h-72 bg-gradient-to-r from-blue-400/20 to-cyan-400/20 rounded-full blur-3xl animate-pulse-slow delay-1000"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
+          {/* Header with ScrollReveal */}
           <div className="mb-8">
-            <Link href="/">
-              <Button variant="outline" className="mb-6 bg-white/10 border-white/20 text-white hover:bg-white/20">
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                {t('backToHome')}
-              </Button>
-            </Link>
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight">
-              {t('title')}
-            </h1>
-            <p className="text-xl text-gray-300 max-w-3xl leading-relaxed">
-              {t('subtitle')}
-            </p>
+            <ScrollReveal direction="up" delay={100}>
+              <Link href="/">
+                <Button variant="outline" className="mb-6 bg-white/10 border-white/20 text-white hover:bg-white/20">
+                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  {t('backToHome')}
+                </Button>
+              </Link>
+            </ScrollReveal>
+
+            <ScrollReveal direction="up" delay={300}>
+              <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight">
+                {t('title')}
+              </h1>
+            </ScrollReveal>
+
+            <ScrollReveal direction="up" delay={500}>
+              <p className="text-xl text-gray-300 max-w-3xl leading-relaxed">
+                {t('subtitle')}
+              </p>
+            </ScrollReveal>
           </div>
 
+          {/* Gallery Grid with ScrollReveal */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {mediaItems.map((item, index) => (
-              <div 
+              <ScrollReveal
                 key={index}
-                className="group relative cursor-pointer transform transition-all duration-500 hover:scale-105 hover:z-10"
-                onClick={() => openLightbox(item, index)}
+                direction="scale"
+                delay={700 + (index * 100)}
               >
-                <div className="relative overflow-hidden rounded-2xl shadow-2xl border border-white/20 backdrop-blur-sm bg-white/5">
-                  <div className="aspect-[4/3] overflow-hidden">
-                    <img
-                      src={item.thumbnail}
-                      alt={item.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                  </div>
-                  
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <div className="text-center transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                      {item.type === 'video' ? (
-                        <Play className="h-12 w-12 text-white mx-auto mb-2" />
-                      ) : (
-                        <Maximize className="h-12 w-12 text-white mx-auto mb-2" />
-                      )}
-                      <p className="text-white font-semibold">{item.title}</p>
-                      <p className="text-gray-300 text-sm">{item.category}</p>
+                <div 
+                  className="group relative cursor-pointer transform transition-all duration-500 hover:scale-105 hover:z-10"
+                  onClick={() => openLightbox(item, index)}
+                >
+                  <div className="relative overflow-hidden rounded-2xl shadow-2xl border border-white/20 backdrop-blur-sm bg-white/5">
+                    <div className="aspect-[4/3] overflow-hidden">
+                      <img
+                        src={item.thumbnail}
+                        alt={item.title}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                    </div>
+                    
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <div className="text-center transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                        {item.type === 'video' ? (
+                          <Play className="h-12 w-12 text-white mx-auto mb-2" />
+                        ) : (
+                          <Maximize className="h-12 w-12 text-white mx-auto mb-2" />
+                        )}
+                        <p className="text-white font-semibold">{item.title}</p>
+                        <p className="text-gray-300 text-sm">{item.category}</p>
+                      </div>
+                    </div>
+
+                    <div className="absolute top-4 right-4">
+                      <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                        item.type === 'video' 
+                          ? 'bg-red-500/80 text-white' 
+                          : 'bg-blue-500/80 text-white'
+                      } backdrop-blur-sm`}>
+                        {item.type === 'video' ? t('video') : t('photo')}
+                      </span>
+                    </div>
+
+                    <div className="absolute top-4 left-4">
+                      <span className="px-3 py-1 rounded-full text-xs font-semibold bg-orange-500/80 text-white backdrop-blur-sm">
+                        {item.category}
+                      </span>
                     </div>
                   </div>
-
-                  <div className="absolute top-4 right-4">
-                    <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                      item.type === 'video' 
-                        ? 'bg-red-500/80 text-white' 
-                        : 'bg-blue-500/80 text-white'
-                    } backdrop-blur-sm`}>
-                      {item.type === 'video' ? t('video') : t('photo')}
-                    </span>
-                  </div>
-
-                  <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 rounded-full text-xs font-semibold bg-orange-500/80 text-white backdrop-blur-sm">
-                      {item.category}
-                    </span>
-                  </div>
                 </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Lightbox Modal */}
+      {/* Lightbox Modal with enhanced animations */}
       {selectedMedia && (
         <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-4 animate-fade-in">
           <Button
