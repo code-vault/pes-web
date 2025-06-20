@@ -1,3 +1,4 @@
+"use client";
 import { Award, Users, Zap, Leaf, CheckCircle, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from '@/i18n/navigation';

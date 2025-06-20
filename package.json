@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "generate-translations": "node scripts/generate-translations.js",
+    "build": "npm run generate-translations && next build",
+    "dev": "npm run generate-translations && next dev",
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit"
