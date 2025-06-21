@@ -1,12 +1,21 @@
-// Change this line:
-// import { client } from '../lib/sanity'
+import { createClient } from '@sanity/client'
+import imageUrlBuilder from '@sanity/image-url'
+import { writeFileSync, mkdirSync, existsSync } from 'fs'
+import { join, dirname } from 'path'
+import { fileURLToPath } from 'url'
 
-// To this:
-const { client } = require('../lib/sanity.js')
+// Get current directory for ES modules
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
-// Also change the rest of the file to use CommonJS:
-const fs = require('fs')
-const path = require('path')
+// Sanity client setup
+const client = createClient({
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'v7cam0qp',
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
+  useCdn: false,
+  apiVersion: '2024-01-01',
+  token: process.env.SANITY_API_TOKEN
+})
 
 async function generateTranslations() {
   console.log('🔄 Generating translations from Sanity...')
@@ -32,19 +41,19 @@ async function generateTranslations() {
     })
 
     // Ensure messages directory exists
-    const messagesDir = path.join(process.cwd(), 'messages')
-    if (!fs.existsSync(messagesDir)) {
-      fs.mkdirSync(messagesDir, { recursive: true })
+    const messagesDir = join(process.cwd(), 'messages')
+    if (!existsSync(messagesDir)) {
+      mkdirSync(messagesDir, { recursive: true })
     }
 
     // Write translation files
-    fs.writeFileSync(
-      path.join(messagesDir, 'en.json'),
+    writeFileSync(
+      join(messagesDir, 'en.json'),
       JSON.stringify(englishTranslations, null, 2)
     )
 
-    fs.writeFileSync(
-      path.join(messagesDir, 'hi.json'),
+    writeFileSync(
+      join(messagesDir, 'hi.json'),
       JSON.stringify(hindiTranslations, null, 2)
     )
 

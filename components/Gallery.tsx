@@ -15,46 +15,47 @@ import {
 
 const Gallery = () => {
   const t = useTranslations('gallery');
-  const tGalleryPage = useTranslations('galleryPage');
+  // Note: Using fallback titles since galleryPage translations don't exist
   const [selectedMedia, setSelectedMedia] = useState<{type: 'image' | 'video', src: string, title: string} | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // Using static titles since the translation keys don't exist in messages
   const mediaItems = [
     {
       type: 'image' as const,
       src: 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       thumbnail: 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-      title: tGalleryPage('projects.0.title')
+      title: 'Solar Panel Installation'
     },
     {
       type: 'video' as const,
       src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
       thumbnail: 'https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-      title: tGalleryPage('projects.1.title')
+      title: 'Solar Installation Process'
     },
     {
       type: 'image' as const,
       src: 'https://images.unsplash.com/photo-1559302504-64aae6ca6909?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       thumbnail: 'https://images.unsplash.com/photo-1559302504-64aae6ca6909?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-      title: tGalleryPage('projects.2.title')
+      title: 'Residential Solar System'
     },
     {
       type: 'image' as const,
       src: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       thumbnail: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-      title: tGalleryPage('projects.3.title')
+      title: 'Commercial Solar Installation'
     },
     {
       type: 'image' as const,
       src: 'https://images.unsplash.com/photo-1513107990900-ed83fbe91e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       thumbnail: 'https://images.unsplash.com/photo-1513107990900-ed83fbe91e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-      title: tGalleryPage('projects.5.title')
+      title: 'Clean Energy Solutions'
     },
     {
       type: 'video' as const,
       src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
       thumbnail: 'https://images.unsplash.com/photo-1497440001374-f26997328c1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-      title: tGalleryPage('projects.4.title')
+      title: 'Solar Technology Overview'
     }
   ];
 
@@ -148,7 +149,7 @@ const Gallery = () => {
                                   ? 'bg-red-500/80 text-white' 
                                   : 'bg-blue-500/80 text-white'
                               } backdrop-blur-sm`}>
-                                {item.type === 'video' ? tGalleryPage('video') : tGalleryPage('photo')}
+                                {item.type === 'video' ? 'Video' : 'Photo'}
                               </span>
                             </div>
                           </div>

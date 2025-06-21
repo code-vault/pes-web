@@ -18,7 +18,7 @@ const Testimonials = () => {
   const t = useTranslations('testimonials');
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
 
-  // Combined testimonials - both text and video
+  // Using static data since the translation keys don't match what's in the messages files
   const allTestimonials = [
     // Video testimonials
     {
@@ -35,7 +35,7 @@ const Testimonials = () => {
       systemSize: "8kW Residential",
       gradient: "from-red-500 to-pink-500"
     },
-    // Text testimonial
+    // Text testimonial - using existing keys from your messages
     {
       type: 'text',
       name: t('reviews.0.name'),

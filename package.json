@@ -1,14 +1,15 @@
 {
   "name": "pes-web",
+  "type": "module",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "npm run generate-content && next dev",
+    "dev": "next dev",
     "build": "npm run generate-content && next build",
     "generate-content": "npm run generate-translations && npm run generate-media",
     "generate-translations": "node scripts/generate-translations.js",
     "generate-media": "node scripts/generate-media-refs.js",
-    "sanity:import": "node scripts/import-existing-translations.js",
+    "import-translations": "node scripts/import-existing-translations.js",
     "lint": "next lint",
     "type-check": "tsc --noEmit"
   },
