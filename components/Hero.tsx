@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import { useState, useEffect, useRef } from 'react';
 import ScrollReveal from '@/components/ScrollReveal';
 
-// Number animation hook (keeping this for calculator)
+// Number animation hook (keeping for calculator)
 const useCountUp = (end: number, duration: number = 2000, delay: number = 0) => {
   const [count, setCount] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
@@ -64,15 +64,15 @@ const Hero = () => {
   const t = useTranslations('hero');
   const [showDemoModal, setShowDemoModal] = useState(false);
   
-  // Only keep intersection observer for calculator number animations
+  // Only keep intersection observer for stats counter
   const { ref: calculatorRef, isIntersecting: calculatorVisible } = useIntersectionObserver(0.3);
   
   // Number animations for calculator
-  const currentBill = useCountUp(15000, 1500, 200);
-  const withSolar = useCountUp(3750, 1500, 400);
-  const monthlySavings = useCountUp(11250, 1500, 600);
-  const annualSavings = useCountUp(135000, 2000, 800);
-  const yearSavings = useCountUp(3375000, 2500, 1000);
+  const currentBill = useCountUp(15000, 1500, 50);
+  const withSolar = useCountUp(3750, 1500, 100);
+  const monthlySavings = useCountUp(11250, 1500, 150);
+  const annualSavings = useCountUp(135000, 2000, 200);
+  const yearSavings = useCountUp(3375000, 2500, 250);
 
   // Start animations when calculator becomes visible
   useEffect(() => {
@@ -131,50 +131,38 @@ const Hero = () => {
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Hero Content with ScrollReveal */}
-          <div className="space-y-6">
-            <div className="space-y-5">
-              <ScrollReveal direction="up" delay={100}>
+          {/* Hero Content - Group all text content in single ScrollReveal */}
+          <ScrollReveal direction="up" delay={0} duration={500}>
+            <div className="space-y-6">
+              <div className="space-y-5">
                 <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-orange-200/50 shadow-lg">
                   <Zap className="h-4 w-4 text-orange-500 mr-2" />
                   <span className="text-sm font-semibold text-gray-700">{t('badge')}</span>
                 </div>
-              </ScrollReveal>
-              
-              <ScrollReveal direction="up" delay={300}>
+                
                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight tracking-tight">
                   {t('title')}
                 </h1>
-              </ScrollReveal>
 
-              <ScrollReveal direction="up" delay={500}>
                 <p className="text-lg md:text-xl text-gray-600 leading-relaxed font-light max-w-xl">
                   {t('subtitle')}
                 </p>
-              </ScrollReveal>
-            </div>
+              </div>
 
-            {/* Key Benefits with ScrollReveal */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {benefitCards.map((item, index) => (
-                <ScrollReveal 
-                  key={index}
-                  direction="scale" 
-                  delay={700 + (index * 200)}
-                >
-                  <div className="group bg-white/60 backdrop-blur-sm p-4 rounded-xl border border-white/20 shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
+              {/* Key Benefits - Group in single ScrollReveal */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {benefitCards.map((item, index) => (
+                  <div key={index} className="group bg-white/60 backdrop-blur-sm p-4 rounded-xl border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                     <div className={`bg-gradient-to-br ${item.gradient} p-2 rounded-lg w-fit mb-3 group-hover:scale-110 transition-transform duration-300`}>
                       <item.icon className="h-5 w-5 text-white" />
                     </div>
                     <p className="font-bold text-xl text-gray-900 mb-1">{item.title}</p>
                     <p className="text-sm text-gray-600 font-medium">{item.desc}</p>
                   </div>
-                </ScrollReveal>
-              ))}
-            </div>
+                ))}
+              </div>
 
-            {/* CTA Buttons with ScrollReveal */}
-            <ScrollReveal direction="up" delay={1300}>
+              {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 pt-2">
                 <Button size="lg" className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 px-6 py-3 text-base font-semibold rounded-xl">
                   {t('getQuoteBtn')}
@@ -190,79 +178,69 @@ const Hero = () => {
                   {t('watchDemo')}
                 </Button>
               </div>
-            </ScrollReveal>
-          </div>
+            </div>
+          </ScrollReveal>
 
-          {/* Hero Calculator with ScrollReveal */}
-          <ScrollReveal direction="right" delay={600}>
+          {/* Hero Calculator - Single ScrollReveal for entire calculator */}
+          <ScrollReveal direction="right" delay={200} duration={500}>
             <div 
               ref={calculatorRef}
               className="relative"
             >
               <div className="bg-gradient-to-br from-white/80 to-white/60 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-white/30 hover:shadow-2xl transition-all duration-300">
                 <div className="space-y-5">
-                  <ScrollReveal direction="up" delay={900}>
-                    <div className="flex items-center justify-between mb-4">
-                      <h3 className="text-xl font-bold text-gray-900">{t('calculator.title')}</h3>
-                      <div className="bg-gradient-to-r from-orange-400 to-amber-400 p-2 rounded-lg">
-                        <Zap className="h-5 w-5 text-white" />
-                      </div>
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-xl font-bold text-gray-900">{t('calculator.title')}</h3>
+                    <div className="bg-gradient-to-r from-orange-400 to-amber-400 p-2 rounded-lg">
+                      <Zap className="h-5 w-5 text-white" />
                     </div>
-                  </ScrollReveal>
-                  
-                  <div className="space-y-4">
-                    <ScrollReveal direction="up" delay={1100}>
-                      <div className="bg-gray-50/80 backdrop-blur-sm p-4 rounded-xl border border-gray-200/50">
-                        <div className="flex justify-between items-center">
-                          <span className="text-gray-600 font-medium">{t('calculator.currentBill')}</span>
-                          <span className="font-bold text-lg text-gray-900">
-                            ₹{formatNumber(currentBill.count)}
-                          </span>
-                        </div>
-                      </div>
-                    </ScrollReveal>
-                    
-                    <ScrollReveal direction="up" delay={1300}>
-                      <div className="bg-green-50/80 backdrop-blur-sm p-4 rounded-xl border border-green-200/50">
-                        <div className="flex justify-between items-center">
-                          <span className="text-gray-600 font-medium">{t('calculator.withSolar')}</span>
-                          <span className="font-bold text-lg text-green-600">
-                            ₹{formatNumber(withSolar.count)}
-                          </span>
-                        </div>
-                      </div>
-                    </ScrollReveal>
-                    
-                    <ScrollReveal direction="scale" delay={1500}>
-                      <div className="bg-gradient-to-r from-orange-500 to-amber-500 p-5 rounded-xl text-white">
-                        <div className="flex justify-between items-center mb-3">
-                          <span className="font-medium">{t('calculator.monthlySavings')}</span>
-                          <span className="font-bold text-xl">
-                            ₹{formatNumber(monthlySavings.count)}
-                          </span>
-                        </div>
-                        <div className="flex justify-between items-center">
-                          <span className="font-medium">{t('calculator.annualSavings')}</span>
-                          <span className="font-bold text-xl">
-                            ₹{formatNumber(annualSavings.count)}
-                          </span>
-                        </div>
-                      </div>
-                    </ScrollReveal>
                   </div>
                   
-                  <ScrollReveal direction="up" delay={1700}>
-                    <div className="pt-3">
-                      <div className="bg-gradient-to-r from-blue-50 to-cyan-50 p-4 rounded-xl border border-blue-200/50">
-                        <p className="text-sm text-gray-600 text-center">
-                          <span className="font-semibold text-gray-900">{t('calculator.yearSavings')}</span> 
-                          <span className="font-bold text-lg text-blue-600 ml-2">
-                            ₹{formatNumber(yearSavings.count)}
-                          </span>
-                        </p>
+                  <div className="space-y-4">
+                    <div className="bg-gray-50/80 backdrop-blur-sm p-4 rounded-xl border border-gray-200/50">
+                      <div className="flex justify-between items-center">
+                        <span className="text-gray-600 font-medium">{t('calculator.currentBill')}</span>
+                        <span className="font-bold text-lg text-gray-900">
+                          ₹{formatNumber(currentBill.count)}
+                        </span>
                       </div>
                     </div>
-                  </ScrollReveal>
+                    
+                    <div className="bg-green-50/80 backdrop-blur-sm p-4 rounded-xl border border-green-200/50">
+                      <div className="flex justify-between items-center">
+                        <span className="text-gray-600 font-medium">{t('calculator.withSolar')}</span>
+                        <span className="font-bold text-lg text-green-600">
+                          ₹{formatNumber(withSolar.count)}
+                        </span>
+                      </div>
+                    </div>
+                    
+                    <div className="bg-gradient-to-r from-orange-500 to-amber-500 p-5 rounded-xl text-white">
+                      <div className="flex justify-between items-center mb-3">
+                        <span className="font-medium">{t('calculator.monthlySavings')}</span>
+                        <span className="font-bold text-xl">
+                          ₹{formatNumber(monthlySavings.count)}
+                        </span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="font-medium">{t('calculator.annualSavings')}</span>
+                        <span className="font-bold text-xl">
+                          ₹{formatNumber(annualSavings.count)}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="pt-3">
+                    <div className="bg-gradient-to-r from-blue-50 to-cyan-50 p-4 rounded-xl border border-blue-200/50">
+                      <p className="text-sm text-gray-600 text-center">
+                        <span className="font-semibold text-gray-900">{t('calculator.yearSavings')}</span> 
+                        <span className="font-bold text-lg text-blue-600 ml-2">
+                          ₹{formatNumber(yearSavings.count)}
+                        </span>
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

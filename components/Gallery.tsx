@@ -59,7 +59,6 @@ const Gallery = () => {
     }
   ];
 
-  // Rest of component remains the same...
   const openLightbox = (item: typeof mediaItems[0], index: number) => {
     setSelectedMedia(item);
     setCurrentIndex(index);
@@ -91,37 +90,33 @@ const Gallery = () => {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Header section with ScrollReveal */}
-          <div className="text-center mb-12">
-            <ScrollReveal direction="up" delay={100}>
+          {/* Header section - Group all header content */}
+          <ScrollReveal direction="up" delay={0} duration={500}>
+            <div className="text-center mb-12">
               <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-orange-200/50 shadow-lg mb-6">
                 <span className="text-sm font-semibold text-orange-600">{t('badge')}</span>
               </div>
-            </ScrollReveal>
-            
-            <ScrollReveal direction="up" delay={300}>
+              
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
                 {t('title')}
               </h2>
-            </ScrollReveal>
-            
-            <ScrollReveal direction="up" delay={500}>
+              
               <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                 {t('subtitle')}
               </p>
-            </ScrollReveal>
-          </div>
+            </div>
+          </ScrollReveal>
 
-          {/* Gallery Carousel with ScrollReveal */}
-          <ScrollReveal direction="scale" delay={700}>
+          {/* Gallery Carousel */}
+          <ScrollReveal direction="up" delay={200} duration={500}>
             <div className="mb-12">
               <Carousel className="w-full max-w-5xl mx-auto">
                 <CarouselContent>
                   {mediaItems.map((item, index) => (
                     <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                      <ScrollReveal direction="up" delay={900 + (index * 100)}>
+                      <div className="p-2 h-full">
                         <div 
-                          className="group relative cursor-pointer transform transition-all duration-500 hover:scale-105 hover:z-10 p-2"
+                          className="group relative cursor-pointer transform transition-all duration-300 hover:scale-105 hover:z-10"
                           onClick={() => openLightbox(item, index)}
                         >
                           <div className="relative overflow-hidden rounded-2xl shadow-xl border border-gray-200 bg-white">
@@ -129,7 +124,8 @@ const Gallery = () => {
                               <img
                                 src={item.thumbnail}
                                 alt={item.title}
-                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                loading="lazy"
                               />
                             </div>
                             
@@ -155,7 +151,7 @@ const Gallery = () => {
                             </div>
                           </div>
                         </div>
-                      </ScrollReveal>
+                      </div>
                     </CarouselItem>
                   ))}
                 </CarouselContent>
@@ -165,8 +161,8 @@ const Gallery = () => {
             </div>
           </ScrollReveal>
 
-          {/* CTA section with ScrollReveal */}
-          <ScrollReveal direction="up" delay={1200}>
+          {/* CTA section */}
+          <ScrollReveal direction="up" delay={300} duration={500}>
             <div className="text-center">
               <Link href="/gallery">
                 <Button size="lg" className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 px-8 py-4 text-lg font-semibold rounded-xl">

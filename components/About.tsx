@@ -7,7 +7,7 @@ import { useState, useEffect, useRef } from 'react';
 import ScrollReveal from '@/components/ScrollReveal';
 
 // Number animation hook (keeping for stats counter)
-const useCountUp = (end: number, duration: number = 2500, delay: number = 0) => {
+const useCountUp = (end: number, duration: number = 2000, delay: number = 0) => {
   const [count, setCount] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
 
@@ -67,7 +67,7 @@ const About = () => {
   // Only keep intersection observer for stats counter
   const { ref: statsRef, isIntersecting: statsVisible } = useIntersectionObserver(0.3);
   
-  // Stats data with numbers
+  // Stats data with numbers - reduced delays
   const statsData = [
     { icon: Users, number: 2500, suffix: "+", label: t('stats.customers'), gradient: "from-blue-500 to-cyan-500" },
     { icon: Zap, number: 15, suffix: "MW+", label: t('stats.installed'), gradient: "from-orange-500 to-amber-500" },
@@ -75,11 +75,11 @@ const About = () => {
     { icon: Leaf, number: 50, suffix: "M+", label: t('stats.co2Saved'), gradient: "from-green-500 to-emerald-500" }
   ];
 
-  // Number animations for stats
-  const customersCount = useCountUp(2500, 2000, 200);
-  const installedCount = useCountUp(15, 1500, 400);
-  const experienceCount = useCountUp(12, 1000, 600);
-  const co2Count = useCountUp(50, 1800, 800);
+  // Number animations for stats - reduced delays
+  const customersCount = useCountUp(2500, 1500, 50);
+  const installedCount = useCountUp(15, 1200, 100);
+  const experienceCount = useCountUp(12, 800, 150);
+  const co2Count = useCountUp(50, 1400, 200);
 
   const counts = [customersCount, installedCount, experienceCount, co2Count];
 
@@ -127,47 +127,40 @@ const About = () => {
       </div>
       
       <div className="container-modern relative z-10">
-        {/* Header section with ScrollReveal */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-16">
-          <div className="space-y-8">
-            <ScrollReveal direction="up" delay={100}>
+          {/* Header section - Group all text content */}
+          <ScrollReveal direction="up" delay={0} duration={500}>
+            <div className="space-y-8">
               <div className="inline-flex items-center px-6 py-3 bg-white/80 backdrop-blur-sm rounded-full border border-orange-200/50 shadow-lg">
                 <span className="text-base font-semibold text-orange-600">{t('badge')}</span>
               </div>
-            </ScrollReveal>
-            
-            <ScrollReveal direction="up" delay={300}>
+              
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight tracking-tight">
                 {t('title')}
               </h2>
-            </ScrollReveal>
-            
-            <ScrollReveal direction="up" delay={500}>
+              
               <p className="text-xl text-gray-600 max-w-2xl leading-relaxed">
                 {t('subtitle')}
               </p>
-            </ScrollReveal>
-            
-            <ScrollReveal direction="up" delay={700}>
+              
               <Link href="/about">
                 <Button className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 px-8 py-4 text-lg font-semibold rounded-xl">
                   {t('learnMore')}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
-            </ScrollReveal>
-          </div>
+            </div>
+          </ScrollReveal>
 
-          {/* Stats Grid with ScrollReveal */}
-          <div className="grid grid-cols-2 gap-6">
-            {statsData.map((stat, index) => (
-              <ScrollReveal 
-                key={index}
-                direction="scale" 
-                delay={200 + (index * 150)}
-              >
+          {/* Stats Grid - Single ScrollReveal for all stats */}
+          <ScrollReveal direction="right" delay={200} duration={500}>
+            <div 
+              ref={statsRef}
+              className="grid grid-cols-2 gap-6"
+            >
+              {statsData.map((stat, index) => (
                 <div 
-                  ref={index === 0 ? statsRef : undefined}
+                  key={index}
                   className="group card-modern p-6 text-center rounded-2xl"
                 >
                   <div className={`bg-gradient-to-br ${stat.gradient} w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-500 shadow-lg`}>
@@ -178,20 +171,16 @@ const About = () => {
                   </div>
                   <div className="text-gray-600 font-medium">{stat.label}</div>
                 </div>
-              </ScrollReveal>
-            ))}
-          </div>
+              ))}
+            </div>
+          </ScrollReveal>
         </div>
 
-        {/* Additional content section with ScrollReveal */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {features.map((feature, index) => (
-            <ScrollReveal
-              key={index}
-              direction="up"
-              delay={200 + (index * 200)}
-            >
-              <div className="text-center space-y-4">
+        {/* Additional content section - Group all feature cards */}
+        <ScrollReveal direction="up" delay={300} duration={500}>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {features.map((feature, index) => (
+              <div key={index} className="text-center space-y-4">
                 <div className={`w-16 h-16 bg-gradient-to-br ${feature.gradient} rounded-2xl flex items-center justify-center mx-auto shadow-xl hover:scale-110 transition-transform duration-300`}>
                   <feature.icon className="h-8 w-8 text-white" />
                 </div>
@@ -200,9 +189,9 @@ const About = () => {
                   {feature.description}
                 </p>
               </div>
-            </ScrollReveal>
-          ))}
-        </div>
+            ))}
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );

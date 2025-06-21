@@ -161,7 +161,7 @@ const Testimonials = () => {
         <div className="relative">
           {/* YouTube Video Thumbnail */}
           <div className="relative aspect-[16/9] overflow-hidden cursor-pointer" onClick={() => openVideo(testimonial.youtubeId)}>
-            <img
+            LazyImage 
               src={testimonial.thumbnail}
               alt={testimonial.name}
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"

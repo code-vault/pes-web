@@ -39,36 +39,28 @@ const Services = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header section with ScrollReveal */}
-        <div className="text-center mb-12">
-          <ScrollReveal direction="up" delay={100}>
+        {/* Header section - Group all header content */}
+        <ScrollReveal direction="up" delay={0} duration={500}>
+          <div className="text-center mb-12">
             <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-orange-200/50 shadow-lg mb-6">
               <span className="text-sm font-semibold text-orange-600">{t('badge')}</span>
             </div>
-          </ScrollReveal>
-          
-          <ScrollReveal direction="up" delay={300}>
+            
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
               {t('title')}
             </h2>
-          </ScrollReveal>
-          
-          <ScrollReveal direction="up" delay={500}>
+            
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               {t('subtitle')}
             </p>
-          </ScrollReveal>
-        </div>
+          </div>
+        </ScrollReveal>
 
-        {/* Services grid with ScrollReveal */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          {services.map((service, index) => (
-            <ScrollReveal 
-              key={index}
-              direction="scale" 
-              delay={700 + (index * 200)}
-            >
-              <Card className="group hover:shadow-2xl transition-all duration-700 border-0 bg-white/60 backdrop-blur-sm hover:-translate-y-2">
+        {/* Services grid - Group all cards in single ScrollReveal */}
+        <ScrollReveal direction="up" delay={200} duration={500}>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            {services.map((service, index) => (
+              <Card key={index} className="group hover:shadow-2xl transition-all duration-500 border-0 bg-white/60 backdrop-blur-sm hover:-translate-y-2">
                 <CardHeader className="text-center pb-4">
                   <div className={`bg-gradient-to-br ${service.gradient} w-16 h-16 rounded-2xl flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform duration-500 shadow-lg`}>
                     <service.Icon className="h-8 w-8 text-white" />
@@ -79,12 +71,12 @@ const Services = () => {
                   </CardDescription>
                 </CardHeader>
               </Card>
-            </ScrollReveal>
-          ))}
-        </div>
+            ))}
+          </div>
+        </ScrollReveal>
 
-        {/* CTA section with ScrollReveal */}
-        <ScrollReveal direction="up" delay={1300}>
+        {/* CTA section */}
+        <ScrollReveal direction="up" delay={400} duration={500}>
           <div className="text-center">
             <Link href="/services">
               <Button 

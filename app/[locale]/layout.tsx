@@ -9,14 +9,18 @@ import {setRequestLocale} from 'next-intl/server';
 // Your shared layout components
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-// CORRECTED IMPORT - Use the actual FloatingClickToCall component
 import FloatingClickToCall from '@/components/FloatingClickToCall';
+import PerformanceMonitor from '@/components/PerformanceMonitor';
 
 // Toast Provider
 import { ToastProvider } from '@/components/ui/toast';
 
 // Font optimization
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ 
+  subsets: ['latin'],
+  display: 'swap', // Improves font loading performance
+  preload: true
+});
 
 type Props = {
   children: React.ReactNode;
@@ -40,6 +44,13 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
       default: metadata.title,
     },
     description: metadata.description,
+    // Performance optimizations
+    viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no',
+    robots: 'index, follow',
+    // Preload critical resources
+    other: {
+      'preload': '/fonts/inter.woff2 as font type=font/woff2 crossorigin',
+    }
   };
 }
 
@@ -65,8 +76,24 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} dir={locale === 'hi' ? 'ltr' : 'ltr'}>
+      <head>
+        {/* Preload critical resources */}
+        <link rel="preload" href="/images/hero-bg.webp" as="image" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        
+        {/* DNS prefetch for external domains */}
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
+        <link rel="dns-prefetch" href="https://img.youtube.com" />
+        
+        {/* Optimize third-party scripts */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+      </head>
       <body className={inter.className}>
         <NextIntlClientProvider messages={messages}>
+          {/* Performance Monitor - only in development */}
+          {process.env.NODE_ENV === 'development' && <PerformanceMonitor />}
+          
           {/* WRAP EVERYTHING WITH TOASTPROVIDER */}
           <ToastProvider>
             {/* This UI is shared across ALL pages */}
