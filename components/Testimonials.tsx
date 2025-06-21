@@ -18,7 +18,7 @@ const Testimonials = () => {
   const t = useTranslations('testimonials');
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
 
-  // Using static data since the translation keys don't match what's in the messages files
+  // Using translation keys that now exist in messages
   const allTestimonials = [
     // Video testimonials
     {
@@ -42,7 +42,9 @@ const Testimonials = () => {
       location: t('reviews.0.location'),
       rating: 5,
       text: t('reviews.0.text'),
-      gradient: "from-blue-500 to-cyan-500"
+      gradient: "from-blue-500 to-cyan-500",
+      project: t('reviews.0.project'),
+      savings: t('reviews.0.savings')
     },
     // Video testimonial
     {
@@ -66,7 +68,9 @@ const Testimonials = () => {
       location: t('reviews.1.location'),
       rating: 5,
       text: t('reviews.1.text'),
-      gradient: "from-purple-500 to-violet-500"
+      gradient: "from-purple-500 to-violet-500",
+      project: t('reviews.1.project'),
+      savings: t('reviews.1.savings')
     },
     // Video testimonial
     {
@@ -90,7 +94,9 @@ const Testimonials = () => {
       location: t('reviews.2.location'),
       rating: 5,
       text: t('reviews.2.text'),
-      gradient: "from-teal-500 to-cyan-500"
+      gradient: "from-teal-500 to-cyan-500",
+      project: t('reviews.2.project'),
+      savings: t('reviews.2.savings')
     }
   ];
 
@@ -120,7 +126,18 @@ const Testimonials = () => {
             &quot;{testimonial.text}&quot;
           </p>
 
-          <div className="border-t border-gray-200/50 pt-4 mt-auto">
+          <div className="space-y-4">
+            <div className="flex justify-between items-center text-sm">
+              <span className="text-gray-500">Project:</span>
+              <span className="font-semibold text-gray-700">{testimonial.project}</span>
+            </div>
+            <div className="flex justify-between items-center text-sm">
+              <span className="text-gray-500">Annual Savings:</span>
+              <span className="font-semibold text-green-600">{testimonial.savings}</span>
+            </div>
+          </div>
+
+          <div className="border-t border-gray-200/50 pt-4 mt-6">
             <div className="flex items-center space-x-3">
               <div className={`w-10 h-10 bg-gradient-to-br ${testimonial.gradient} rounded-full flex items-center justify-center shadow-lg`}>
                 <span className="text-white font-semibold text-sm">

@@ -10,6 +10,7 @@
     "generate-translations": "node scripts/generate-translations.js",
     "generate-media": "node scripts/generate-media-refs.js",
     "import-translations": "node scripts/import-existing-translations.js",
+    "fix-translations": "node scripts/import-missing-translations.js && npm run generate-translations",
     "lint": "next lint",
     "type-check": "tsc --noEmit"
   },

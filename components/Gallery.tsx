@@ -15,50 +15,51 @@ import {
 
 const Gallery = () => {
   const t = useTranslations('gallery');
-  // Note: Using fallback titles since galleryPage translations don't exist
+  const tGalleryPage = useTranslations('galleryPage');
   const [selectedMedia, setSelectedMedia] = useState<{type: 'image' | 'video', src: string, title: string} | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Using static titles since the translation keys don't exist in messages
+  // Using translation keys that now exist in messages
   const mediaItems = [
     {
       type: 'image' as const,
       src: 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       thumbnail: 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-      title: 'Solar Panel Installation'
+      title: tGalleryPage('projects.0.title')
     },
     {
       type: 'video' as const,
       src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
       thumbnail: 'https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-      title: 'Solar Installation Process'
+      title: tGalleryPage('projects.1.title')
     },
     {
       type: 'image' as const,
       src: 'https://images.unsplash.com/photo-1559302504-64aae6ca6909?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       thumbnail: 'https://images.unsplash.com/photo-1559302504-64aae6ca6909?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-      title: 'Residential Solar System'
+      title: tGalleryPage('projects.2.title')
     },
     {
       type: 'image' as const,
       src: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       thumbnail: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-      title: 'Commercial Solar Installation'
+      title: tGalleryPage('projects.3.title')
     },
     {
       type: 'image' as const,
       src: 'https://images.unsplash.com/photo-1513107990900-ed83fbe91e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       thumbnail: 'https://images.unsplash.com/photo-1513107990900-ed83fbe91e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-      title: 'Clean Energy Solutions'
+      title: tGalleryPage('projects.5.title')
     },
     {
       type: 'video' as const,
       src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
       thumbnail: 'https://images.unsplash.com/photo-1497440001374-f26997328c1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-      title: 'Solar Technology Overview'
+      title: tGalleryPage('projects.4.title')
     }
   ];
 
+  // Rest of component remains the same...
   const openLightbox = (item: typeof mediaItems[0], index: number) => {
     setSelectedMedia(item);
     setCurrentIndex(index);

@@ -26,14 +26,14 @@ const MobileOptimizedContact = () => {
   const [submitMessage, setSubmitMessage] = useState('');
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  // Using static titles since the translation keys don't exist in messages
+  // Using translation keys that now exist in messages
   const steps = [
-    { id: 1, title: "Personal Info", icon: User },
-    { id: 2, title: "Property Details", icon: Home },
-    { id: 3, title: "Energy Usage", icon: CreditCard }
+    { id: 1, title: t('form.steps.0.title'), icon: User },
+    { id: 2, title: t('form.steps.1.title'), icon: Home },
+    { id: 3, title: t('form.steps.2.title'), icon: CreditCard }
   ];
 
-  // Contact info cards data
+  // Rest of the component remains the same...
   const contactCards = [
     {
       icon: Phone,
@@ -69,7 +69,6 @@ const MobileOptimizedContact = () => {
     }
   ];
 
-  // Trust indicators data
   const trustIndicators = [
     {
       icon: Check,
