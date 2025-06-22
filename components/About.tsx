@@ -119,65 +119,68 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="section-modern bg-gradient-to-br from-slate-50 via-blue-50 to-orange-50 relative overflow-hidden">
+    <section id="about" className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-orange-50 relative overflow-hidden">
       {/* Enhanced background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-20 w-[500px] h-[500px] bg-gradient-to-r from-orange-400/10 to-amber-400/10 rounded-full blur-3xl animate-pulse-slow"></div>
         <div className="absolute bottom-20 right-20 w-[600px] h-[600px] bg-gradient-to-r from-blue-400/10 to-cyan-400/10 rounded-full blur-3xl animate-pulse-slow delay-1000"></div>
       </div>
       
-      <div className="container-modern relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-16">
-          {/* Header section - Group all text content */}
-          <ScrollReveal direction="up" delay={0} duration={500}>
-            <div className="space-y-8">
-              <div className="inline-flex items-center px-6 py-3 bg-white/80 backdrop-blur-sm rounded-full border border-orange-200/50 shadow-lg">
-                <span className="text-base font-semibold text-orange-600">{t('badge')}</span>
-              </div>
-              
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight tracking-tight">
-                {t('title')}
-              </h2>
-              
-              <p className="text-xl text-gray-600 max-w-2xl leading-relaxed">
-                {t('subtitle')}
-              </p>
-              
-              <Link href="/about">
-                <Button className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 px-8 py-4 text-lg font-semibold rounded-xl">
-                  {t('learnMore')}
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Header section - Centered like other sections */}
+        <ScrollReveal direction="up" delay={0} duration={500}>
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-orange-200/50 shadow-lg mb-6">
+              <span className="text-sm font-semibold text-orange-600">{t('badge')}</span>
             </div>
-          </ScrollReveal>
+            
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
+              {t('title')}
+            </h2>
+            
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              {t('subtitle')}
+            </p>
+          </div>
+        </ScrollReveal>
 
-          {/* Stats Grid - Single ScrollReveal for all stats */}
-          <ScrollReveal direction="right" delay={200} duration={500}>
-            <div 
-              ref={statsRef}
-              className="grid grid-cols-2 gap-6"
-            >
-              {statsData.map((stat, index) => (
-                <div 
-                  key={index}
-                  className="group card-modern p-6 text-center rounded-2xl"
-                >
-                  <div className={`bg-gradient-to-br ${stat.gradient} w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-500 shadow-lg`}>
-                    <stat.icon className="h-7 w-7 text-white" />
-                  </div>
-                  <div className="text-3xl font-bold text-gray-900 mb-2">
-                    {formatNumber(counts[index].count, index)}{stat.suffix}
-                  </div>
-                  <div className="text-gray-600 font-medium">{stat.label}</div>
+        {/* Stats Grid - Now positioned below header */}
+        <ScrollReveal direction="up" delay={200} duration={500}>
+          <div 
+            ref={statsRef}
+            className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
+          >
+            {statsData.map((stat, index) => (
+              <div 
+                key={index}
+                className="group bg-white/60 backdrop-blur-xl rounded-2xl p-6 shadow-xl text-center hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-white/20"
+              >
+                <div className={`bg-gradient-to-br ${stat.gradient} w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-500 shadow-lg`}>
+                  <stat.icon className="h-7 w-7 text-white" />
                 </div>
-              ))}
-            </div>
-          </ScrollReveal>
-        </div>
+                <div className="text-3xl font-bold text-gray-900 mb-2">
+                  {formatNumber(counts[index].count, index)}{stat.suffix}
+                </div>
+                <div className="text-gray-600 font-medium">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </ScrollReveal>
+
+        {/* CTA Button */}
+        <ScrollReveal direction="up" delay={400} duration={500}>
+          <div className="text-center mb-16">
+            <Link href="/about">
+              <Button className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 px-8 py-4 text-lg font-semibold rounded-xl">
+                {t('learnMore')}
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+          </div>
+        </ScrollReveal>
 
         {/* Additional content section - Group all feature cards */}
-        <ScrollReveal direction="up" delay={300} duration={500}>
+        <ScrollReveal direction="up" delay={600} duration={500}>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
               <div key={index} className="text-center space-y-4">

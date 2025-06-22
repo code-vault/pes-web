@@ -409,12 +409,12 @@ const MobileOptimizedContact = () => {
           </ScrollReveal>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Enhanced Multi-Step Form with ScrollReveal */}
           <ScrollReveal direction="left" delay={700}>
             <Card className="bg-white/60 backdrop-blur-xl border-0 shadow-2xl">
               <CardHeader className="pb-6">
-                <CardTitle className="text-3xl text-gray-900 font-bold">{t('form.title')}</CardTitle>
+                <CardTitle className="text-2xl text-gray-900 font-bold">{t('form.title')}</CardTitle>
                 
                 {/* Progress Steps */}
                 <div className="flex justify-between items-center mt-6">
@@ -518,29 +518,29 @@ const MobileOptimizedContact = () => {
             </Card>
           </ScrollReveal>
 
-          {/* Contact Information Cards with ScrollReveal */}
-          <div className="space-y-8">
+          {/* Contact Information Cards with ScrollReveal - Full Height Container */}
+          <div className="flex flex-col justify-between h-full space-y-4">
             {contactCards.map((card, index) => (
               <ScrollReveal 
                 key={index}
                 direction="right" 
                 delay={card.delay}
               >
-                <Card className={`bg-gradient-to-br ${card.gradient} text-white border-0 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105`}>
-                  <CardContent className="p-8">
-                    <div className="flex items-center space-x-6">
-                      <div className="bg-white/20 backdrop-blur-sm p-4 rounded-2xl">
-                        <card.icon className="h-8 w-8 text-white" />
+                <Card className={`bg-gradient-to-br ${card.gradient} text-white border-0 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] flex-1`}>
+                  <CardContent className="p-5 h-full flex items-center">
+                    <div className="flex items-center space-x-4 w-full">
+                      <div className="bg-white/20 backdrop-blur-sm p-3 rounded-xl flex-shrink-0">
+                        <card.icon className="h-5 w-5 text-white" />
                       </div>
-                      <div className="flex-1">
-                        <h3 className="text-2xl font-bold mb-3">{card.title}</h3>
-                        <p className="text-white/90 mb-4 leading-relaxed">{card.description}</p>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-base font-bold mb-1">{card.title}</h3>
+                        <p className="text-white/90 mb-2 leading-relaxed text-xs">{card.description}</p>
                         {card.action && (
                           <a 
                             href={card.action}
-                            className="inline-flex items-center bg-white text-gray-800 px-6 py-3 rounded-xl font-bold text-lg hover:bg-gray-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                            className="inline-flex items-center bg-white text-gray-800 px-3 py-1.5 rounded-lg font-semibold text-xs hover:bg-gray-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
                           >
-                            <card.icon className="mr-3 h-5 w-5" />
+                            <card.icon className="mr-1.5 h-3 w-3" />
                             {card.actionText}
                           </a>
                         )}

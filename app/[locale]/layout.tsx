@@ -10,7 +10,7 @@ import {setRequestLocale} from 'next-intl/server';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatingClickToCall from '@/components/FloatingClickToCall';
-import PerformanceMonitor from '@/components/PerformanceMonitor';
+// import PerformanceMonitor from '@/components/_PerformanceMonitor';
 
 // Toast Provider
 import { ToastProvider } from '@/components/ui/toast';
@@ -92,7 +92,7 @@ export default async function LocaleLayout({
       <body className={inter.className}>
         <NextIntlClientProvider messages={messages}>
           {/* Performance Monitor - only in development */}
-          {process.env.NODE_ENV === 'development' && <PerformanceMonitor />}
+          {/* {process.env.NODE_ENV === 'development' && <PerformanceMonitor />} */}
           
           {/* WRAP EVERYTHING WITH TOASTPROVIDER */}
           <ToastProvider>
