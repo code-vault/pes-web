@@ -5,7 +5,7 @@ import About from '@/components/About';
 import Gallery from '@/components/Gallery';
 import UnifiedTestimonials from '@/components/Testimonials';
 import FAQSection from '@/components/FAQSection';
-import MobileOptimizedContact from '@/components/MobileOptimizedContact';
+import SimpleCenteredContact from '@/components/SplitLayoutContact';
 
 type Props = {
   params: Promise<{locale: string}>;
@@ -34,7 +34,7 @@ export default async function HomePage({params}: Props) {
       {/* <FAQSection /> */}
       
       {/* Updated Mobile-Optimized Contact Form */}
-      <MobileOptimizedContact />
+      <SimpleCenteredContact />
     </>
   );
 }
