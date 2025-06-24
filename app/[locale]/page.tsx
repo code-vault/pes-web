@@ -4,7 +4,6 @@ import Services from '@/components/Services';
 import About from '@/components/About';
 import Gallery from '@/components/Gallery';
 import UnifiedTestimonials from '@/components/Testimonials';
-import FAQSection from '@/components/FAQSection';
 import SimpleCenteredContact from '@/components/SplitLayoutContact';
 
 type Props = {

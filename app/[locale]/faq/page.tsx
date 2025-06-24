@@ -6,11 +6,7 @@ import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
 import ScrollReveal from '@/components/ScrollReveal';
 
-type Props = {
-  params: Promise<{locale: string}>;
-};
-
-export default function FAQPage({params}: Props) {
+export default function FAQPage() {
   const t = useTranslations('faqPage');
   const [openItems, setOpenItems] = useState<number[]>([0]); // First item open by default
 

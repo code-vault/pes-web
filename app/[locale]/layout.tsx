@@ -10,7 +10,6 @@ import {setRequestLocale} from 'next-intl/server';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatingClickToCall from '@/components/FloatingClickToCall';
-// import PerformanceMonitor from '@/components/_PerformanceMonitor';
 
 // Toast Provider
 import { ToastProvider } from '@/components/ui/toast';
@@ -33,10 +32,11 @@ export function generateStaticParams() {
 }
 
 // Dynamic metadata based on locale
+// Dynamic metadata based on locale
 export async function generateMetadata({params}: Props): Promise<Metadata> {
   const {locale} = await params;
   const messages = await getMessages({locale});
-  const metadata = messages.metadata as any;
+  const metadata = messages.metadata as Record<string, string>;
   
   return {
     title: {
@@ -44,13 +44,14 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
       default: metadata.title,
     },
     description: metadata.description,
-    // Performance optimizations
     viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no',
     robots: 'index, follow',
-    // Preload critical resources
-    other: {
-      'preload': '/fonts/inter.woff2 as font type=font/woff2 crossorigin',
-    }
+    icons: {
+      icon: '/favicon.ico',
+      shortcut: '/favicon-16x16.png',
+      apple: '/apple-touch-icon.png',
+    },
+    manifest: '/manifest.json',
   };
 }
 
@@ -71,29 +72,21 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   // Providing all messages to the client
-  // side is the easiest way to get started
   const messages = await getMessages({locale});
 
   return (
-    <html lang={locale} dir={locale === 'hi' ? 'ltr' : 'ltr'}>
+    <html lang={locale} dir="ltr">
       <head>
         {/* Preload critical resources */}
-        <link rel="preload" href="/images/hero-bg.webp" as="image" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         
         {/* DNS prefetch for external domains */}
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
         <link rel="dns-prefetch" href="https://img.youtube.com" />
-        
-        {/* Optimize third-party scripts */}
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
       </head>
       <body className={inter.className}>
         <NextIntlClientProvider messages={messages}>
-          {/* Performance Monitor - only in development */}
-          {/* {process.env.NODE_ENV === 'development' && <PerformanceMonitor />} */}
-          
           {/* WRAP EVERYTHING WITH TOASTPROVIDER */}
           <ToastProvider>
             {/* This UI is shared across ALL pages */}

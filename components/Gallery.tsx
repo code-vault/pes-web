@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { Play, X, ChevronLeft, ChevronRight, Maximize, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Link } from '@/i18n/navigation';
+import { useRouter } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
 import ScrollReveal from '@/components/ScrollReveal';
 import {
@@ -16,6 +16,7 @@ import {
 const Gallery = () => {
   const t = useTranslations('gallery');
   const tGalleryPage = useTranslations('galleryPage');
+  const router = useRouter();
   const [selectedMedia, setSelectedMedia] = useState<{type: 'image' | 'video', src: string, title: string} | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -78,6 +79,10 @@ const Gallery = () => {
     const newIndex = currentIndex < mediaItems.length - 1 ? currentIndex + 1 : 0;
     setCurrentIndex(newIndex);
     setSelectedMedia(mediaItems[newIndex]);
+  };
+
+  const handleViewGallery = () => {
+    router.push('/gallery');
   };
 
   return (
@@ -164,12 +169,14 @@ const Gallery = () => {
           {/* CTA section */}
           <ScrollReveal direction="up" delay={300} duration={500}>
             <div className="text-center">
-              <Link href="/gallery">
-                <Button size="lg" className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 px-8 py-4 text-lg font-semibold rounded-xl">
-                  {t('viewFullGallery')}
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
+              <Button 
+                onClick={handleViewGallery}
+                size="lg" 
+                className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 px-8 py-4 text-lg font-semibold rounded-xl"
+              >
+                {t('viewFullGallery')}
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
             </div>
           </ScrollReveal>
         </div>

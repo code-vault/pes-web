@@ -206,8 +206,8 @@ async function sendEmails(formData: ContactFormData) {
     await sgMail.send(customerEmail);
     console.log('Customer confirmation sent successfully');
 
-  } catch (error) {
-    console.error('Email sending failed:', error);
+  } catch (emailError) {
+    console.error('Email sending failed:', emailError);
     // Don't throw error - we don't want to fail the API call if email fails
   }
 }
@@ -303,8 +303,8 @@ export async function POST(
       }
     });
 
-  } catch (error) {
-    console.error('Contact API Error:', error);
+  } catch (mainError) {
+    console.error('Contact API Error:', mainError);
     
     const url = new URL(request.url);
     const locale = url.pathname.includes('/hi/') ? 'hi' : 'en';
@@ -332,7 +332,8 @@ export async function GET(
       emailConfigured: !!process.env.SENDGRID_API_KEY,
       timestamp: new Date().toISOString()
     });
-  } catch (error) {
+  } catch (healthError) {
+    console.error('Health check error:', healthError);
     return NextResponse.json({
       status: 'error',
       message: 'API health check failed'

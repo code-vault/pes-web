@@ -1,32 +1,40 @@
-import { MetadataRoute } from 'next'
+import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://yoursite.com'
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://yoursite.com';
+  const lastModified = new Date();
   
-  return [
-    {
-      url: `${baseUrl}/en`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 1,
-      alternates: {
-        languages: {
-          en: `${baseUrl}/en`,
-          hi: `${baseUrl}/hi`,
+  const routes = [
+    '',
+    '/about',
+    '/services', 
+    '/gallery',
+    '/testimonials',
+    '/faq',
+    '/contact',
+  ];
+
+  const locales = ['en', 'hi'];
+  
+  const sitemap: MetadataRoute.Sitemap = [];
+  
+  // Add all routes for each locale
+  locales.forEach(locale => {
+    routes.forEach(route => {
+      sitemap.push({
+        url: `${baseUrl}/${locale}${route}`,
+        lastModified,
+        changeFrequency: route === '' ? 'daily' : 'weekly',
+        priority: route === '' ? 1 : 0.8,
+        alternates: {
+          languages: {
+            en: `${baseUrl}/en${route}`,
+            hi: `${baseUrl}/hi${route}`,
+          },
         },
-      },
-    },
-    {
-      url: `${baseUrl}/hi`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 1,
-      alternates: {
-        languages: {
-          en: `${baseUrl}/en`,
-          hi: `${baseUrl}/hi`,
-        },
-      },
-    },
-  ]
+      });
+    });
+  });
+
+  return sitemap;
 }

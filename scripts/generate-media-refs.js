@@ -1,7 +1,7 @@
 // scripts/generate-media-refs.js
 import { createClient } from '@sanity/client'
 import imageUrlBuilder from '@sanity/image-url'
-import { writeFileSync, mkdirSync, existsSync } from 'fs'
+import { writeFileSync, mkdirSync, existsSync, readFileSync } from 'fs'
 import { join } from 'path'
 
 // Simple .env.local loader (no dependencies needed)
@@ -41,6 +41,25 @@ if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || !process.env.NEXT_PUBLIC_SANIT
   console.log('📝 Media references require Sanity setup')
   console.log('💡 Your website works fine without media references')
   console.log('🔄 Skipping media references generation...')
+  
+  // Create empty media refs file for development
+  const mediaRefs = {
+    "_info": "Media references not configured - using fallback",
+    "_note": "Add Sanity credentials to use dynamic media",
+    "_generated": new Date().toISOString()
+  }
+  
+  const publicDir = join(process.cwd(), 'public')
+  if (!existsSync(publicDir)) {
+    mkdirSync(publicDir, { recursive: true })
+  }
+  
+  writeFileSync(
+    join(publicDir, 'media-refs.json'),
+    JSON.stringify(mediaRefs, null, 2)
+  )
+  
+  console.log('✅ Created fallback media-refs.json file')
   process.exit(0)
 }
 

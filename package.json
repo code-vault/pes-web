@@ -5,12 +5,17 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run generate-content && next build",
+    "build": "npm run generate-content-safe && next build",
+    "build-fast": "next build",
     "generate-content": "npm run generate-translations && npm run generate-media",
+    "generate-content-safe": "npm run generate-translations-safe && npm run generate-media-safe",
     "generate-translations": "node scripts/generate-translations.js",
+    "generate-translations-safe": "node scripts/generate-translations.js || echo 'Translations generation skipped'",
     "generate-media": "node scripts/generate-media-refs.js",
+    "generate-media-safe": "node scripts/generate-media-refs.js || echo 'Media refs generation skipped'",
     "import-translations": "node scripts/import-existing-translations.js",
     "fix-translations": "node scripts/import-missing-translations.js && npm run generate-translations",
+    "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit"
   },

@@ -118,6 +118,10 @@ const SplitLayoutContact = () => {
     }
   };
 
+  // Extract event handlers to avoid passing them as props
+  const callExpert = () => window.location.href = 'tel:+919876543210';
+  const sendEmail = () => window.location.href = 'mailto:info@purvodayaenergy.com?subject=Solar Installation Inquiry';
+
   return (
     <section id="contact" className="py-20 bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 relative overflow-hidden">
       {/* Background Elements */}
@@ -237,10 +241,10 @@ const SplitLayoutContact = () => {
                     )}
 
                     {/* Submit Button */}
-                    <Button 
+                    <button 
                       onClick={handleSubmit}
                       disabled={isSubmitting}
-                      className="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] h-14 text-lg font-semibold rounded-xl disabled:opacity-50"
+                      className="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] h-14 text-lg font-semibold rounded-xl disabled:opacity-50 flex items-center justify-center"
                     >
                       {isSubmitting ? (
                         <>
@@ -253,7 +257,7 @@ const SplitLayoutContact = () => {
                           Send Message
                         </>
                       )}
-                    </Button>
+                    </button>
 
                     {/* Trust Message */}
                     <div className="text-center pt-2">
@@ -332,21 +336,27 @@ const SplitLayoutContact = () => {
               <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/20">
                 <h3 className="text-lg font-bold text-gray-900 mb-4">Get in Touch</h3>
                 <div className="space-y-3">
-                  <div className="flex items-center space-x-3">
+                  <button 
+                    onClick={callExpert}
+                    className="flex items-center space-x-3 w-full text-left hover:bg-orange-50 p-2 rounded-lg transition-colors"
+                  >
                     <Phone className="h-5 w-5 text-orange-500" />
                     <div>
                       <p className="font-medium text-gray-900">+91 98765 43210</p>
                       <p className="text-sm text-gray-600">Call us for immediate assistance</p>
                     </div>
-                  </div>
+                  </button>
                   
-                  <div className="flex items-center space-x-3">
+                  <button 
+                    onClick={sendEmail}
+                    className="flex items-center space-x-3 w-full text-left hover:bg-blue-50 p-2 rounded-lg transition-colors"
+                  >
                     <Mail className="h-5 w-5 text-blue-500" />
                     <div>
                       <p className="font-medium text-gray-900">info@purvodayaenergy.com</p>
                       <p className="text-sm text-gray-600">Email us your requirements</p>
                     </div>
-                  </div>
+                  </button>
                   
                   <div className="flex items-center space-x-3">
                     <Clock className="h-5 w-5 text-green-500" />
