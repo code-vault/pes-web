@@ -13,6 +13,8 @@ import FloatingClickToCall from '@/components/FloatingClickToCall';
 
 // Toast Provider
 import { ToastProvider } from '@/components/ui/toast';
+import IntlProvider from '@/components/IntlProvider';
+
 
 // Font optimization
 const inter = Inter({ 
@@ -33,9 +35,19 @@ export function generateStaticParams() {
 
 // Dynamic metadata based on locale
 // Dynamic metadata based on locale
+
+function pick<T extends object, K extends keyof T>(obj: T, ...keys: K[]): Pick<T, K> {
+  const ret: any = {};
+  keys.forEach(key => {
+    ret[key] = obj[key];
+  });
+  return ret;
+}
+
 export async function generateMetadata({params}: Props): Promise<Metadata> {
   const {locale} = await params;
-  const messages = await getMessages({locale});
+  // const messages = await getMessages({locale});
+  const messages = (await import(`@/messages/${locale}.json`)).default;
   const metadata = messages.metadata as Record<string, string>;
   
   return {
@@ -72,7 +84,13 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   // Providing all messages to the client
-  const messages = await getMessages({locale});
+  // const messages = await getMessages({locale});
+  let messages;
+  try {
+    messages = (await import(`@/messages/${locale}.json`)).default;
+  } catch (error) {
+    notFound();
+  }
 
   return (
     <html lang={locale} dir="ltr">
@@ -86,23 +104,16 @@ export default async function LocaleLayout({
         <link rel="dns-prefetch" href="https://img.youtube.com" />
       </head>
       <body className={inter.className}>
-        <NextIntlClientProvider messages={messages}>
-          {/* WRAP EVERYTHING WITH TOASTPROVIDER */}
+                <IntlProvider locale={locale} messages={messages}>
           <ToastProvider>
-            {/* This UI is shared across ALL pages */}
             <Header />
-
             <main>
               {children}
             </main>
-            
-            {/* This UI is also shared across ALL pages */}
             <Footer />
-
-            {/* Floating Click-to-Call Button - appears on all pages */}
             <FloatingClickToCall />
           </ToastProvider>
-        </NextIntlClientProvider>
+        </IntlProvider>
       </body>
     </html>
   );

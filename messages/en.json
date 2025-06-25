@@ -1,369 +1,675 @@
 {
+  "metadata": {
+    "title": "Purvodaya Energy Solutions - Solar Installation Services in India",
+    "description": "Leading solar energy solutions provider in India. Residential and commercial solar panel installation with 25-year warranty. Save up to 90% on electricity bills."
+  },
+  "header": {
+    "companyName": "Purvodaya Energy Solutions",
+    "logo": {
+      "main": "Purvodaya",
+      "tagline": "Energy Solutions"
+    },
+    "about": "About",
+    "services": "Services",
+    "gallery": "Gallery",
+    "testimonials": "Testimonials",
+    "contact": "Contact",
+    "getQuote": "Get Quote",
+    "topBar": {
+      "phone": "+91 98765 43210",
+      "email": "info@purvodayaenergy.com"
+    },
+    "social": {
+      "facebook": "Follow us on Facebook",
+      "linkedin": "Connect on LinkedIn", 
+      "instagram": "Follow us on Instagram",
+      "twitter": "Follow us on Twitter"
+    },
+    "languageSwitcher": {
+      "toggle": "Switch language",
+      "current": "EN"
+    },
+    "mobileMenu": {
+      "toggle": "Toggle mobile menu"
+    }
+  },
+  "hero": {
+    "badge": "⚡ Go Solar Today",
+    "title": "Switch to Clean Solar Energy & Save Money",
+    "subtitle": "Join 2,500+ satisfied customers who have reduced their electricity bills by up to 90% with our premium solar solutions.",
+    "save": "Save 90%",
+    "saveBills": "On electricity bills",
+    "warranty": "25 Years",
+    "warrantyText": "Complete warranty",
+    "clean": "Clean Energy",
+    "cleanEnergy": "Zero emissions",
+    "getQuoteBtn": "Get Free Quote",
+    "watchDemo": "Watch Demo",
+    "calculator": {
+      "title": "Savings Calculator",
+      "currentBill": "Current Monthly Bill",
+      "withSolar": "With Solar",
+      "monthlySavings": "Monthly Savings",
+      "annualSavings": "Annual Savings",
+      "yearSavings": "25-Year Savings"
+    },
+    "demoModal": {
+      "title": "Solar Energy Demo",
+      "comingSoon": "Demo Video Coming Soon",
+      "description": "Watch how our solar installations work and see real customer savings.",
+      "closeButton": "Close demo",
+      "features": {
+        "0": {
+          "title": "Installation Process",
+          "description": "See how we install"
+        },
+        "1": {
+          "title": "Quality Materials",
+          "description": "Premium components"
+        },
+        "2": {
+          "title": "Cost Savings",
+          "description": "Real customer results"
+        }
+      },
+      "cta": {
+        "question": "Ready to start saving with solar?",
+        "button": "Get Your Quote"
+      }
+    }
+  },
+  "services": {
+    "badge": "Our Services",
+    "title": "Solar Solutions for Every Need",
+    "subtitle": "From residential rooftops to large industrial installations, we provide customized solar energy solutions that deliver maximum savings and efficiency.",
+    "residential": {
+      "title": "Residential Solar",
+      "description": "Custom solar solutions for homes. Reduce your electricity bills by up to 90% with our premium residential solar installations."
+    },
+    "commercial": {
+      "title": "Commercial Solar", 
+      "description": "Scalable solar systems for businesses. Cut operational costs and demonstrate your commitment to sustainability."
+    },
+    "industrial": {
+      "title": "Industrial Solar",
+      "description": "Large-scale solar installations for industrial facilities. Maximize energy independence and reduce operational expenses."
+    },
+    "viewAll": "View All Services"
+  },
   "about": {
     "badge": "About Us",
-    "learnMore": "Learn More About Us",
+    "title": "Leading the Solar Revolution in India",
+    "subtitle": "With over 12 years of experience and 2,500+ successful installations, we are India's trusted partner for clean, renewable energy solutions.",
     "stats": {
-      "co2Saved": "lbs CO₂ Saved",
       "customers": "Happy Customers",
+      "installed": "Capacity Installed", 
       "experience": "Years Experience",
-      "installed": "Solar Installed"
+      "co2Saved": "kg CO₂ Saved"
     },
-    "subtitle": "Purvodaya Energy Solutions has been at the forefront of the renewable energy revolution, helping thousands transition to clean, affordable solar power.",
-    "title": "Leading Solar Innovators Since 2012"
+    "learnMore": "Learn More About Us"
+  },
+  "gallery": {
+    "badge": "Our Work",
+    "title": "Solar Installation Gallery",
+    "subtitle": "Explore our completed projects and see the quality craftsmanship that goes into every solar installation.",
+    "viewFullGallery": "View Full Gallery"
+  },
+  "testimonials": {
+    "badge": "Customer Reviews",
+    "title": "What Our Customers Say",
+    "subtitle": "Real stories from real customers who have transformed their energy costs with our solar solutions.",
+    "readAllReviews": "Read All Reviews",
+    "reviews": {
+      "0": {
+        "name": "Rajesh Kumar",
+        "location": "Mumbai, Maharashtra",
+        "text": "Our electricity bill went from ₹25,000 to just ₹2,500 per month! The installation was professional and completed in just 2 days. Excellent service and great savings.",
+        "project": "8kW Residential",
+        "savings": "₹2,70,000/year"
+      },
+      "1": {
+        "name": "Priya Sharma",
+        "location": "Delhi, NCR",
+        "text": "Best investment we ever made! The team was knowledgeable, the installation was quick, and we're already seeing massive savings on our bills.",
+        "project": "12kW Commercial",
+        "savings": "₹4,20,000/year"
+      },
+      "2": {
+        "name": "Amit Patel",
+        "location": "Ahmedabad, Gujarat", 
+        "text": "Professional service from start to finish. The solar system has been working flawlessly for 2 years now. Highly recommend Purvodaya Energy!",
+        "project": "6kW Residential",
+        "savings": "₹1,80,000/year"
+      }
+    }
+  },
+  "contact": {
+    "badge": "Get In Touch",
+    "title": "Ready to Start Saving?",
+    "subtitle": "Get your free solar consultation today and discover how much you can save with our premium solar solutions.",
+    "form": {
+      "name": "Full Name",
+      "phone": "Phone Number",
+      "email": "Email Address",
+      "message": "Message",
+      "namePlaceholder": "Enter your full name",
+      "phonePlaceholder": "+91 98765 43210",
+      "emailPlaceholder": "your@email.com",
+      "messagePlaceholder": "Tell us about your requirements...",
+      "submit": "Send Message",
+      "sending": "Sending...",
+      "success": "Thank you! We'll contact you within 24 hours.",
+      "error": "Sorry, there was an issue. Please try again."
+    },
+    "info": {
+      "phone": "+91 98765 43210",
+      "email": "info@purvodayaenergy.com",
+      "address": "Solar Avenue, Green City, Mumbai, Maharashtra 400001",
+      "hours": "Mon-Sat: 9AM-6PM"
+    }
+  },
+  "footer": {
+    "description": "Leading solar energy solutions provider in India with over 12 years of experience and 2,500+ successful installations.",
+    "services": {
+      "title": "Services",
+      "residential": "Residential Solar",
+      "commercial": "Commercial Solar", 
+      "industrial": "Industrial Solar",
+      "audits": "Energy Audits",
+      "maintenance": "Maintenance",
+      "storage": "Battery Storage"
+    },
+    "quickLinks": {
+      "title": "Quick Links",
+      "about": "About Us",
+      "services": "Services",
+      "gallery": "Gallery",
+      "testimonials": "Testimonials",
+      "financing": "Financing Options",
+      "warranties": "Warranties",
+      "contact": "Contact"
+    },
+    "getInTouch": {
+      "title": "Get In Touch",
+      "quote": {
+        "title": "Get Free Quote",
+        "description": "Ready to start saving?",
+        "button": "Get Started"
+      }
+    },
+    "contact": {
+      "phone": "+91 98765 43210",
+      "email": "info@purvodayaenergy.com",
+      "address": "Solar Avenue, Green City, Mumbai, Maharashtra 400001"
+    },
+    "social": {
+      "facebook": "Follow us on Facebook",
+      "twitter": "Follow us on Twitter",
+      "linkedin": "Connect on LinkedIn",
+      "instagram": "Follow us on Instagram"
+    },
+    "legal": {
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service", 
+      "cookies": "Cookie Policy"
+    },
+    "copyright": "© 2024 Purvodaya Energy Solutions. All rights reserved."
   },
   "aboutPage": {
     "backToHome": "Back to Home",
-    "ourJourney": "Our Journey",
-    "ourStory": "Our Story",
-    "stats": {
-      "co2Saved": "lbs CO₂ Saved",
-      "customers": "Happy Customers",
-      "experience": "Years Experience",
-      "installed": "Solar Installed"
-    },
-    "story": {
-      "paragraph1": "Purvodaya Energy Solutions was born from a simple belief: everyone deserves access to clean, affordable energy. Founded in 2012 by a team of renewable energy engineers, we've grown from a small startup to the region's most trusted solar installation company.",
-      "paragraph2": "Our mission goes beyond just installing solar panels. We're building a sustainable future, one installation at a time. Every project we complete brings us closer to a world powered entirely by renewable energy.",
-      "paragraph3": "Today, we're proud to have helped thousands of families and businesses make the switch to solar, saving millions in energy costs and preventing tons of CO₂ emissions."
-    },
-    "subtitle": "Leading the solar revolution since 2012, transforming how homes and businesses power their future with clean, renewable energy.",
     "title": "About Purvodaya Energy Solutions",
-    "whyChooseUs": "Why Choose Us"
-  },
-  "aiChatbot": {
-    "buttonTitle": "Chat with AI Solar Assistant",
-    "chatIndicator": "Ask AI",
-    "headerSubtitle": "Instant Solar Answers",
-    "headerTitle": "Purvodaya AI Solar Expert",
-    "inputPlaceholder": "Ask about solar energy...",
-    "poweredBy": "Powered by AI • Purvodaya Energy",
-    "quickReplies": {
-      "cost": "💰 Solar Costs",
-      "financing": "💳 Financing Options",
-      "installation": "🔧 Installation Process",
-      "savings": "📊 Savings Calculator",
-      "subsidy": "🏛️ Government Subsidies",
-      "types": "⚡ System Types"
+    "subtitle": "Leading the solar revolution in India with innovative, sustainable energy solutions that empower communities and businesses to achieve energy independence.",
+    "stats": {
+      "customers": "Happy Customers",
+      "installed": "Capacity Installed",
+      "experience": "Years Experience", 
+      "co2Saved": "kg CO₂ Saved"
     },
-    "quickTopics": "Quick topics:",
-    "responses": {
-      "cost": "💰 **Solar System Costs in India:**\n\n• **Residential (1-10kW):** ₹40,000-₹80,000 per kW\n• **Commercial (10kW+):** ₹35,000-₹65,000 per kW\n• **5kW home system:** ₹2-4 lakhs (after subsidies)\n• **10kW system:** ₹4-7 lakhs (after subsidies)\n\n*Prices include panels, inverter, installation & 5-year warranty*\n\nWould you like a personalized quote? 📋",
-      "financing": "💳 **Solar Financing Options:**\n\n**1. Cash Purchase** ✅ Best ROI, immediate ownership\n**2. Solar Loan** 🏦 2-6% interest, 5-15 year terms\n**3. Lease/PPA** 📄 ₹0 down, pay monthly\n**4. NBFC Financing** 💰 Up to 80% funding\n\n**EMI Example:**\n₹5L system → ₹8,500/month for 5 years\nSavings: ₹12,000/month\n**Net Benefit:** ₹3,500/month from day 1! 📈\n\nWant to calculate your EMI? 🧮",
-      "installation": "🔧 **Solar Installation Process:**\n\n**Step 1:** Site Survey & Design (1-2 days)\n**Step 2:** Permits & Approvals (7-15 days)\n**Step 3:** Equipment Procurement (3-7 days)\n**Step 4:** Installation (1-3 days)\n**Step 5:** Grid Connection & Testing (2-5 days)\n**Step 6:** Net Metering Setup (7-30 days)\n\n⏱️ **Total Time:** 3-8 weeks\n🏠 **Roof Requirements:** 100 sq ft per kW\n\nNeed a site assessment? We offer free surveys! 📋",
-      "maintenance": "🧹 **Solar Maintenance Guide:**\n\n**Monthly:** Visual inspection\n**Quarterly:** Panel cleaning (more in dusty areas)\n**Annually:** Professional checkup\n\n**Cleaning Tips:**\n• Early morning or evening\n• Use soft brush and water\n• Avoid harsh chemicals\n• Professional cleaning available\n\n**Monitoring:**\n• Mobile app for performance tracking\n• Alert system for issues\n• Remote monitoring included\n\n**Costs:** ₹2-5k annually\n**Performance impact:** 15-20% loss if not cleaned\n\nWant to know about our maintenance packages? 🔧",
-      "savings": "📊 **Solar Savings Calculator:**\n\n**Example 5kW System:**\n• Monthly Generation: 750 units\n• Current Bill: ₹15,000/month\n• With Solar: ₹2,000/month\n• **Monthly Savings: ₹13,000** 💰\n• **Annual Savings: ₹1,56,000** 📈\n• **25-year Savings: ₹39 lakhs** 🎯\n\n**Payback Period:** 3-4 years\n**ROI:** 25-30% annually\n\nTo calculate YOUR savings, I need:\n• Monthly electricity bill amount\n• Location (for sunlight hours)\n• Roof space available\n\nShall we calculate your potential savings? 🧮",
-      "subsidy": "🏛️ **Government Subsidies Available:**\n\n• **Central Subsidy:** Up to ₹18,000 per kW (max 3kW)\n• **State Subsidies:** Additional 10-30% in many states\n• **Net Metering:** Sell excess power back to grid\n• **Tax Benefits:** 30% depreciation for businesses\n• **Low-interest loans:** 2-6% interest rates\n\n**Example:** 5kW system costs ₹3L → After subsidy ₹1.8L\n\nWhich state are you in? I can check specific subsidies! 🗺️",
-      "technical": "🔬 **Technical Information:**\n\n**Panel Types:**\n• Monocrystalline: 20-22% efficiency, premium\n• Polycrystalline: 18-20% efficiency, economical\n• Bifacial: 25% more power, latest technology\n\n**Inverter Types:**\n• String Inverters: Cost-effective\n• Power Optimizers: Better performance\n• Microinverters: Maximum efficiency\n\n**System Specifications:**\n• Warranty: 25 years on panels, 5-12 years on inverters\n• Performance: 80% efficiency after 25 years\n• Maintenance: Minimal, cleaning 2-4 times/year\n\nAny specific technical questions? ⚙️",
-      "types": "⚡ **Solar System Types:**\n\n**🔌 On-Grid (Grid-Tied)**\n• Connected to electricity grid\n• Sell excess power back\n• No battery backup\n• Cost: ₹40-60k per kW\n• Best for: Reliable grid areas\n\n**🔋 Off-Grid (Standalone)**\n• Complete independence\n• Battery backup included\n• Works during power cuts\n• Cost: ₹80-120k per kW\n• Best for: Remote areas\n\n**⚡🔋 Hybrid System**\n• Best of both worlds\n• Grid connection + batteries\n• Backup during outages\n• Cost: ₹70-100k per kW\n• Best for: Urban areas with power cuts\n\nWhich type interests you? 🤔"
-    }
-  },
-  "common": {
-    "backToHome": "Back to Home",
-    "contactUs": "Contact Us",
-    "error": "Something went wrong. Please try again.",
-    "getStarted": "Get Started",
-    "learnMore": "Learn More",
-    "loading": "Loading...",
-    "readMore": "Read More",
-    "success": "Success!",
-    "viewAll": "View All"
-  },
-  "contact": {
-    "badge": "Get Started",
-    "form": {
-      "additional": "Additional Information",
-      "address": "Property Address",
-      "bill": "Average Monthly Electric Bill",
-      "email": "Email Address",
-      "error": "❌ Sorry, something went wrong. Please try again or call us at +91 98765 43210.",
-      "firstName": "First Name",
-      "lastName": "Last Name",
-      "nextStep": "Next Step",
-      "phone": "Phone Number",
-      "placeholder": {
-        "additional": "Tell us about your property, energy goals, or any questions you have...",
-        "address": "123 Main St, City, State ZIP",
-        "bill": "$150",
-        "email": "john@example.com",
-        "firstName": "John",
-        "lastName": "Doe",
-        "phone": "(555) 123-4567"
-      },
-      "previous": "Previous",
-      "submit": "Get My Free Solar Quote",
-      "submitting": "Submitting...",
-      "success": "🎉 Thank you {firstName}! Your message has been sent successfully. Our team will contact you within 24 hours.",
-      "successIndicator": "successfully",
-      "title": "Get Your Free Quote",
-      "validation": {
-        "address": "Address is required",
-        "email": {
-          "invalid": "Please enter a valid email",
-          "required": "Email is required"
-        },
-        "fillAllFields": "❌ Please fill in all required fields and check previous steps.",
-        "firstName": "First name is required",
-        "lastName": "Last name is required",
-        "phone": {
-          "invalid": "Please enter a valid phone number",
-          "required": "Phone number is required"
-        }
-      }
+    "ourStory": "Our Story",
+    "story": {
+      "paragraph1": "Founded in 2012, Purvodaya Energy Solutions began with a simple mission: to make clean, renewable energy accessible and affordable for every Indian household and business.",
+      "paragraph2": "Over the past decade, we have grown from a small startup to one of India's most trusted solar energy providers, completing over 2,500 installations across multiple states.",
+      "paragraph3": "Our commitment to quality, innovation, and customer satisfaction has made us the preferred choice for residential, commercial, and industrial solar solutions."
     },
-    "info": {
-      "call": {
-        "actionText": "Call Expert",
-        "description": "Ready to talk? Give us a call for immediate assistance.",
-        "title": "Call Us"
-      },
-      "email": {
-        "actionText": "Email Us",
-        "description": "Send us an email and we'll respond within 24 hours.",
-        "title": "Email Us"
-      },
-      "hours": {
-        "schedule": {
-          "emergency": "Emergency service available 24/7",
-          "saturday": "Saturday: 9:00 AM - 4:00 PM",
-          "sunday": "Sunday: Closed",
-          "weekdays": "Monday - Friday: 8:00 AM - 6:00 PM"
-        },
-        "title": "Business Hours"
-      },
-      "visit": {
-        "description": "Come see our solar displays and meet our team.",
-        "title": "Visit Our Office"
-      }
-    },
-    "subtitle": "Get your free solar consultation today. Our experts will assess your property and provide a custom quote tailored to your energy needs.",
-    "title": "Ready to Go Solar?",
-    "trustIndicators": {
+    "ourJourney": "Our Journey",
+    "timeline": {
       "0": {
-        "description": "Fully Certified",
-        "title": "Licensed"
+        "title": "Company Founded",
+        "description": "Started with a vision to revolutionize India's energy landscape"
       },
       "1": {
-        "description": "Comprehensive Coverage",
-        "title": "Year Warranty"
+        "title": "First 100 Installations",
+        "description": "Completed our first major milestone in residential solar"
       },
       "2": {
-        "description": "Customer Support"
+        "title": "Commercial Expansion",
+        "description": "Expanded into commercial and industrial solar solutions"
       },
       "3": {
-        "description": "Down Payment"
+        "title": "1000+ Customers",
+        "description": "Crossed 1000 satisfied customers milestone"
       },
-      "title": "Why Trust Us?"
+      "4": {
+        "title": "2500+ Installations",
+        "description": "Achieved 2500+ installations with 15MW+ capacity"
+      }
+    },
+    "whyChooseUs": "Why Choose Us",
+    "highlights": {
+      "0": {
+        "title": "Expert Team",
+        "description": "Certified professionals with years of solar industry experience"
+      },
+      "1": {
+        "title": "Quality Components",
+        "description": "Only tier-1 solar panels and premium inverters"
+      },
+      "2": {
+        "title": "Complete Warranty",
+        "description": "25-year comprehensive warranty on all installations"
+      },
+      "3": {
+        "title": "Post-Installation Support",
+        "description": "Ongoing maintenance and monitoring services"
+      }
+    }
+  },
+  "servicesPage": {
+    "backToHome": "Back to Home",
+    "title": "Our Solar Services",
+    "subtitle": "Comprehensive solar energy solutions tailored to your specific needs, from initial consultation to ongoing maintenance and support.",
+    "whatsIncluded": "What's Included:",
+    "services": {
+      "0": {
+        "title": "Residential Solar Installation",
+        "description": "Custom solar solutions for homes and apartments designed to maximize your savings and energy independence.",
+        "detailedDescription": "Our residential solar systems are designed to meet your household's specific energy needs while providing maximum savings on electricity bills.",
+        "features": {
+          "0": "Free site survey and energy audit",
+          "1": "Custom system design and proposal",
+          "2": "Professional installation in 1-3 days",
+          "3": "25-year comprehensive warranty"
+        }
+      },
+      "1": {
+        "title": "Commercial Solar Solutions",
+        "description": "Scalable solar systems for businesses looking to reduce operational costs and demonstrate environmental responsibility.",
+        "detailedDescription": "Help your business reduce operational costs while showcasing your commitment to sustainability with our commercial solar solutions.",
+        "features": {
+          "0": "Detailed ROI analysis and projections",
+          "1": "Flexible financing options available",
+          "2": "Grid-tie and hybrid system options",
+          "3": "Real-time monitoring and reporting"
+        }
+      },
+      "2": {
+        "title": "Industrial Solar Installation",
+        "description": "Large-scale solar installations for industrial facilities requiring significant energy capacity and reliability.",
+        "detailedDescription": "Industrial-scale solar installations designed to meet high energy demands while providing substantial cost savings and energy security.",
+        "features": {
+          "0": "High-capacity system design (100kW+)",
+          "1": "Advanced monitoring and control systems",
+          "2": "Minimal downtime installation process", 
+          "3": "Performance guarantees and warranties"
+        }
+      },
+      "3": {
+        "title": "Solar System Design & Consultation",
+        "description": "Expert consultation and custom system design to ensure optimal performance and maximum return on investment.",
+        "detailedDescription": "Our expert team provides comprehensive consultation and custom design services to ensure your solar system delivers optimal performance.",
+        "features": {
+          "0": "Detailed site assessment and analysis",
+          "1": "Custom system design and modeling",
+          "2": "Financial analysis and ROI projections",
+          "3": "Permitting and documentation support"
+        }
+      },
+      "4": {
+        "title": "Solar Maintenance & Support",
+        "description": "Comprehensive maintenance services to ensure your solar system operates at peak efficiency throughout its lifetime.",
+        "detailedDescription": "Keep your solar investment performing at its best with our comprehensive maintenance and support services.",
+        "features": {
+          "0": "Regular cleaning and inspection",
+          "1": "Performance monitoring and optimization",
+          "2": "Inverter and component servicing",
+          "3": "24/7 technical support hotline"
+        }
+      },
+      "5": {
+        "title": "Customer Support & Training",
+        "description": "Ongoing customer support and system training to help you get the most out of your solar investment.",
+        "detailedDescription": "We provide comprehensive training and ongoing support to ensure you understand and maximize your solar system's benefits.",
+        "features": {
+          "0": "System operation training sessions",
+          "1": "Mobile app for monitoring guidance",
+          "2": "Technical support and troubleshooting",
+          "3": "Annual performance reviews"
+        }
+      }
+    }
+  },
+  "galleryPage": {
+    "backToHome": "Back to Home",
+    "title": "Installation Gallery",
+    "subtitle": "Browse our portfolio of completed solar installations across residential, commercial, and industrial projects.",
+    "video": "Video",
+    "photo": "Photo",
+    "videoNotSupported": "Your browser does not support the video tag.",
+    "imageCounter": "Image {current} of {total}",
+    "projects": {
+      "0": {
+        "title": "Residential Rooftop - Mumbai",
+        "category": "Residential"
+      },
+      "1": {
+        "title": "Commercial Installation Process",
+        "category": "Commercial"
+      },
+      "2": {
+        "title": "Industrial Solar Farm - Gujarat",
+        "category": "Industrial"
+      },
+      "3": {
+        "title": "Before & After Comparison",
+        "category": "Transformation"
+      },
+      "4": {
+        "title": "Installation Time-lapse",
+        "category": "Process"
+      },
+      "5": {
+        "title": "Maintenance & Cleaning",
+        "category": "Maintenance"
+      }
+    },
+    "additionalProjects": {
+      "0": {
+        "title": "Delhi Residential Complex",
+        "category": "Residential"
+      },
+      "1": {
+        "title": "Pune Office Building",
+        "category": "Commercial"
+      },
+      "2": {
+        "title": "Chennai Factory Installation",
+        "category": "Industrial"
+      },
+      "3": {
+        "title": "Bangalore Villa Project",
+        "category": "Residential"
+      },
+      "4": {
+        "title": "Hyderabad Shopping Mall",
+        "category": "Commercial"
+      },
+      "5": {
+        "title": "Kolkata Manufacturing Unit",
+        "category": "Industrial"
+      },
+      "6": {
+        "title": "Jaipur Heritage Home",
+        "category": "Residential"
+      },
+      "7": {
+        "title": "Goa Resort Installation",
+        "category": "Commercial"
+      },
+      "8": {
+        "title": "Lucknow Warehouse",
+        "category": "Industrial"
+      },
+      "9": {
+        "title": "Chandigarh Apartment",
+        "category": "Residential"
+      },
+      "10": {
+        "title": "Indore Business Park",
+        "category": "Commercial"
+      },
+      "11": {
+        "title": "Vadodara Chemical Plant",
+        "category": "Industrial"
+      }
+    }
+  },
+  "testimonialsPage": {
+    "backToHome": "Back to Home",
+    "title": "Customer Stories & Reviews",
+    "subtitle": "Real experiences from real customers who have transformed their energy costs and environmental impact with our solar solutions.",
+    "videoReviews": "Video Reviews",
+    "writtenReviews": "Written Reviews",
+    "watchCustomerStories": "Watch Customer Stories",
+    "seeRealCustomers": "See real customers share their solar journey and savings",
+    "detailedCustomerReviews": "Detailed Customer Reviews",
+    "readComprehensiveFeedback": "Read comprehensive feedback from our satisfied customers",
+    "systemSize": "System Size",
+    "annualSavings": "Annual Savings",
+    "watchFullStory": "Watch Full Story",
+    "customerTestimonial": "Customer Testimonial",
+    "modalInstructions": "Press ESC to close or click outside to close",
+    "project": "Project",
+    "videoTestimonials": {
+      "0": {
+        "name": "Raj Sharma",
+        "location": "Mumbai, Maharashtra",
+        "title": "From ₹25,000 to ₹3,000 Monthly Bills!",
+        "youtubeId": "dQw4w9WgXcQ",
+        "duration": "2:45",
+        "savings": "₹2,64,000/year",
+        "systemSize": "8kW Residential",
+        "description": "See how Raj reduced his electricity bills by 88% with our solar solution"
+      },
+      "1": {
+        "name": "Priya Patel",
+        "location": "Ahmedabad, Gujarat",
+        "title": "Best Investment We Ever Made",
+        "youtubeId": "9bZkp7q19f0",
+        "duration": "3:12",
+        "savings": "₹1,80,000/year",
+        "systemSize": "6kW Residential",
+        "description": "Priya shares why solar was the best decision for her family"
+      },
+      "2": {
+        "name": "Amit Kumar",
+        "location": "Delhi NCR",
+        "title": "Professional Service, Amazing Results",
+        "youtubeId": "ScMzIvxBSi4",
+        "duration": "1:58",
+        "savings": "₹3,60,000/year",
+        "systemSize": "12kW Commercial",
+        "description": "Amit talks about the professional installation process"
+      },
+      "3": {
+        "name": "Sunita Reddy",
+        "location": "Hyderabad, Telangana",
+        "title": "Zero Electricity Bills for 2 Years",
+        "youtubeId": "jNQXAC9IVRw",
+        "duration": "2:30",
+        "savings": "₹2,16,000/year",
+        "systemSize": "7kW Residential",
+        "description": "Sunita explains how she achieved zero electricity bills"
+      }
+    },
+    "testimonials": {
+      "0": {
+        "name": "Rajesh Kumar",
+        "location": "Mumbai, Maharashtra",
+        "text": "Our electricity bill went from ₹25,000 to just ₹2,500 per month! The installation was professional and completed in just 2 days. Excellent service and great savings.",
+        "project": "8kW Residential",
+        "savings": "₹2,70,000/year"
+      },
+      "1": {
+        "name": "Priya Sharma",
+        "location": "Delhi, NCR",
+        "text": "Best investment we ever made! The team was knowledgeable, the installation was quick, and we're already seeing massive savings on our bills.",
+        "project": "12kW Commercial",
+        "savings": "₹4,20,000/year"
+      },
+      "2": {
+        "name": "Amit Patel",
+        "location": "Ahmedabad, Gujarat",
+        "text": "Professional service from start to finish. The solar system has been working flawlessly for 2 years now. Highly recommend Purvodaya Energy!",
+        "project": "6kW Residential",
+        "savings": "₹1,80,000/year"
+      },
+      "3": {
+        "name": "Sunita Reddy",
+        "location": "Hyderabad, Telangana",
+        "text": "We've had zero electricity bills for the past 2 years! The system performance exceeds expectations and the maintenance support is excellent.",
+        "project": "7kW Residential",
+        "savings": "₹2,16,000/year"
+      },
+      "4": {
+        "name": "Vikram Singh",
+        "location": "Jaipur, Rajasthan",
+        "text": "The ROI was better than promised. Our factory now runs on clean energy and we've reduced operational costs significantly.",
+        "project": "50kW Industrial",
+        "savings": "₹15,60,000/year"
+      },
+      "5": {
+        "name": "Meera Nair",
+        "location": "Kochi, Kerala",
+        "text": "From consultation to installation, everything was handled professionally. The system has been generating more power than projected.",
+        "project": "5kW Residential",
+        "savings": "₹1,44,000/year"
+      }
+    },
+    "additionalTestimonials": {
+      "0": {
+        "name": "Ravi Gupta",
+        "location": "Pune, Maharashtra",
+        "text": "Excellent service and high-quality installation. Our office building now runs primarily on solar energy.",
+        "project": "25kW Commercial",
+        "savings": "₹7,80,000/year"
+      },
+      "1": {
+        "name": "Kavita Joshi",
+        "location": "Surat, Gujarat",
+        "text": "The team was very professional and the installation was completed without any hassle. Great results!",
+        "project": "4kW Residential",
+        "savings": "₹1,08,000/year"
+      },
+      "2": {
+        "name": "Deepak Agarwal",
+        "location": "Indore, Madhya Pradesh",
+        "text": "Our manufacturing unit has significantly reduced electricity costs. Highly satisfied with the performance.",
+        "project": "75kW Industrial",
+        "savings": "₹23,40,000/year"
+      },
+      "3": {
+        "name": "Anita Rao",
+        "location": "Bangalore, Karnataka",
+        "text": "Solar was the best decision for our home. The savings are real and the system requires minimal maintenance.",
+        "project": "6kW Residential",
+        "savings": "₹1,72,800/year"
+      },
+      "4": {
+        "name": "Suresh Patil",
+        "location": "Nagpur, Maharashtra",
+        "text": "Professional installation team and excellent after-sales support. The system performance is outstanding.",
+        "project": "10kW Commercial",
+        "savings": "₹3,12,000/year"
+      },
+      "5": {
+        "name": "Lakshmi Iyer",
+        "location": "Chennai, Tamil Nadu",
+        "text": "Very satisfied with the solar installation. The electricity bills have reduced dramatically.",
+        "project": "8kW Residential",
+        "savings": "₹2,30,400/year"
+      }
+    },
+    "cta": {
+      "title": "Ready to Join Our Happy Customers?",
+      "description": "Get your free solar consultation and start saving today!",
+      "button": "Get Free Quote"
     }
   },
   "faqPage": {
     "backToHome": "Back to Home",
-    "badge": "Frequently Asked Questions",
-    "contact": {
-      "callExpert": "Call Expert",
-      "description": "Our solar experts are here to help you make the best decision for your energy needs.",
-      "emailUs": "Email Us",
-      "title": "Still have questions?"
-    },
-    "subtitle": "Find answers to the most frequently asked questions about solar energy, installation, costs, and savings.",
-    "title": "Frequently Asked Questions"
-  },
-  "footer": {
-    "contact": {
-      "address": "1234 Solar Avenue\nGreen City, Delhi 110001",
-      "email": "info@purvodayaenergy.com",
-      "phone": "+91 98765 43210"
-    },
-    "copyright": "© 2024 Purvodaya Energy Solutions. All rights reserved.",
-    "description": "Leading the renewable energy revolution with premium solar solutions for homes and businesses since 2012.",
-    "getInTouch": {
-      "quote": {
-        "button": "Back to Top",
-        "description": "Call now or fill out our contact form.",
-        "title": "Get Your Free Quote Today!"
+    "badge": "FAQ",
+    "title": "Frequently Asked Questions",
+    "subtitle": "Get answers to the most common questions about solar energy, installation process, costs, and benefits.",
+    "questions": {
+      "0": {
+        "question": "How much does a solar system cost?",
+        "answer": "Solar system costs vary based on size and requirements. Residential systems (1-10kW) typically cost ₹40,000-₹80,000 per kW including installation. Commercial systems offer better rates per kW. We provide free detailed quotes after site assessment."
       },
-      "title": "Get In Touch"
+      "1": {
+        "question": "How much can I save with solar panels?",
+        "answer": "Most customers save 70-90% on their electricity bills. A properly sized solar system can save ₹10,000-₹15,000 per month for an average household. Savings depend on your current electricity consumption, system size, and local electricity rates."
+      },
+      "2": {
+        "question": "How long does installation take?",
+        "answer": "Residential installations typically take 1-3 days depending on system size and roof complexity. Commercial installations take 3-7 days. Industrial projects may take 1-4 weeks. We handle all permits and paperwork to minimize delays."
+      },
+      "3": {
+        "question": "What government subsidies are available?",
+        "answer": "The Central Government provides subsidies up to ₹78,000 for residential solar systems up to 10kW. Additional state subsidies may apply. We assist with all subsidy applications and documentation to maximize your benefits."
+      },
+      "4": {
+        "question": "What warranty do you provide?",
+        "answer": "We provide comprehensive warranties: 25 years on solar panels, 5-10 years on inverters, 10 years on mounting structures, and 5 years on installation workmanship. We also offer extended warranty options."
+      },
+      "5": {
+        "question": "Do solar panels work during monsoon/cloudy days?",
+        "answer": "Yes, solar panels generate electricity even on cloudy days, though at reduced capacity (10-30% of sunny day output). Grid-connected systems ensure continuous power supply, and excess sunny day production compensates for cloudy periods."
+      },
+      "6": {
+        "question": "What maintenance is required?",
+        "answer": "Solar panels require minimal maintenance - mainly periodic cleaning and annual inspections. We recommend professional cleaning every 2-3 months in dusty areas. Our maintenance packages include regular cleaning, performance monitoring, and technical support."
+      },
+      "7": {
+        "question": "How do I know if my roof is suitable for solar?",
+        "answer": "Most roofs are suitable for solar installation. We evaluate factors like roof age, structure, orientation, shading, and available space during our free site survey. We can work with various roof types including concrete, metal, and tile roofs."
+      }
     },
-    "legal": {
-      "cookies": "Cookie Policy",
-      "privacy": "Privacy Policy",
-      "terms": "Terms of Service"
-    },
-    "quickLinks": {
-      "about": "About Us",
-      "contact": "Contact",
-      "financing": "Financing Options",
-      "gallery": "Gallery",
-      "services": "Our Services",
-      "testimonials": "Testimonials",
-      "title": "Quick Links",
-      "warranties": "Warranties"
-    },
-    "services": {
-      "audits": "Energy Audits",
-      "commercial": "Commercial Solar",
-      "industrial": "Industrial Solar",
-      "maintenance": "Maintenance & Repair",
-      "residential": "Residential Solar",
-      "storage": "Battery Storage",
-      "title": "Services"
-    },
-    "social": {
-      "facebook": "Facebook",
-      "instagram": "Instagram",
-      "linkedin": "LinkedIn",
-      "twitter": "Twitter"
+    "contact": {
+      "title": "Still Have Questions?",
+      "description": "Our solar experts are here to help you make the right decision.",
+      "callExpert": "Call Our Expert",
+      "emailUs": "Email Us"
     }
   },
-  "gallery": {
-    "badge": "Gallery",
-    "subtitle": "Explore our portfolio of solar installations and see the difference we make.",
-    "title": "Our Work in Action",
-    "viewFullGallery": "View Full Gallery"
-  },
-  "galleryPage": {
-    "backToHome": "Back to Home",
-    "categories": {
-      "commercial": "Commercial",
-      "industrial": "Industrial",
-      "process": "Process",
-      "residential": "Residential",
-      "technology": "Technology"
+  "aiChatbot": {
+    "buttonTitle": "Chat with AI Solar Assistant",
+    "chatIndicator": "Ask AI about solar",
+    "headerTitle": "Purvodaya AI Solar Expert",
+    "headerSubtitle": "Instant Solar Answers",
+    "inputPlaceholder": "Ask about solar costs, savings, installation...",
+    "poweredBy": "Powered by AI • Purvodaya Energy",
+    "quickTopics": "Quick topics:",
+    "quickReplies": {
+      "cost": "💰 Solar Costs",
+      "subsidy": "🏛️ Government Subsidies",
+      "installation": "🔧 Installation Process",
+      "financing": "💳 Financing Options",
+      "types": "⚡ System Types",
+      "savings": "📊 Savings Calculator"
     },
-    "imageCounter": "{current} of {total}",
-    "photo": "Photo",
-    "subtitle": "Explore our comprehensive portfolio of solar installations across residential, commercial, and industrial projects. See the quality and craftsmanship that sets us apart.",
-    "title": "Our Work Gallery",
-    "video": "Video",
-    "videoNotSupported": "Your browser does not support the video tag."
-  },
-  "header": {
-    "about": "About",
-    "companyName": "Purvodaya Energy Solutions",
-    "contact": "Contact",
-    "gallery": "Gallery",
-    "getQuote": "Get Free Quote",
-    "home": "Home",
-    "languageSwitcher": {
-      "current": "हिंदी",
-      "toggle": "Toggle language"
+    "greetings": {
+      "0": "👋 Hello! I'm your AI solar assistant. Ask me anything about solar energy, costs, savings, or the installation process!",
+      "1": "🌞 Welcome to Purvodaya Energy! I can help you with solar costs, subsidies, installation info, and more. What would you like to know?",
+      "2": "⚡ Hi there! Ready to explore solar energy? I have answers about pricing, savings, installation timeline, and financing options!"
     },
-    "logo": {
-      "main": "PURVODAYA",
-      "tagline": "Energy Solutions"
+    "responses": {
+      "cost": "💰 **Solar System Costs in India:**\n\n• **Residential (1-10kW):** ₹40,000 - ₹80,000 per kW\n• **Commercial (10kW+):** ₹35,000 - ₹65,000 per kW\n• **5kW home system:** ₹2 - 4 lakhs (after subsidies)\n• **10kW system:** ₹4 - 7 lakhs (after subsidies)\n\n*Prices include panels, inverter, installation & 5-year warranty.*\n\nWould you like a personalized quote? 📋",
+      "subsidy": "🏛️ **Government Subsidies Available:**\n\n• **Central Subsidy:** Up to ₹18,000 per kW (max 3kW)\n• **State Subsidies:** Additional 10-30% in many states\n• **Net Metering:** Sell excess power back to the grid\n• **Tax Benefits:** 30% depreciation for businesses\n• **Low-interest loans:** 2-6% interest rates\n\n**Example:** A 5kW system costing ₹3L becomes ~₹1.8L after subsidies.\n\nWhich state are you in? I can check for specific subsidies! 🗺️",
+      "installation": "🔧 **Solar Installation Process:**\n\n**Step 1:** Site Survey & Design (1-2 days)\n**Step 2:** Permits & Approvals (7-15 days)\n**Step 3:** Equipment Procurement (3-7 days)\n**Step 4:** Installation (1-3 days)\n**Step 5:** Grid Connection & Testing (2-5 days)\n**Step 6:** Net Metering Setup (7-30 days)\n\n⏱️ **Total Time:** 3-8 weeks\n🏠 **Roof Requirements:** ~100 sq ft per kW\n\nNeed a site assessment? We offer free surveys! 📋",
+      "financing": "💳 **Solar Financing Options:**\n\n**1. Cash Purchase** ✅ Best ROI, immediate ownership\n**2. Solar Loan** 🏦 2-6% interest, 5-15 year terms\n**3. Lease/PPA** 📄 ₹0 down, pay monthly (commercial)\n**4. NBFC Financing** 💰 Up to 80% funding\n\n**EMI Example:**\nA ₹5L system could be ~₹8,500/month for 5 years, while your monthly savings could be ₹12,000. That's a **net benefit from day one!** 📈\n\nWant to calculate your EMI? 🧮",
+      "types": "⚡ **Solar System Types:**\n\n**🔌 On-Grid (Grid-Tied)**\n• Connected to electricity grid\n• Sell excess power back\n• No battery backup\n• Cost: ₹40-60k per kW\n• Best for: Reliable grid areas\n\n**🔋 Off-Grid (Standalone)**\n• Complete independence\n• Battery backup included\n• Works during power cuts\n• Cost: ₹80-120k per kW\n• Best for: Remote areas\n\n**⚡🔋 Hybrid System**\n• Best of both worlds\n• Grid connection + batteries\n• Backup during outages\n• Cost: ₹70-100k per kW\n• Best for: Urban areas with power cuts\n\nWhich type interests you? 🤔",
+      "savings": "📊 **Solar Savings Calculator:**\n\n**Example 5kW System:**\n• Monthly Generation: ~750 units\n• Current Bill: ₹15,000/month\n• With Solar: ~₹2,000/month\n• **Monthly Savings: ₹13,000** 💰\n• **Annual Savings: ₹1,56,000** 📈\n• **25-year Savings: Over ₹39 lakhs** 🎯\n\n**Payback Period:** 3-4 years\n**ROI:** 25-30% annually\n\nTo calculate YOUR savings, I need your monthly electricity bill amount and your location. Shall we calculate your potential savings? 🧮",
+      "technical": "🔬 **Technical Information:**\n\n**Panel Types:**\n• **Monocrystalline:** 20-22% efficiency, premium look.\n• **Polycrystalline:** 18-20% efficiency, very economical.\n• **Bifacial:** Up to 25% more power, latest technology.\n\n**Inverter Types:**\n• **String Inverters:** Cost-effective for unshaded roofs.\n• **Microinverters:** Maximum efficiency per panel, best for complex roofs.\n\n**System Specs:**\n• **Warranty:** 25 years on panels, 5-12 years on inverters.\n• **Performance:** 80% efficiency guaranteed after 25 years.\n\nAny specific technical questions? ⚙️",
+      "maintenance": "🧹 **Solar Maintenance Guide:**\n\n**Monthly:** Visual inspection for debris.\n**Quarterly:** Panel cleaning (more often in dusty areas).\n**Annually:** Professional checkup (recommended).\n\n**Cleaning Tips:**\n• Use a soft brush and water, ideally in the early morning or evening.\n• Avoid harsh chemicals.\n\n**Monitoring:**\n• We provide a mobile app for real-time performance tracking.\n• Our team also monitors your system remotely.\n\nOur systems are designed for low maintenance, but regular cleaning can boost performance by 15-20%! Want to know about our maintenance packages? 🔧"
     },
-    "mobileMenu": {
-      "toggle": "Toggle menu"
+    "fallback": {
+      "0": "I'd be happy to help you with that! For detailed information about your specific solar needs, I recommend getting a free consultation with our experts. You can call us at +91 98765 43210 or fill out our contact form.",
+      "1": "That's a great question! Our solar specialists can provide you with detailed, personalized information. Would you like to schedule a free consultation or speak with an expert right away?",
+      "2": "I want to make sure you get the most accurate information for your situation. Our certified solar consultants can give you specific details. Shall I connect you with them for a free consultation?"
     },
-    "services": "Services",
-    "social": {
-      "facebook": "Facebook",
-      "instagram": "Instagram",
-      "linkedin": "LinkedIn"
-    },
-    "testimonials": "Testimonials",
-    "topBar": {
-      "phone": "+91 98765 43210"
+    "leadCapture": {
+      "0": "🎯 **Ready to get started?** Our solar experts can provide a free site assessment and custom quote for your property. It takes just 30 minutes and could save you lakhs! Interested?",
+      "1": "💡 **Want to see your actual savings potential?** We offer free energy audits that show exactly how much you could save with solar. No obligations - just valuable insights about your energy future!"
     }
-  },
-  "hero": {
-    "badge": "#1 Solar Installation Company",
-    "calculator": {
-      "annualSavings": "Annual Savings:",
-      "currentBill": "Current Monthly Bill:",
-      "monthlySavings": "Monthly Savings:",
-      "title": "Solar Savings Calculator",
-      "withSolar": "With Solar:",
-      "yearSavings": "25-year savings:"
-    },
-    "clean": "Clean",
-    "cleanEnergy": "Energy Source",
-    "demoModal": {
-      "closeButton": "Close modal",
-      "comingSoon": "Demo Video Coming Soon",
-      "cta": {
-        "button": "Get Your Free Quote Now",
-        "question": "Ready to start your solar journey?"
-      },
-      "description": "Watch how solar energy can transform your home\nand reduce your electricity bills by up to 90%",
-      "features": {
-        "0": {
-          "description": "See our professional installation in action",
-          "title": "Installation Process"
-        },
-        "1": {
-          "description": "Premium components with 25-year warranty",
-          "title": "Quality Assurance"
-        },
-        "2": {
-          "description": "Real customer savings and ROI examples",
-          "title": "Cost Savings"
-        }
-      },
-      "title": "Solar Energy Demo"
-    },
-    "getQuoteBtn": "Get Free Solar Quote",
-    "save": "Save 70%+",
-    "saveBills": "On Energy Bills",
-    "subtitle": "Transform your home or business with clean, renewable solar energy. Save money, reduce your carbon footprint, and gain energy independence with our premium solar solutions.",
-    "title": "Power Your Future with Solar Energy",
-    "warranty": "25-Year",
-    "warrantyText": "Warranty",
-    "watchDemo": "Watch Demo"
-  },
-  "metadata": {
-    "description": "Premium solar solutions for residential, commercial, and industrial needs. Get your free quote today!",
-    "title": "Purvodaya Energy Solutions | Your Future, Powered by the Sun"
-  },
-  "services": {
-    "badge": "Our Services",
-    "commercial": {
-      "description": "Scalable solar solutions for businesses. Cut operational costs and go green.",
-      "title": "Commercial Solar"
-    },
-    "industrial": {
-      "description": "High-capacity solar systems for industrial facilities. Maximum energy savings.",
-      "title": "Industrial Solar"
-    },
-    "residential": {
-      "description": "Custom solar solutions for homes. Reduce electricity bills and increase property value.",
-      "title": "Residential Solar"
-    },
-    "subtitle": "From initial consultation to ongoing maintenance, we provide comprehensive solar services for residential, commercial, and industrial customers.",
-    "title": "Complete Solar Solutions",
-    "viewAll": "View All Services"
-  },
-  "servicesPage": {
-    "backToHome": "Back to Home",
-    "subtitle": "From consultation to installation and ongoing support, we provide end-to-end solar solutions tailored to your specific needs and requirements.",
-    "title": "Our Complete Solar Services",
-    "whatsIncluded": "What's Included:"
-  },
-  "testimonials": {
-    "badge": "Customer Reviews",
-    "readAllReviews": "Read All Reviews",
-    "subtitle": "Real stories from satisfied customers who made the switch to solar.",
-    "title": "What Our Customers Say"
-  },
-  "testimonialsPage": {
-    "annualSavings": "Annual Savings:",
-    "backToHome": "Back to Home",
-    "cta": {
-      "button": "Get Free Quote Now",
-      "description": "Get your free solar consultation today and start saving!",
-      "title": "Ready to Join Our Happy Customers?"
-    },
-    "customerTestimonial": "Customer Testimonial",
-    "detailedCustomerReviews": "Detailed Customer Reviews",
-    "modalInstructions": "Press ESC to close • Click outside to close",
-    "project": "Project:",
-    "readComprehensiveFeedback": "Read comprehensive feedback from our satisfied customers",
-    "seeRealCustomers": "See real customers share their solar journey and savings",
-    "subtitle": "Read what our satisfied customers have to say about their solar experience. Real stories from real people who made the switch to clean energy.",
-    "systemSize": "System Size",
-    "title": "Customer Testimonials",
-    "videoReviews": "Video Reviews",
-    "watchCustomerStories": "Watch Customer Stories",
-    "watchFullStory": "Watch Full Story",
-    "writtenReviews": "Written Reviews"
   }
 }
