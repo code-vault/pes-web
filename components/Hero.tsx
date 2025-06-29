@@ -1,5 +1,5 @@
 "use client";
-import { ArrowRight, Zap, Shield, DollarSign, Play, X } from 'lucide-react';
+import { ArrowRight, Zap, Shield, DollarSign, Play, X, MapPin, Building } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useTranslations } from 'next-intl';
 import { useState, useEffect, useRef } from 'react';
@@ -120,6 +120,13 @@ const Hero = () => {
     }
   ];
 
+  // Office locations for trust badge
+  const offices = [
+    { name: "Basti", isHQ: true },
+    { name: "Gorakhpur", isHQ: false },
+    { name: "Sant Kabir Nagar", isHQ: false }
+  ];
+
   return (
     <section id="home" className="pt-28 pb-16 bg-gradient-to-br from-slate-50 via-blue-50 to-orange-50 min-h-screen flex items-center relative overflow-hidden">
       {/* Animated background elements */}
@@ -147,6 +154,27 @@ const Hero = () => {
                 <p className="text-lg md:text-xl text-gray-600 leading-relaxed font-light max-w-xl">
                   {t('subtitle')}
                 </p>
+
+                {/* Multi-Office Trust Badge */}
+                <div className="bg-white/60 backdrop-blur-sm rounded-xl p-4 border border-white/20 shadow-lg">
+                  <div className="flex items-center space-x-2 mb-2">
+                    <Building className="h-5 w-5 text-orange-500" />
+                    <span className="text-sm font-semibold text-gray-700">Serving Eastern Uttar Pradesh</span>
+                  </div>
+                  <div className="flex items-center space-x-1 text-sm text-gray-600">
+                    <MapPin className="h-4 w-4 text-gray-500" />
+                    <span>Offices in:</span>
+                    {offices.map((office, index) => (
+                      <span key={office.name} className="flex items-center">
+                        <span className={office.isHQ ? "font-semibold text-orange-600" : ""}>
+                          {office.name}
+                        </span>
+                        {office.isHQ && <span className="text-xs text-orange-500 ml-1">(HQ)</span>}
+                        {index < offices.length - 1 && <span className="mx-1">•</span>}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
 
               {/* Key Benefits - Group in single ScrollReveal */}
@@ -164,7 +192,16 @@ const Hero = () => {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 pt-2">
-                <Button size="lg" className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 px-6 py-3 text-base font-semibold rounded-xl">
+                <Button 
+                  onClick={() => {
+                    const contactSection = document.getElementById('contact');
+                    if (contactSection) {
+                      contactSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                  size="lg" 
+                  className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 px-6 py-3 text-base font-semibold rounded-xl"
+                >
                   {t('getQuoteBtn')}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
@@ -240,6 +277,14 @@ const Hero = () => {
                         </span>
                       </p>
                     </div>
+                  </div>
+
+                  {/* Local Service Badge */}
+                  <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-3 rounded-xl border border-purple-200/50">
+                    <p className="text-xs text-center text-purple-700">
+                      <Building className="inline h-3 w-3 mr-1" />
+                      Local service across Basti, Gorakhpur & Sant Kabir Nagar
+                    </p>
                   </div>
                 </div>
               </div>

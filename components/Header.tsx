@@ -37,11 +37,28 @@ const Header = () => {
     { href: "/testimonials", label: t('testimonials') }
   ];
 
-  // Right side navigation items (before CTA button)
+  // Right side navigation items (before CTA button) - Fixed: Add contact link for all pages
   const rightNavItems = [
-    { href: "#contact", label: t('contact') },
+    { href: "/contact", label: t('contact') },
     { href: "/faq", label: "FAQ" }
   ];
+
+  // Handle contact navigation - scroll to contact section on homepage, navigate to contact page on other pages
+  const handleContactClick = () => {
+    const currentPath = pathname.replace(`/${locale}`, '') || '/';
+    
+    if (currentPath === '/') {
+      // On homepage - scroll to contact section
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // On other pages - navigate to contact page
+      router.push(`/${locale}/contact`);
+    }
+    setIsMenuOpen(false);
+  };
 
   return (
     <>
@@ -163,18 +180,27 @@ const Header = () => {
 
             {/* Right side - Contact, FAQ & CTA */}
             <div className="hidden lg:flex items-center space-x-4 w-64 justify-end">
-              {rightNavItems.map((item) => (
-                <Link 
-                  key={item.href}
-                  href={item.href} 
-                  className="text-gray-700 hover:text-orange-500 transition-all duration-300 font-medium hover:scale-105 px-3 py-2 rounded-lg hover:bg-orange-50 whitespace-nowrap"
-                >
-                  {item.label}
-                </Link>
-              ))}
+              {/* Dynamic Contact Link */}
+              <button
+                onClick={handleContactClick}
+                className="text-gray-700 hover:text-orange-500 transition-all duration-300 font-medium hover:scale-105 px-3 py-2 rounded-lg hover:bg-orange-50 whitespace-nowrap"
+              >
+                {t('contact')}
+              </button>
+              
+              {/* FAQ Link */}
+              <Link 
+                href="/faq" 
+                className="text-gray-700 hover:text-orange-500 transition-all duration-300 font-medium hover:scale-105 px-3 py-2 rounded-lg hover:bg-orange-50 whitespace-nowrap"
+              >
+                FAQ
+              </Link>
               
               {/* CTA Button */}
-              <Button className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 px-6 py-3 font-semibold rounded-lg ml-3 whitespace-nowrap">
+              <Button 
+                onClick={handleContactClick}
+                className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 px-6 py-3 font-semibold rounded-lg ml-3 whitespace-nowrap"
+              >
                 {t('getQuote')}
               </Button>
             </div>
@@ -210,23 +236,28 @@ const Header = () => {
                 {/* Divider */}
                 <div className="border-t border-gray-200/50 my-4"></div>
                 
-                {/* Right side navigation */}
-                {rightNavItems.map((item) => (
-                  <Link 
-                    key={item.href}
-                    href={item.href} 
-                    className="block px-6 py-3 text-gray-600 hover:text-orange-500 hover:bg-orange-50/50 rounded-xl transition-all font-medium text-sm"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
+                {/* Contact Navigation */}
+                <button 
+                  onClick={handleContactClick}
+                  className="block w-full text-left px-6 py-3 text-gray-600 hover:text-orange-500 hover:bg-orange-50/50 rounded-xl transition-all font-medium text-sm"
+                >
+                  {t('contact')}
+                </button>
+                
+                {/* FAQ Link */}
+                <Link 
+                  href="/faq" 
+                  className="block px-6 py-3 text-gray-600 hover:text-orange-500 hover:bg-orange-50/50 rounded-xl transition-all font-medium text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  FAQ
+                </Link>
                 
                 {/* Mobile actions */}
                 <div className="px-3 py-6 border-t border-gray-200/50 mt-4">
                   <Button 
+                    onClick={handleContactClick}
                     className="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg py-4 rounded-xl font-semibold"
-                    onClick={() => setIsMenuOpen(false)}
                   >
                     {t('getQuote')}
                   </Button>

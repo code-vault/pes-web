@@ -1,14 +1,15 @@
 "use client";
 import { useState } from 'react';
-import { Phone, Mail, MapPin, Clock, Send, CheckCircle, Shield, Zap, AlertCircle, Loader, Building } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Send, CheckCircle, Shield, Zap, AlertCircle, Loader, ArrowLeft, Building } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent } from '@/components/ui/card';
 import { useTranslations, useLocale } from 'next-intl';
+import { Link } from '@/i18n/navigation';
 import ScrollReveal from '@/components/ScrollReveal';
 
-const SplitLayoutContact = () => {
+export default function ContactPage() {
   const t = useTranslations('contact');
   const locale = useLocale();
   
@@ -17,10 +18,8 @@ const SplitLayoutContact = () => {
     lastName: '',
     phone: '',
     email: '',
-    address: '',
     bill: '',
-    additional: '',
-    preferredOffice: ''
+    message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
@@ -35,6 +34,7 @@ const SplitLayoutContact = () => {
       phone: "+91 98765 43210",
       email: "basti@purvodayaenergy.com",
       hours: "Mon-Sat: 9AM-6PM",
+      mapUrl: "https://maps.google.com/?q=Basti,Uttar+Pradesh",
       isHeadquarters: true,
       color: "from-orange-500 to-amber-500"
     },
@@ -45,6 +45,7 @@ const SplitLayoutContact = () => {
       phone: "+91 98765 43211",
       email: "gorakhpur@purvodayaenergy.com",
       hours: "Mon-Sat: 9AM-6PM",
+      mapUrl: "https://maps.google.com/?q=Gorakhpur,Uttar+Pradesh",
       isHeadquarters: false,
       color: "from-blue-500 to-cyan-500"
     },
@@ -55,6 +56,7 @@ const SplitLayoutContact = () => {
       phone: "+91 98765 43212",
       email: "santkabir@purvodayaenergy.com",
       hours: "Mon-Sat: 9AM-6PM",
+      mapUrl: "https://maps.google.com/?q=Sant+Kabir+Nagar,Uttar+Pradesh",
       isHeadquarters: false,
       color: "from-green-500 to-emerald-500"
     }
@@ -90,10 +92,6 @@ const SplitLayoutContact = () => {
       newErrors.phone = 'Please enter a valid phone number';
     }
 
-    if (!formData.address.trim()) {
-      newErrors.address = 'Address is required';
-    }
-
     // Optional email validation
     if (formData.email.trim() && !validateEmail(formData.email)) {
       newErrors.email = 'Please enter a valid email address';
@@ -103,7 +101,7 @@ const SplitLayoutContact = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -136,7 +134,7 @@ const SplitLayoutContact = () => {
           ...formData,
           submittedAt: new Date().toISOString(),
           language: locale,
-          source: 'homepage_contact_form'
+          source: 'contact_page_form'
         }),
       });
 
@@ -151,10 +149,8 @@ const SplitLayoutContact = () => {
             lastName: '',
             phone: '',
             email: '',
-            address: '',
             bill: '',
-            additional: '',
-            preferredOffice: ''
+            message: ''
           });
           setErrors({});
           setSubmitMessage('');
@@ -171,64 +167,95 @@ const SplitLayoutContact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 pt-32 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 right-10 w-72 h-72 bg-gradient-to-r from-orange-400/20 to-amber-400/20 rounded-full blur-3xl animate-pulse-slow"></div>
         <div className="absolute bottom-20 left-10 w-96 h-96 bg-gradient-to-r from-yellow-400/15 to-orange-400/15 rounded-full blur-3xl animate-pulse-slow delay-1000"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
         {/* Header */}
         <ScrollReveal direction="up" delay={100}>
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-orange-200/50 shadow-lg mb-6">
-              <span className="text-sm font-semibold text-orange-600">Ready to Go Solar?</span>
+          <div className="mb-8">
+            <Link href="/">
+              <Button variant="outline" className="mb-6">
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Back to Home
+              </Button>
+            </Link>
+            
+            <div className="text-center">
+              <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-orange-200/50 shadow-lg mb-6">
+                <span className="text-sm font-semibold text-orange-600">Get In Touch</span>
+              </div>
+              
+              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 tracking-tight">
+                Contact Purvodaya Energy
+              </h1>
+              
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                Ready to switch to solar? We have offices across Eastern Uttar Pradesh to serve you better. Get your free consultation today.
+              </p>
             </div>
-            
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-              Switch to <span className="text-orange-500">Clean Energy</span> Today
-            </h2>
-            
-            <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
-              Join over 2,500 satisfied customers across Eastern Uttar Pradesh. Get your free consultation and start saving today.
-            </p>
           </div>
         </ScrollReveal>
 
-        {/* Office Locations - Compact Cards */}
+        {/* Office Locations */}
         <ScrollReveal direction="up" delay={300}>
           <div className="mb-16">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Visit Our Offices</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Our Office Locations</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {offices.map((office, index) => (
-                <Card key={index} className={`hover:shadow-xl transition-all duration-300 bg-white/80 backdrop-blur-sm border-0 hover:-translate-y-1 ${office.isHeadquarters ? 'ring-2 ring-orange-400' : ''}`}>
-                  <CardContent className="p-4">
-                    <div className="flex items-center mb-3">
-                      <div className={`bg-gradient-to-br ${office.color} p-2 rounded-lg mr-3`}>
-                        <Building className="h-4 w-4 text-white" />
+                <Card key={index} className={`hover:shadow-2xl transition-all duration-500 bg-white/80 backdrop-blur-sm border-0 hover:-translate-y-2 ${office.isHeadquarters ? 'ring-2 ring-orange-500' : ''}`}>
+                  <CardContent className="p-6">
+                    <div className="flex items-center mb-4">
+                      <div className={`bg-gradient-to-br ${office.color} p-3 rounded-xl mr-4`}>
+                        <Building className="h-6 w-6 text-white" />
                       </div>
                       <div>
-                        <h4 className="font-bold text-gray-900 text-sm">{office.shortName}</h4>
+                        <h3 className="text-xl font-bold text-gray-900">{office.shortName}</h3>
                         {office.isHeadquarters && (
-                          <span className="text-xs bg-orange-100 text-orange-600 px-2 py-0.5 rounded-full">HQ</span>
+                          <span className="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded-full font-medium">
+                            Headquarters
+                          </span>
                         )}
                       </div>
                     </div>
                     
-                    <div className="space-y-2 text-xs">
-                      <div className="flex items-start space-x-2">
-                        <MapPin className="h-3 w-3 text-gray-500 mt-0.5 flex-shrink-0" />
-                        <span className="text-gray-600">{office.address}</span>
+                    <div className="space-y-3">
+                      <div className="flex items-start space-x-3">
+                        <MapPin className="h-5 w-5 text-gray-500 mt-0.5 flex-shrink-0" />
+                        <span className="text-gray-700 text-sm leading-relaxed">{office.address}</span>
                       </div>
                       
-                      <div className="flex items-center space-x-2">
-                        <Phone className="h-3 w-3 text-green-500 flex-shrink-0" />
-                        <a href={`tel:${office.phone}`} className="text-gray-700 hover:text-orange-500 transition-colors">
+                      <div className="flex items-center space-x-3">
+                        <Phone className="h-5 w-5 text-green-500 flex-shrink-0" />
+                        <a href={`tel:${office.phone}`} className="text-gray-700 hover:text-orange-500 transition-colors font-medium">
                           {office.phone}
                         </a>
                       </div>
+                      
+                      <div className="flex items-center space-x-3">
+                        <Mail className="h-5 w-5 text-blue-500 flex-shrink-0" />
+                        <a href={`mailto:${office.email}`} className="text-gray-700 hover:text-orange-500 transition-colors">
+                          {office.email}
+                        </a>
+                      </div>
+                      
+                      <div className="flex items-center space-x-3">
+                        <Clock className="h-5 w-5 text-purple-500 flex-shrink-0" />
+                        <span className="text-gray-600 text-sm">{office.hours}</span>
+                      </div>
                     </div>
+                    
+                    <Button 
+                      onClick={() => window.open(office.mapUrl, '_blank')}
+                      className="w-full mt-4 bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white transition-all duration-300"
+                      size="sm"
+                    >
+                      View on Maps
+                    </Button>
                   </CardContent>
                 </Card>
               ))}
@@ -236,18 +263,18 @@ const SplitLayoutContact = () => {
           </div>
         </ScrollReveal>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           
-          {/* Left Side - Form */}
+          {/* Contact Form - Left Side */}
           <div className="order-2 lg:order-1">
             <ScrollReveal direction="left" delay={500}>
-              <Card className="bg-white shadow-2xl border-0 rounded-3xl overflow-hidden">
+              <Card className="bg-white shadow-2xl border-0 rounded-3xl overflow-hidden h-full">
                 <div className="bg-gradient-to-r from-orange-500 to-amber-500 p-6">
-                  <h3 className="text-2xl font-bold text-white mb-2">Contact Us</h3>
-                  <p className="text-orange-100">We'll respond to your inquiry within 24 hours</p>
+                  <h3 className="text-2xl font-bold text-white mb-2">Send us a Message</h3>
+                  <p className="text-orange-100">We'll respond within 24 hours</p>
                 </div>
                 
-                <CardContent className="p-8">
+                <CardContent className="p-8 flex-1">
                   <div className="space-y-6">
                     {/* Name Fields - Split into First and Last */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -343,49 +370,6 @@ const SplitLayoutContact = () => {
                       )}
                     </div>
 
-                    {/* Address Field */}
-                    <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
-                        Address <span className="text-red-500">*</span>
-                      </label>
-                      <Input 
-                        name="address"
-                        value={formData.address}
-                        onChange={handleChange}
-                        placeholder="Your property address" 
-                        className={`h-12 text-base border-2 rounded-xl ${
-                          errors.address ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-orange-400'
-                        }`}
-                        required
-                      />
-                      {errors.address && (
-                        <p className="text-red-500 text-sm mt-1 flex items-center">
-                          <AlertCircle className="h-4 w-4 mr-1" />
-                          {errors.address}
-                        </p>
-                      )}
-                    </div>
-
-                    {/* Preferred Office Field */}
-                    <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
-                        Preferred Office <span className="text-gray-400 text-xs">(Optional)</span>
-                      </label>
-                      <select 
-                        name="preferredOffice"
-                        value={formData.preferredOffice}
-                        onChange={handleChange}
-                        className="w-full h-12 text-base border-2 rounded-xl border-gray-200 focus:border-orange-400 px-3 bg-white"
-                      >
-                        <option value="">Select nearest office</option>
-                        {offices.map((office, index) => (
-                          <option key={index} value={office.name}>
-                            {office.name}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-
                     {/* Monthly Bill Field */}
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -400,16 +384,16 @@ const SplitLayoutContact = () => {
                       />
                     </div>
 
-                    {/* Additional Info Field */}
+                    {/* Message Field */}
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-2">
-                        Additional Information <span className="text-gray-400 text-xs">(Optional)</span>
+                        Message <span className="text-gray-400 text-xs">(Optional)</span>
                       </label>
                       <Textarea 
-                        name="additional"
-                        value={formData.additional}
+                        name="message"
+                        value={formData.message}
                         onChange={handleChange}
-                        placeholder="Tell us about your requirements, property type, roof space, or any specific questions..."
+                        placeholder="Tell us about your requirements or ask any questions..."
                         rows={4}
                         className="text-base border-2 rounded-xl resize-none border-gray-200 focus:border-orange-400"
                       />
@@ -435,7 +419,7 @@ const SplitLayoutContact = () => {
                       {isSubmitting ? (
                         <>
                           <Loader className="mr-2 h-5 w-5 animate-spin" />
-                          Sending Request...
+                          Sending...
                         </>
                       ) : (
                         <>
@@ -446,13 +430,13 @@ const SplitLayoutContact = () => {
                     </button>
 
                     {/* Trust Message */}
-                    <div className="text-center pt-2">
-                      <p className="text-sm text-gray-500">
-                        <Phone className="inline h-4 w-4 mr-1" />
+                    <div className="text-center pt-2 border-t border-gray-100">
+                      <p className="text-sm text-gray-500 mb-2">
+                        <CheckCircle className="inline h-4 w-4 mr-1 text-green-500" />
                         We'll get back to you within 24 hours
                       </p>
                       
-                      <div className="flex justify-center items-center space-x-4 mt-3 text-xs text-gray-400">
+                      <div className="flex justify-center items-center space-x-4 text-xs text-gray-400">
                         <span>✓ No spam</span>
                         <span>✓ Free consultation</span>
                         <span>✓ Licensed professionals</span>
@@ -464,97 +448,94 @@ const SplitLayoutContact = () => {
             </ScrollReveal>
           </div>
 
-          {/* Right Side - Content */}
-          <div className="order-1 lg:order-2 space-y-8">
-            <ScrollReveal direction="right" delay={700}>
-              <div className="space-y-6">
-                <h2 className="text-3xl font-bold text-gray-900 leading-tight">
-                  Serving <span className="text-orange-500">Eastern Uttar Pradesh</span> with Premium Solar Solutions
-                </h2>
-                
-                <p className="text-lg text-gray-600 leading-relaxed">
-                  With offices in Basti, Gorakhpur, and Sant Kabir Nagar, we're your trusted local solar energy experts. Join 2,500+ satisfied customers across the region.
-                </p>
-              </div>
-            </ScrollReveal>
-
-            {/* Benefits */}
-            <ScrollReveal direction="right" delay={900}>
-              <div className="space-y-4">
-                <div className="flex items-center space-x-4">
-                  <div className="bg-green-100 p-2 rounded-full">
-                    <CheckCircle className="h-6 w-6 text-green-600" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900">Save up to 90% on electricity bills</h3>
-                    <p className="text-gray-600 text-sm">Reduce your monthly costs significantly</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-center space-x-4">
-                  <div className="bg-blue-100 p-2 rounded-full">
-                    <Shield className="h-6 w-6 text-blue-600" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900">25-year warranty included</h3>
-                    <p className="text-gray-600 text-sm">Complete peace of mind protection</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-center space-x-4">
-                  <div className="bg-orange-100 p-2 rounded-full">
-                    <Zap className="h-6 w-6 text-orange-600" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900">Professional installation</h3>
-                    <p className="text-gray-600 text-sm">Completed in 1-3 days by certified experts</p>
-                  </div>
-                </div>
-              </div>
-            </ScrollReveal>
-
-            {/* Contact Information */}
-            <ScrollReveal direction="right" delay={1100}>
-              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/20">
-                <h3 className="text-lg font-bold text-gray-900 mb-4">Need Immediate Help?</h3>
-                <div className="space-y-3">
-                  <button 
-                    onClick={() => window.location.href = 'tel:+919876543210'}
-                    className="flex items-center space-x-3 w-full text-left hover:bg-orange-50 p-3 rounded-lg transition-colors"
-                  >
-                    <Phone className="h-5 w-5 text-orange-500" />
-                    <div>
-                      <p className="font-medium text-gray-900">Call Basti Office (HQ)</p>
-                      <p className="text-sm text-gray-600">+91 98765 43210</p>
-                    </div>
-                  </button>
+          {/* Right Side - Information */}
+          <div className="order-1 lg:order-2">
+            <div className="space-y-8 h-full flex flex-col">
+              <ScrollReveal direction="right" delay={700}>
+                <div className="space-y-6">
+                  <h2 className="text-3xl font-bold text-gray-900 leading-tight">
+                    Serving <span className="text-orange-500">Eastern Uttar Pradesh</span> with Premium Solar Solutions
+                  </h2>
                   
-                  <button 
-                    onClick={() => window.location.href = 'mailto:basti@purvodayaenergy.com'}
-                    className="flex items-center space-x-3 w-full text-left hover:bg-blue-50 p-3 rounded-lg transition-colors"
-                  >
-                    <Mail className="h-5 w-5 text-blue-500" />
-                    <div>
-                      <p className="font-medium text-gray-900">Email us your requirements</p>
-                      <p className="text-sm text-gray-600">basti@purvodayaenergy.com</p>
+                  <p className="text-lg text-gray-600 leading-relaxed">
+                    With offices in Basti, Gorakhpur, and Sant Kabir Nagar, we're your local solar energy experts. Join 2,500+ satisfied customers across the region.
+                  </p>
+                </div>
+              </ScrollReveal>
+
+              {/* Benefits */}
+              <ScrollReveal direction="right" delay={900}>
+                <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/20 flex-1">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6">Why Choose Purvodaya Energy?</h3>
+                  <div className="space-y-6">
+                    <div className="flex items-start space-x-4">
+                      <div className="bg-green-100 p-3 rounded-full flex-shrink-0">
+                        <CheckCircle className="h-6 w-6 text-green-600" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-1">Save up to 90% on electricity bills</h4>
+                        <p className="text-gray-600 text-sm">Reduce your monthly costs significantly with our premium solar systems</p>
+                      </div>
                     </div>
-                  </button>
-                  
-                  <div className="flex items-center space-x-3 p-3">
-                    <Clock className="h-5 w-5 text-green-500" />
-                    <div>
-                      <p className="font-medium text-gray-900">Mon-Sat: 9AM-6PM</p>
-                      <p className="text-sm text-gray-600">Sunday: Emergency calls only</p>
+                    
+                    <div className="flex items-start space-x-4">
+                      <div className="bg-blue-100 p-3 rounded-full flex-shrink-0">
+                        <Shield className="h-6 w-6 text-blue-600" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-1">25-year comprehensive warranty</h4>
+                        <p className="text-gray-600 text-sm">Complete peace of mind with industry-leading warranty coverage</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start space-x-4">
+                      <div className="bg-orange-100 p-3 rounded-full flex-shrink-0">
+                        <Zap className="h-6 w-6 text-orange-600" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-1">Professional installation</h4>
+                        <p className="text-gray-600 text-sm">Completed in 1-3 days by our certified solar experts</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start space-x-4">
+                      <div className="bg-purple-100 p-3 rounded-full flex-shrink-0">
+                        <Building className="h-6 w-6 text-purple-600" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-1">Local presence & support</h4>
+                        <p className="text-gray-600 text-sm">Three offices across Eastern UP for better customer service</p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </ScrollReveal>
+              </ScrollReveal>
+
+              {/* Emergency Contact */}
+              <ScrollReveal direction="right" delay={1100}>
+                <div className="bg-gradient-to-r from-orange-500 to-amber-500 rounded-2xl p-6 text-white">
+                  <h3 className="text-xl font-bold mb-3">Need Immediate Assistance?</h3>
+                  <p className="text-orange-100 mb-4 text-sm">
+                    Call our headquarters for urgent solar inquiries or technical support.
+                  </p>
+                  <div className="space-y-3">
+                    <Button 
+                      onClick={() => window.location.href = 'tel:+919876543210'}
+                      className="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white border-0 transition-all duration-300 w-full"
+                    >
+                      <Phone className="mr-2 h-4 w-4" />
+                      Call Basti Office: +91 98765 43210
+                    </Button>
+                    <p className="text-orange-100 text-xs text-center">
+                      Available Mon-Sat: 9AM-6PM | Emergency calls accepted on Sundays
+                    </p>
+                  </div>
+                </div>
+              </ScrollReveal>
+            </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
-};
-
-export default SplitLayoutContact;
+}
