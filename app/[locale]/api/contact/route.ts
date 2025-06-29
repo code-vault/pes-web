@@ -2,9 +2,11 @@ import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import sgMail from '@sendgrid/mail';
 
-// Initialize SendGrid
+// Initialize SendGrid only if API key is available
+let emailConfigured = false;
 if (process.env.SENDGRID_API_KEY) {
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+  emailConfigured = true;
 }
 
 type RouteContext = {
@@ -39,7 +41,26 @@ const sanitizeInput = (input: string): string => {
   return input.trim().replace(/[<>]/g, '');
 };
 
-// Email Templates
+// Simple email templates (fallback for when SendGrid is not configured)
+const getSimpleEmailContent = (formData: ContactFormData) => {
+  return `
+New Solar Inquiry Received
+
+Customer Details:
+- Name: ${formData.firstName} ${formData.lastName}
+- Phone: ${formData.phone}
+- Email: ${formData.email}
+- Address: ${formData.address}
+- Monthly Bill: ${formData.bill || 'Not provided'}
+- Additional Info: ${formData.additional || 'None'}
+- Language: ${formData.language}
+- Submitted: ${new Date(formData.submittedAt).toLocaleString()}
+
+Please follow up within 24 hours!
+  `;
+};
+
+// Enhanced email templates for SendGrid
 const getAdminEmailTemplate = (formData: ContactFormData) => {
   const isHindi = formData.language === 'hi';
   
@@ -102,82 +123,19 @@ const getAdminEmailTemplate = (formData: ContactFormData) => {
   `;
 };
 
-const getCustomerEmailTemplate = (formData: ContactFormData) => {
-  const isHindi = formData.language === 'hi';
-  
-  return `
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="utf-8">
-        <title>${isHindi ? 'आपकी सोलर इंक्वायरी प्राप्त हुई' : 'Your Solar Inquiry Received'}</title>
-        <style>
-            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-            .header { background: linear-gradient(135deg, #f97316, #f59e0b); color: white; padding: 30px; text-align: center; }
-            .content { padding: 30px; background: #f9fafb; }
-            .welcome { background: white; padding: 20px; border-radius: 12px; margin: 20px 0; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-            .next-steps { background: #ecfdf5; border: 1px solid #10b981; padding: 20px; border-radius: 12px; margin: 20px 0; }
-            .contact-info { background: white; padding: 20px; border-radius: 12px; margin: 20px 0; }
-            .footer { text-align: center; padding: 20px; color: #6b7280; }
-            .button { display: inline-block; background: linear-gradient(135deg, #f97316, #f59e0b); color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: bold; margin: 10px 5px; }
-        </style>
-    </head>
-    <body>
-        <div class="header">
-            <h1>🌞 ${isHindi ? 'धन्यवाद, ' + formData.firstName + '!' : 'Thank you, ' + formData.firstName + '!'}</h1>
-            <p>${isHindi ? 'आपकी सोलर इंक्वायरी सफलतापूर्वक प्राप्त हुई है' : 'Your solar inquiry has been successfully received'}</p>
-        </div>
-        
-        <div class="content">
-            <div class="welcome">
-                <h2>${isHindi ? 'आपकी सौर यात्रा शुरू हो गई है!' : 'Your Solar Journey Begins!'}</h2>
-                <p>${isHindi ? 
-                  'हमें खुशी है कि आपने स्वच्छ, नवीकरणीय ऊर्जा में रुचि दिखाई है। हमारी विशेषज्ञ टीम आपकी आवश्यकताओं के अनुसार एक कस्टम सोलर समाधान तैयार करेगी।' : 
-                  'We\'re excited that you\'re interested in clean, renewable energy. Our expert team will prepare a custom solar solution tailored to your needs.'
-                }</p>
-            </div>
-            
-            <div class="next-steps">
-                <h3>📋 ${isHindi ? 'अगले कदम:' : 'Next Steps:'}</h3>
-                <ul>
-                    <li>${isHindi ? '✅ आपकी जानकारी की समीक्षा (1-2 घंटे)' : '✅ Review your information (1-2 hours)'}</li>
-                    <li>${isHindi ? '📞 हमारे विशेषज्ञ आपको कॉल करेंगे (24 घंटे के भीतर)' : '📞 Our expert will call you (within 24 hours)'}</li>
-                    <li>${isHindi ? '🏠 मुफ्त साइट सर्वे शेड्यूल करना' : '🏠 Schedule free site survey'}</li>
-                    <li>${isHindi ? '💰 कस्टम कोटेशन तैयार करना' : '💰 Prepare custom quotation'}</li>
-                </ul>
-            </div>
-            
-            <div class="contact-info">
-                <h3>${isHindi ? 'तुरंत सहायता चाहिए?' : 'Need Immediate Assistance?'}</h3>
-                <p>${isHindi ? 'हमसे संपर्क करने में संकोच न करें:' : 'Don\'t hesitate to contact us:'}</p>
-                
-                <a href="tel:+919876543210" class="button">📞 ${isHindi ? 'अभी कॉल करें' : 'Call Now'}</a>
-                <a href="https://wa.me/919876543210" class="button">💬 WhatsApp</a>
-                
-                <p style="margin-top: 20px;">
-                    <strong>${isHindi ? 'फोन:' : 'Phone:'}</strong> +91 98765 43210<br>
-                    <strong>${isHindi ? 'ईमेल:' : 'Email:'}</strong> info@purvodayaenergy.com<br>
-                    <strong>${isHindi ? 'समय:' : 'Hours:'}</strong> ${isHindi ? 'सोमवार-शनिवार 9AM-6PM' : 'Mon-Sat 9AM-6PM'}
-                </p>
-            </div>
-        </div>
-        
-        <div class="footer">
-            <p>${isHindi ? 'धन्यवाद,' : 'Thank you,'}<br>
-            <strong>${isHindi ? 'पूर्वोदय एनर्जी सॉल्यूशंस टीम' : 'Purvodaya Energy Solutions Team'}</strong></p>
-            <p style="font-size: 12px; color: #9ca3af;">
-                ${isHindi ? 'यह एक स्वचालित ईमेल है। कृपया इसका उत्तर न दें।' : 'This is an automated email. Please do not reply.'}
-            </p>
-        </div>
-    </body>
-    </html>
-  `;
-};
-
-// Send emails function
+// Send emails function with better error handling
 async function sendEmails(formData: ContactFormData) {
-  if (!process.env.SENDGRID_API_KEY) {
-    console.log('SendGrid not configured, skipping email send');
+  if (!emailConfigured) {
+    console.log('📧 Email not configured - logging submission to console only');
+    console.log('📋 Contact Details:', {
+      customer: `${formData.firstName} ${formData.lastName}`,
+      phone: formData.phone,
+      email: formData.email,
+      address: formData.address,
+      bill: formData.bill,
+      language: formData.language,
+      timestamp: formData.submittedAt
+    });
     return;
   }
 
@@ -188,26 +146,16 @@ async function sendEmails(formData: ContactFormData) {
     html: getAdminEmailTemplate(formData)
   };
 
-  const customerEmail = {
-    to: formData.email,
-    from: process.env.EMAIL_FROM || 'noreply@purvodayaenergy.com',
-    subject: formData.language === 'hi' 
-      ? `धन्यवाद ${formData.firstName}! आपकी सोलर इंक्वायरी प्राप्त हुई` 
-      : `Thank you ${formData.firstName}! Your Solar Inquiry Received`,
-    html: getCustomerEmailTemplate(formData)
-  };
-
   try {
     // Send admin notification
     await sgMail.send(adminEmail);
-    console.log('Admin notification sent successfully');
+    console.log('✅ Admin notification sent successfully');
 
-    // Send customer confirmation
-    await sgMail.send(customerEmail);
-    console.log('Customer confirmation sent successfully');
-
+    // Optionally send customer confirmation
+    // (You can enable this later when you want customer confirmations)
+    
   } catch (emailError) {
-    console.error('Email sending failed:', emailError);
+    console.error('❌ Email sending failed:', emailError);
     // Don't throw error - we don't want to fail the API call if email fails
   }
 }
@@ -224,7 +172,7 @@ export async function POST(
     const rawData = await request.json();
     
     // Validate required fields
-    const requiredFields = ['firstName', 'lastName', 'email', 'phone', 'address'];
+    const requiredFields = ['firstName', 'lastName', 'phone', 'address'];
     const missingFields = requiredFields.filter(field => !rawData[field]?.trim());
     
     if (missingFields.length > 0) {
@@ -240,8 +188,8 @@ export async function POST(
       );
     }
 
-    // Validate email format
-    if (!validateEmail(rawData.email)) {
+    // Validate email format (if provided)
+    if (rawData.email && !validateEmail(rawData.email)) {
       return NextResponse.json(
         { 
           message: locale === 'hi' 
@@ -270,7 +218,7 @@ export async function POST(
     const formData: ContactFormData = {
       firstName: sanitizeInput(rawData.firstName),
       lastName: sanitizeInput(rawData.lastName),
-      email: sanitizeInput(rawData.email),
+      email: rawData.email ? sanitizeInput(rawData.email) : '',
       phone: sanitizeInput(rawData.phone),
       address: sanitizeInput(rawData.address),
       bill: rawData.bill ? sanitizeInput(rawData.bill) : '',
@@ -280,15 +228,17 @@ export async function POST(
       source: rawData.source || 'website_contact_form'
     };
 
-    console.log('Contact form submission received:', {
-      name: `${formData.firstName} ${formData.lastName}`,
-      email: formData.email,
+    console.log('📩 Contact form submission received:', {
+      customer: `${formData.firstName} ${formData.lastName}`,
       phone: formData.phone,
+      email: formData.email,
+      address: formData.address,
+      bill: formData.bill,
       language: formData.language,
       timestamp: formData.submittedAt
     });
 
-    // Send emails (admin notification + customer confirmation)
+    // Send emails (if configured) or log to console
     await sendEmails(formData);
 
     // Success response
@@ -297,6 +247,7 @@ export async function POST(
         ? `धन्यवाद ${formData.firstName}! आपका संदेश सफलतापूर्वक प्राप्त हुआ है। हमारी टीम 24 घंटे के भीतर आपसे संपर्क करेगी।`
         : `Thank you ${formData.firstName}! Your message has been received successfully. Our team will contact you within 24 hours.`,
       success: true,
+      emailConfigured: emailConfigured,
       data: {
         submissionId: `PES-${Date.now()}`,
         estimatedResponseTime: '24 hours'
@@ -304,7 +255,7 @@ export async function POST(
     });
 
   } catch (mainError) {
-    console.error('Contact API Error:', mainError);
+    console.error('❌ Contact API Error:', mainError);
     
     const url = new URL(request.url);
     const locale = url.pathname.includes('/hi/') ? 'hi' : 'en';
@@ -329,7 +280,7 @@ export async function GET(
     return NextResponse.json({
       status: 'ok',
       message: locale === 'hi' ? 'संपर्क API कार्यरत है' : 'Contact API is working',
-      emailConfigured: !!process.env.SENDGRID_API_KEY,
+      emailConfigured: emailConfigured,
       timestamp: new Date().toISOString()
     });
   } catch (healthError) {

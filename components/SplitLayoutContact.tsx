@@ -13,10 +13,13 @@ const SplitLayoutContact = () => {
   const locale = useLocale();
   
   const [formData, setFormData] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     phone: '',
     email: '',
-    message: ''
+    address: '',
+    bill: '',
+    additional: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
@@ -29,7 +32,7 @@ const SplitLayoutContact = () => {
   };
 
   const validateEmail = (email: string) => {
-    if (!email.trim()) return true;
+    if (!email.trim()) return true; // Email is optional
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
@@ -37,8 +40,13 @@ const SplitLayoutContact = () => {
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
 
-    if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
+    // Required fields
+    if (!formData.firstName.trim()) {
+      newErrors.firstName = 'First name is required';
+    }
+    
+    if (!formData.lastName.trim()) {
+      newErrors.lastName = 'Last name is required';
     }
     
     if (!formData.phone.trim()) {
@@ -47,6 +55,11 @@ const SplitLayoutContact = () => {
       newErrors.phone = 'Please enter a valid phone number';
     }
 
+    if (!formData.address.trim()) {
+      newErrors.address = 'Address is required';
+    }
+
+    // Optional email validation
     if (formData.email.trim() && !validateEmail(formData.email)) {
       newErrors.email = 'Please enter a valid email address';
     }
@@ -95,14 +108,17 @@ const SplitLayoutContact = () => {
       const result = await response.json();
       
       if (response.ok) {
-        setSubmitMessage(`Thank you ${formData.name}! We'll get back to you within 24 hours.`);
+        setSubmitMessage(`Thank you ${formData.firstName}! We'll get back to you within 24 hours.`);
         
         setTimeout(() => {
           setFormData({
-            name: '',
+            firstName: '',
+            lastName: '',
             phone: '',
             email: '',
-            message: ''
+            address: '',
+            bill: '',
+            additional: ''
           });
           setErrors({});
           setSubmitMessage('');
@@ -144,27 +160,51 @@ const SplitLayoutContact = () => {
                 
                 <CardContent className="p-8">
                   <div className="space-y-6">
-                    {/* Name Field */}
-                    <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
-                        Full Name <span className="text-red-500">*</span>
-                      </label>
-                      <Input 
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        placeholder="Enter your full name" 
-                        className={`h-12 text-base border-2 rounded-xl ${
-                          errors.name ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-orange-400'
-                        }`}
-                        required
-                      />
-                      {errors.name && (
-                        <p className="text-red-500 text-sm mt-1 flex items-center">
-                          <AlertCircle className="h-4 w-4 mr-1" />
-                          {errors.name}
-                        </p>
-                      )}
+                    {/* Name Fields - Split into First and Last */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                          First Name <span className="text-red-500">*</span>
+                        </label>
+                        <Input 
+                          name="firstName"
+                          value={formData.firstName}
+                          onChange={handleChange}
+                          placeholder="First name" 
+                          className={`h-12 text-base border-2 rounded-xl ${
+                            errors.firstName ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-orange-400'
+                          }`}
+                          required
+                        />
+                        {errors.firstName && (
+                          <p className="text-red-500 text-sm mt-1 flex items-center">
+                            <AlertCircle className="h-4 w-4 mr-1" />
+                            {errors.firstName}
+                          </p>
+                        )}
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                          Last Name <span className="text-red-500">*</span>
+                        </label>
+                        <Input 
+                          name="lastName"
+                          value={formData.lastName}
+                          onChange={handleChange}
+                          placeholder="Last name" 
+                          className={`h-12 text-base border-2 rounded-xl ${
+                            errors.lastName ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-orange-400'
+                          }`}
+                          required
+                        />
+                        {errors.lastName && (
+                          <p className="text-red-500 text-sm mt-1 flex items-center">
+                            <AlertCircle className="h-4 w-4 mr-1" />
+                            {errors.lastName}
+                          </p>
+                        )}
+                      </div>
                     </div>
 
                     {/* Phone Field */}
@@ -214,16 +254,53 @@ const SplitLayoutContact = () => {
                       )}
                     </div>
 
-                    {/* Message Field */}
+                    {/* Address Field */}
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-2">
-                        Message <span className="text-gray-400 text-xs">(Optional)</span>
+                        Address <span className="text-red-500">*</span>
+                      </label>
+                      <Input 
+                        name="address"
+                        value={formData.address}
+                        onChange={handleChange}
+                        placeholder="Your property address" 
+                        className={`h-12 text-base border-2 rounded-xl ${
+                          errors.address ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-orange-400'
+                        }`}
+                        required
+                      />
+                      {errors.address && (
+                        <p className="text-red-500 text-sm mt-1 flex items-center">
+                          <AlertCircle className="h-4 w-4 mr-1" />
+                          {errors.address}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Monthly Bill Field */}
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        Monthly Electricity Bill <span className="text-gray-400 text-xs">(Optional)</span>
+                      </label>
+                      <Input 
+                        name="bill"
+                        value={formData.bill}
+                        onChange={handleChange}
+                        placeholder="₹15,000 per month" 
+                        className="h-12 text-base border-2 rounded-xl border-gray-200 focus:border-orange-400"
+                      />
+                    </div>
+
+                    {/* Additional Info Field */}
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        Additional Information <span className="text-gray-400 text-xs">(Optional)</span>
                       </label>
                       <Textarea 
-                        name="message"
-                        value={formData.message}
+                        name="additional"
+                        value={formData.additional}
                         onChange={handleChange}
-                        placeholder="Tell us about your requirements, property type, or monthly electricity bill..."
+                        placeholder="Tell us about your requirements, property type, roof space, or any specific questions..."
                         rows={4}
                         className="text-base border-2 rounded-xl resize-none border-gray-200 focus:border-orange-400"
                       />
