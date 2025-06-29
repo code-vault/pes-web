@@ -37,9 +37,8 @@ const Header = () => {
     { href: "/testimonials", label: t('testimonials') }
   ];
 
-  // Right side navigation items (before CTA button) - Fixed: Add contact link for all pages
+  // Right side navigation items (before CTA button)
   const rightNavItems = [
-    { href: "/contact", label: t('contact') },
     { href: "/faq", label: "FAQ" }
   ];
 

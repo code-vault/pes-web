@@ -17,10 +17,8 @@ const SplitLayoutContact = () => {
     lastName: '',
     phone: '',
     email: '',
-    address: '',
     bill: '',
-    additional: '',
-    preferredOffice: ''
+    additional: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
@@ -90,10 +88,6 @@ const SplitLayoutContact = () => {
       newErrors.phone = 'Please enter a valid phone number';
     }
 
-    if (!formData.address.trim()) {
-      newErrors.address = 'Address is required';
-    }
-
     // Optional email validation
     if (formData.email.trim() && !validateEmail(formData.email)) {
       newErrors.email = 'Please enter a valid email address';
@@ -103,7 +97,7 @@ const SplitLayoutContact = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -151,10 +145,8 @@ const SplitLayoutContact = () => {
             lastName: '',
             phone: '',
             email: '',
-            address: '',
             bill: '',
-            additional: '',
-            preferredOffice: ''
+            additional: ''
           });
           setErrors({});
           setSubmitMessage('');
@@ -236,7 +228,7 @@ const SplitLayoutContact = () => {
           </div>
         </ScrollReveal>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           
           {/* Left Side - Form */}
           <div className="order-2 lg:order-1">
@@ -343,49 +335,6 @@ const SplitLayoutContact = () => {
                       )}
                     </div>
 
-                    {/* Address Field */}
-                    <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
-                        Address <span className="text-red-500">*</span>
-                      </label>
-                      <Input 
-                        name="address"
-                        value={formData.address}
-                        onChange={handleChange}
-                        placeholder="Your property address" 
-                        className={`h-12 text-base border-2 rounded-xl ${
-                          errors.address ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-orange-400'
-                        }`}
-                        required
-                      />
-                      {errors.address && (
-                        <p className="text-red-500 text-sm mt-1 flex items-center">
-                          <AlertCircle className="h-4 w-4 mr-1" />
-                          {errors.address}
-                        </p>
-                      )}
-                    </div>
-
-                    {/* Preferred Office Field */}
-                    <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
-                        Preferred Office <span className="text-gray-400 text-xs">(Optional)</span>
-                      </label>
-                      <select 
-                        name="preferredOffice"
-                        value={formData.preferredOffice}
-                        onChange={handleChange}
-                        className="w-full h-12 text-base border-2 rounded-xl border-gray-200 focus:border-orange-400 px-3 bg-white"
-                      >
-                        <option value="">Select nearest office</option>
-                        {offices.map((office, index) => (
-                          <option key={index} value={office.name}>
-                            {office.name}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-
                     {/* Monthly Bill Field */}
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -410,7 +359,7 @@ const SplitLayoutContact = () => {
                         value={formData.additional}
                         onChange={handleChange}
                         placeholder="Tell us about your requirements, property type, roof space, or any specific questions..."
-                        rows={4}
+                        rows={3}
                         className="text-base border-2 rounded-xl resize-none border-gray-200 focus:border-orange-400"
                       />
                     </div>
