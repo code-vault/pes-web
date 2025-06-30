@@ -671,5 +671,19 @@
       "0": "🎯 **Ready to get started?** Our solar experts can provide a free site assessment and custom quote for your property. It takes just 30 minutes and could save you lakhs! Interested?",
       "1": "💡 **Want to see your actual savings potential?** We offer free energy audits that show exactly how much you could save with solar. No obligations - just valuable insights about your energy future!"
     }
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "The page you're looking for doesn't exist or has been moved.",
+    "goHome": "Go Home",
+    "goBack": "Go Back", 
+    "browseServices": "Browse Services",
+    "needHelp": "Need help? Contact us:"
+  },
+  "error": {
+    "title": "Something went wrong",
+    "description": "We encountered an unexpected error.",
+    "tryAgain": "Try Again",
+    "goHome": "Go Home"
   }
 }
