@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build-safe": "npm run ensure-translations && next build",
-    "build-production": "NODE_ENV=production npm run ensure-translations && next build",
+    "build:production": "npm run ensure-translations && next build",
+    "build:safe": "npm run ensure-translations && next build",
     "ensure-translations": "node scripts/ensure-translations.js",
     "generate-content": "npm run generate-translations && npm run generate-media",
     "generate-content-safe": "npm run generate-translations-safe && npm run generate-media-safe",
@@ -20,7 +20,8 @@
     "start": "next start",
     "start-production": "NODE_ENV=production next start",
     "lint": "next lint",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "analyze": "ANALYZE=true npm run build"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.11",
@@ -46,6 +47,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@next/bundle-analyzer": "^15.3.3",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

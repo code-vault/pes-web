@@ -4,7 +4,9 @@ interface StructuredDataProps {
 }
 
 export default function StructuredData({ locale, pageType = 'home' }: StructuredDataProps) {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://yoursite.com';
+  // Use dynamic base URL with fallback
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 
+                  (typeof window !== 'undefined' ? window.location.origin : 'https://purvodayaenergy.com');
   
   // Organization Schema
   const organizationData = {
@@ -17,36 +19,70 @@ export default function StructuredData({ locale, pageType = 'home' }: Structured
     logo: `${baseUrl}/logo.png`,
     image: `${baseUrl}/og-image.jpg`,
     description: locale === 'hi' 
-      ? "भारत में अग्रणी सौर ऊर्जा समाधान प्रदाता - आवासीय और वाणिज्यिक सौर पैनल स्थापना"
-      : "Leading solar energy solutions provider in India - Residential and commercial solar panel installation",
+      ? "पूर्वी उत्तर प्रदेश में अग्रणी सौर ऊर्जा समाधान प्रदाता - आवासीय और वाणिज्यिक सौर पैनल स्थापना"
+      : "Leading solar energy solutions provider in Eastern Uttar Pradesh - Residential and commercial solar panel installation",
     foundingDate: "2012",
+    areaServed: [
+      {
+        "@type": "State",
+        name: "Uttar Pradesh"
+      }
+    ],
+    serviceArea: {
+      "@type": "GeoCircle",
+      geoMidpoint: {
+        "@type": "GeoCoordinates",
+        latitude: 26.7606,
+        longitude: 83.3732
+      },
+      geoRadius: "150000"
+    },
     contactPoint: [
       {
         "@type": "ContactPoint",
         telephone: "+91-98765-43210",
         contactType: "customer service",
         availableLanguage: ["English", "Hindi"],
-        areaServed: "IN"
+        areaServed: "IN",
+        serviceUrl: `${baseUrl}/contact`
       },
       {
         "@type": "ContactPoint",
-        email: "info@purvodayaenergy.com",
+        email: "basti@purvodayaenergy.com",
         contactType: "customer service",
         availableLanguage: ["English", "Hindi"]
       }
     ],
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "Solar Avenue, Green City",
-      addressLocality: "Mumbai",
-      addressRegion: "Maharashtra",
-      postalCode: "400001",
-      addressCountry: "IN"
-    },
+    address: [
+      {
+        "@type": "PostalAddress",
+        streetAddress: "Near Bus Stand",
+        addressLocality: "Basti",
+        addressRegion: "Uttar Pradesh",
+        postalCode: "272002",
+        addressCountry: "IN"
+      },
+      {
+        "@type": "PostalAddress",
+        streetAddress: "Civil Lines",
+        addressLocality: "Gorakhpur",
+        addressRegion: "Uttar Pradesh", 
+        postalCode: "273001",
+        addressCountry: "IN"
+      },
+      {
+        "@type": "PostalAddress",
+        streetAddress: "Khalilabad",
+        addressLocality: "Sant Kabir Nagar",
+        addressRegion: "Uttar Pradesh",
+        postalCode: "272175", 
+        addressCountry: "IN"
+      }
+    ],
     geo: {
       "@type": "GeoCoordinates",
-      latitude: 19.0760,
-      longitude: 72.8777
+      latitude: 26.7606,
+      longitude: 83.3732
     },
     sameAs: [
       "https://facebook.com/purvodayaenergy",
@@ -62,7 +98,7 @@ export default function StructuredData({ locale, pageType = 'home' }: Structured
     }
   };
 
-  // Local Business Schema
+  // Local Business Schema for each office
   const localBusinessData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
@@ -70,47 +106,30 @@ export default function StructuredData({ locale, pageType = 'home' }: Structured
     name: "Purvodaya Energy Solutions",
     image: [`${baseUrl}/business-image.jpg`, `${baseUrl}/solar-installation.jpg`],
     telephone: "+91-98765-43210",
-    email: "info@purvodayaenergy.com",
+    email: "basti@purvodayaenergy.com",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Solar Avenue, Green City",
-      addressLocality: "Mumbai",
-      addressRegion: "MH",
-      postalCode: "400001",
+      streetAddress: "Near Bus Stand",
+      addressLocality: "Basti",
+      addressRegion: "Uttar Pradesh",
+      postalCode: "272002",
       addressCountry: "IN"
     },
     geo: {
       "@type": "GeoCoordinates",
-      latitude: 19.0760,
-      longitude: 72.8777
+      latitude: 26.7606,
+      longitude: 83.3732
     },
-    openingHours: ["Mo-Fr 09:00-18:00", "Sa 09:00-16:00"],
+    openingHours: ["Mo-Sa 09:00-18:00"],
     priceRange: "₹₹₹",
     paymentAccepted: ["Cash", "Credit Card", "Bank Transfer", "UPI"],
     currenciesAccepted: "INR",
     areaServed: [
       {
         "@type": "State",
-        name: "Maharashtra"
-      },
-      {
-        "@type": "State", 
-        name: "Gujarat"
-      },
-      {
-        "@type": "State",
-        name: "Delhi"
+        name: "Uttar Pradesh"
       }
-    ],
-    serviceArea: {
-      "@type": "GeoCircle",
-      geoMidpoint: {
-        "@type": "GeoCoordinates",
-        latitude: 19.0760,
-        longitude: 72.8777
-      },
-      geoRadius: "500000"
-    }
+    ]
   };
 
   // Service Schema
@@ -150,7 +169,7 @@ export default function StructuredData({ locale, pageType = 'home' }: Structured
     }
   };
 
-  // FAQ Schema (for FAQ page)
+  // FAQ Schema (for home page)
   const faqData = pageType === 'home' ? {
     "@context": "https://schema.org",
     "@type": "FAQPage",

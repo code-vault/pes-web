@@ -116,6 +116,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+  
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
@@ -139,29 +140,27 @@
     background: linear-gradient(45deg, #ea580c, #d97706);
   }
   
-  /* Performance optimized transitions */
+  /* Critical performance optimizations */
   * {
     transition-property: color, background-color, border-color, opacity, transform;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 150ms;
   }
   
-  /* GPU acceleration for better performance */
-  .gpu-accelerated,
-  [class*="translate"],
-  [class*="scale"],
-  [class*="rotate"] {
+  /* GPU acceleration for animations only */
+  .animate-pulse-slow,
+  [class*="animate-"] {
     transform: translateZ(0);
     backface-visibility: hidden;
     perspective: 1000px;
   }
   
-  /* Optimized focus styles */
+  /* Optimized focus styles for accessibility */
   *:focus-visible {
     @apply outline-none ring-2 ring-orange-500 ring-offset-1;
   }
   
-  /* Reduce layout shifts */
+  /* Prevent layout shifts */
   img {
     height: auto;
   }
@@ -173,37 +172,7 @@
     text-rendering: optimizeLegibility;
   }
   
-  /* Performance optimized hover effects */
-  .hover-lift {
-    transition: transform 0.2s ease-out;
-  }
-  
-  .hover-lift:hover {
-    transform: translateY(-2px);
-  }
-  
-  /* Optimized card styles */
-  .card-modern {
-    @apply backdrop-blur-xl bg-white/60 border-0 shadow-lg;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  .card-modern:hover {
-    @apply shadow-xl;
-    transform: translateY(-4px);
-  }
-  
-  /* Optimized gradient text */
-  .gradient-text {
-    @apply bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent;
-  }
-  
-  /* Glass effect */
-  .glass-effect {
-    @apply bg-white/10 backdrop-blur-md border border-white/20;
-  }
-  
-  /* Optimized animations - only essential ones */
+  /* Essential animations only - removed heavy ones */
   @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -212,7 +181,7 @@
   @keyframes slideUp {
     from { 
       opacity: 0; 
-      transform: translateY(20px); 
+      transform: translateY(10px); 
     }
     to { 
       opacity: 1; 
@@ -223,7 +192,7 @@
   @keyframes scaleIn {
     from { 
       opacity: 0; 
-      transform: scale(0.95); 
+      transform: scale(0.98); 
     }
     to { 
       opacity: 1; 
@@ -234,65 +203,41 @@
   @keyframes pulse-slow {
     0%, 100% { 
       opacity: 0.4; 
-      transform: scale(1);
     }
     50% { 
       opacity: 0.8; 
-      transform: scale(1.02);
     }
   }
   
-  /* Animation utility classes */
+  /* Lightweight utility animations */
   .animate-fade-in {
-    animation: fadeIn 0.5s ease-out;
+    animation: fadeIn 0.3s ease-out;
   }
   
   .animate-slide-up {
-    animation: slideUp 0.6s ease-out;
+    animation: slideUp 0.4s ease-out;
   }
   
   .animate-scale-in {
-    animation: scaleIn 0.4s ease-out;
+    animation: scaleIn 0.3s ease-out;
   }
   
   .animate-pulse-slow {
-    animation: pulse-slow 4s ease-in-out infinite;
-  }
-  
-  /* Content loading optimization */
-  .loading-skeleton {
-    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
-  }
-  
-  @keyframes loading {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
+    animation: pulse-slow 6s ease-in-out infinite;
   }
   
   /* Optimized button styles */
   .btn-primary {
     @apply bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600;
     @apply text-white font-semibold px-6 py-3 rounded-xl shadow-lg;
-    @apply transition-all duration-300 hover:shadow-xl;
-    position: relative;
+    @apply transition-all duration-200 hover:shadow-xl;
   }
   
   .btn-primary:hover {
     transform: translateY(-1px);
   }
   
-  /* Performance optimizations */
-  .will-change-transform {
-    will-change: transform;
-  }
-  
-  .will-change-opacity {
-    will-change: opacity;
-  }
-  
-  /* Reduced motion preferences */
+  /* Reduced motion preferences - accessibility */
   @media (prefers-reduced-motion: reduce) {
     * {
       animation-duration: 0.01ms !important;
@@ -311,12 +256,38 @@
       transition-duration: 100ms;
     }
     
-    .card-modern:hover {
+    .hover\\:scale-105:hover {
       transform: none;
     }
     
-    .hover-lift:hover {
+    .hover\\:-translate-y-2:hover {
       transform: none;
+    }
+  }
+  
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .text-gray-600 {
+      @apply text-gray-800;
+    }
+    
+    .text-gray-500 {
+      @apply text-gray-700;
+    }
+    
+    .bg-white\\/60 {
+      @apply bg-white;
+    }
+  }
+  
+  /* Reduced data mode - disable heavy animations */
+  @media (prefers-reduced-data: reduce) {
+    .animate-pulse-slow {
+      animation: none;
+    }
+    
+    [class*="gradient"] {
+      background: #f97316 !important;
     }
   }
 }

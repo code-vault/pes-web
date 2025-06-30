@@ -1,8 +1,5 @@
+// app/global-error.tsx
 'use client'
-
-import { useEffect } from 'react'
-import { AlertTriangle, RefreshCw, Home } from 'lucide-react'
-import Link from 'next/link'
 
 export default function GlobalError({
   error,
@@ -11,70 +8,105 @@ export default function GlobalError({
   error: Error & { digest?: string }
   reset: () => void
 }) {
-  useEffect(() => {
-    // Log the error to an error reporting service
-    console.error('Global error:', error)
-  }, [error])
-
   return (
     <html>
+      <head>
+        <title>Error - Purvodaya Energy</title>
+      </head>
       <body>
-        <div className="min-h-screen bg-gradient-to-br from-red-50 to-orange-50 flex items-center justify-center p-4">
-          <div className="max-w-md w-full">
-            <div className="bg-white rounded-2xl shadow-xl p-8 text-center">
-              <div className="mb-6">
-                <div className="bg-red-100 rounded-full p-4 w-16 h-16 mx-auto mb-4">
-                  <AlertTriangle className="h-8 w-8 text-red-600" />
-                </div>
-                <h1 className="text-2xl font-bold text-gray-900 mb-2">
-                  Something went wrong!
-                </h1>
-                <p className="text-gray-600">
-                  We encountered an unexpected error. This has been logged and we&apos;re working to fix it.
-                </p>
-              </div>
+        <div style={{
+          minHeight: '100vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontFamily: 'system-ui',
+          background: 'linear-gradient(135deg, #fef2f2, #fef3e2)',
+          padding: '20px'
+        }}>
+          <div style={{
+            backgroundColor: 'white',
+            padding: '40px',
+            borderRadius: '20px',
+            boxShadow: '0 25px 50px rgba(0,0,0,0.15)',
+            textAlign: 'center',
+            maxWidth: '500px',
+            width: '100%'
+          }}>
+            <div style={{
+              fontSize: '3rem',
+              marginBottom: '20px'
+            }}>⚠️</div>
+            
+            <h1 style={{
+              fontSize: '1.5rem',
+              fontWeight: 'bold',
+              color: '#1f2937',
+              marginBottom: '10px'
+            }}>
+              Something went wrong!
+            </h1>
+            
+            <p style={{
+              color: '#6b7280',
+              marginBottom: '30px'
+            }}>
+              We encountered an unexpected error. This has been logged and we're working to fix it.
+            </p>
 
-              <div className="space-y-4">
-                <button
-                  onClick={reset}
-                  className="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 flex items-center justify-center"
-                >
-                  <RefreshCw className="h-4 w-4 mr-2" />
-                  Try again
-                </button>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              <button
+                onClick={reset}
+                style={{
+                  backgroundColor: '#f97316',
+                  color: 'white',
+                  padding: '12px 24px',
+                  border: 'none',
+                  borderRadius: '8px',
+                  fontSize: '16px',
+                  fontWeight: '600',
+                  cursor: 'pointer'
+                }}
+              >
+                🔄 Try again
+              </button>
 
-                <Link
-                  href="/"
-                  className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-3 px-6 rounded-lg transition-all duration-300 flex items-center justify-center"
-                >
-                  <Home className="h-4 w-4 mr-2" />
-                  Go home
-                </Link>
-              </div>
-
-              <div className="mt-8 pt-6 border-t border-gray-200">
-                <details className="text-left">
-                  <summary className="text-sm text-gray-500 cursor-pointer hover:text-gray-700">
-                    Technical Details
-                  </summary>
-                  <div className="mt-2 p-3 bg-gray-50 rounded text-xs text-gray-600 font-mono">
-                    {error.message}
-                    {error.digest && (
-                      <div className="mt-1">
-                        Error ID: {error.digest}
-                      </div>
-                    )}
-                  </div>
-                </details>
-              </div>
-
-              <div className="mt-6 text-sm text-gray-500">
-                Need help? Contact us at{' '}
-                <a href="mailto:support@purvodayaenergy.com" className="text-orange-600 hover:text-orange-700">
-                  support@purvodayaenergy.com
-                </a>
-              </div>
+              <a
+                href="/en"
+                style={{
+                  backgroundColor: '#f9fafb',
+                  color: '#374151',
+                  padding: '12px 24px',
+                  textDecoration: 'none',
+                  borderRadius: '8px',
+                  fontSize: '16px',
+                  fontWeight: '600',
+                  border: '1px solid #e5e7eb',
+                  display: 'block'
+                }}
+              >
+                🏠 Go home
+              </a>
             </div>
+
+            {error.message && (
+              <details style={{ marginTop: '20px', textAlign: 'left' }}>
+                <summary style={{ fontSize: '14px', color: '#6b7280', cursor: 'pointer' }}>
+                  Technical Details
+                </summary>
+                <div style={{
+                  marginTop: '10px',
+                  padding: '10px',
+                  backgroundColor: '#f9fafb',
+                  borderRadius: '4px',
+                  fontSize: '12px',
+                  fontFamily: 'monospace',
+                  color: '#6b7280'
+                }}>
+                  {error.message}
+                  {error.digest && <div>Error ID: {error.digest}</div>}
+                </div>
+              </details>
+            )}
           </div>
         </div>
       </body>
