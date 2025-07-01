@@ -5,6 +5,9 @@ import { notFound } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
 import { ToastProvider } from '@/components/ui/toast';
 import IntlProvider from '@/components/IntlProvider';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import FloatingClickToCall from '@/components/FloatingClickToCall';
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -61,11 +64,13 @@ export default async function LocaleLayout({ children, params }: Props) {
       </head>
       <body className={inter.className}>
         <IntlProvider locale={locale} messages={messages}>
-          <ToastProvider>
-            {/* Just render children - let route groups handle layout */}
-            {children}
-          </ToastProvider>
-        </IntlProvider>
+        <ToastProvider>
+          <Header />              {/* ← Make sure this is here */}
+          <main>{children}</main>
+          <Footer />              {/* ← And this */}
+          <FloatingClickToCall /> {/* ← And this */}
+        </ToastProvider>
+      </IntlProvider>
       </body>
     </html>
   );
