@@ -56,14 +56,14 @@ const Header = () => {
 
   return (
     <>
-      {/* Top Bar - Clean and Minimal */}
-      <div className={`bg-gray-50 border-b border-gray-200/50 py-1.5 fixed w-full top-0 z-50 transition-all duration-500 ${
+      {/* Top Bar - Clean and Minimal - Hidden on mobile */}
+      <div className={`bg-gray-50 border-b border-gray-200/50 py-1.5 fixed w-full top-0 z-50 transition-all duration-500 hidden md:block ${
         isScrolled ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'
       }`}>
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center text-sm">
             {/* Left side - Contact */}
-            <div className="hidden md:flex items-center space-x-1 text-gray-600">
+            <div className="flex items-center space-x-1 text-gray-600">
               <Phone className="h-3 w-3" />
               <span>{t('topBar.phone')}</span>
             </div>
@@ -246,6 +246,15 @@ const Header = () => {
                 >
                   FAQ
                 </Link>
+                
+                {/* Language Switcher for Mobile */}
+                <button
+                  onClick={toggleLanguage}
+                  className="flex items-center w-full px-4 sm:px-6 py-3 text-gray-600 hover:text-orange-500 hover:bg-orange-50/50 rounded-xl transition-all font-medium text-sm sm:text-base"
+                >
+                  <Globe className="h-4 w-4 mr-3" />
+                  {t('languageSwitcher.current')} → {locale === 'en' ? 'हिंदी' : 'English'}
+                </button>
                 
                 {/* Mobile actions */}
                 <div className="px-3 py-6 border-t border-gray-200/50 mt-4">

@@ -1,11 +1,39 @@
 "use client";
-import { ArrowRight, Zap, Shield, DollarSign, Play, X, MapPin, Building } from 'lucide-react';
+import { ArrowRight, Zap, Shield, DollarSign, Play, X, MapPin, Building, Star, TrendingUp, Clock, Award, Sun, Leaf, Home, Calculator, Phone, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useTranslations } from 'next-intl';
 import { useState, useEffect, useRef } from 'react';
 import ScrollReveal from '@/components/ScrollReveal';
 
-// Number animation hook (keeping for calculator)
+// Interactive calculator hook
+const useInteractiveCalculator = () => {
+  const [billAmount, setBillAmount] = useState(15000);
+  const [systemSize, setSystemSize] = useState(10);
+  
+  const calculateSavings = () => {
+    const monthlyReduction = billAmount * 0.75;
+    const newBill = billAmount - monthlyReduction;
+    const annualSavings = monthlyReduction * 12;
+    const totalSavings = annualSavings * 25;
+    
+    return {
+      currentBill: billAmount,
+      newBill: Math.round(newBill),
+      monthlySavings: Math.round(monthlyReduction),
+      annualSavings: Math.round(annualSavings),
+      totalSavings: Math.round(totalSavings)
+    };
+  };
+
+  return {
+    billAmount,
+    setBillAmount,
+    systemSize,
+    setSystemSize,
+    calculations: calculateSavings()
+  };
+};
+
 const useCountUp = (end: number, duration: number = 2000, delay: number = 0) => {
   const [count, setCount] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
@@ -19,8 +47,8 @@ const useCountUp = (end: number, duration: number = 2000, delay: number = 0) => 
         if (!startTime) startTime = currentTime;
         const progress = Math.min((currentTime - startTime) / duration, 1);
         
-        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-        setCount(Math.floor(easeOutQuart * end));
+        const easeOutCubic = 1 - Math.pow(1 - progress, 3);
+        setCount(Math.floor(easeOutCubic * end));
         
         if (progress < 1) {
           requestAnimationFrame(animate);
@@ -35,7 +63,6 @@ const useCountUp = (end: number, duration: number = 2000, delay: number = 0) => 
   return { count, start: () => setHasStarted(true) };
 };
 
-// Intersection Observer hook for calculator numbers
 const useIntersectionObserver = (threshold: number = 0.1) => {
   const [isIntersecting, setIsIntersecting] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -63,27 +90,23 @@ const useIntersectionObserver = (threshold: number = 0.1) => {
 const Hero = () => {
   const t = useTranslations('hero');
   const [showDemoModal, setShowDemoModal] = useState(false);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   
-  // Only keep intersection observer for stats counter
-  const { ref: calculatorRef, isIntersecting: calculatorVisible } = useIntersectionObserver(0.3);
+  const calculator = useInteractiveCalculator();
+  const { ref: statsRef, isIntersecting: statsVisible } = useIntersectionObserver(0.3);
   
-  // Number animations for calculator
-  const currentBill = useCountUp(15000, 1500, 50);
-  const withSolar = useCountUp(3750, 1500, 100);
-  const monthlySavings = useCountUp(11250, 1500, 150);
-  const annualSavings = useCountUp(135000, 2000, 200);
-  const yearSavings = useCountUp(3375000, 2500, 250);
+  // Animated counters
+  const customersCount = useCountUp(2500, 2000, 0);
+  const yearsWarranty = useCountUp(25, 1500, 500);
+  const savingsPercent = useCountUp(90, 1800, 1000);
 
-  // Start animations when calculator becomes visible
   useEffect(() => {
-    if (calculatorVisible) {
-      currentBill.start();
-      withSolar.start();
-      monthlySavings.start();
-      annualSavings.start();
-      yearSavings.start();
+    if (statsVisible) {
+      customersCount.start();
+      yearsWarranty.start();
+      savingsPercent.start();
     }
-  }, [calculatorVisible]);
+  }, [statsVisible]);
 
   const openDemoModal = () => {
     setShowDemoModal(true);
@@ -93,276 +116,359 @@ const Hero = () => {
     setShowDemoModal(false);
   };
 
-  // Format numbers with commas
   const formatNumber = (num: number): string => {
     return new Intl.NumberFormat('en-IN').format(num);
   };
 
-  // Benefit cards data
-  const benefitCards = [
-    { 
-      icon: DollarSign, 
-      title: t('save'), 
-      desc: t('saveBills'), 
-      gradient: "from-green-400 to-emerald-500"
-    },
-    { 
-      icon: Shield, 
-      title: t('warranty'), 
-      desc: t('warrantyText'), 
-      gradient: "from-blue-400 to-cyan-500"
-    },
-    { 
-      icon: Zap, 
-      title: t('clean'), 
-      desc: t('cleanEnergy'), 
-      gradient: "from-orange-400 to-red-500"
-    }
-  ];
-
-  // Office locations for trust badge
-  const offices = [
-    { name: "Basti", isHQ: true },
-    { name: "Gorakhpur", isHQ: false },
-    { name: "Sant Kabir Nagar", isHQ: false }
-  ];
-
   return (
-    <section 
-      id="home" 
-      className="pt-16 sm:pt-20 md:pt-24 lg:pt-28 pb-8 sm:pb-12 md:pb-16 bg-gradient-to-br from-slate-50 via-blue-50 to-orange-50 min-h-screen flex items-center relative overflow-hidden"
-    >
-      {/* Animated background elements - Reduced opacity on mobile */}
-      <div className="absolute inset-0 overflow-hidden opacity-30 sm:opacity-100">
-        <div className="absolute top-10 sm:top-20 left-5 sm:left-10 w-48 sm:w-72 h-48 sm:h-72 bg-gradient-to-r from-orange-400/15 to-yellow-400/15 rounded-full blur-2xl sm:blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-10 sm:bottom-20 right-5 sm:right-10 w-64 sm:w-96 h-64 sm:h-96 bg-gradient-to-r from-blue-400/15 to-cyan-400/15 rounded-full blur-2xl sm:blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 sm:w-[500px] h-80 sm:h-[500px] bg-gradient-to-r from-purple-400/8 to-pink-400/8 rounded-full blur-2xl sm:blur-3xl animate-pulse delay-2000"></div>
-      </div>
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center">
-          {/* Hero Content - Mobile First Design */}
-          <ScrollReveal direction="up" delay={0} duration={500}>
-            <div className="space-y-4 sm:space-y-6 order-1">
-              <div className="space-y-3 sm:space-y-4 md:space-y-5">
-                <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-orange-200/50 shadow-lg">
-                  <Zap className="h-3 sm:h-4 w-3 sm:w-4 text-orange-500 mr-1.5 sm:mr-2" />
-                  <span className="text-xs sm:text-sm font-semibold text-gray-700">{t('badge')}</span>
+    <>
+      {/* Full-Screen Hero with Background Video/Image */}
+      <section 
+        id="home" 
+        className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 sm:pt-24"
+      >
+        {/* Background Video/Image */}
+        <div className="absolute inset-0 z-0">
+          {!isVideoPlaying ? (
+            // Hero Image
+            <div className="relative w-full h-full">
+              <img 
+                src="https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?w=1920&h=1080&fit=crop&auto=format&q=80"
+                alt="Beautiful modern home with solar panels on the roof"
+                className="w-full h-full object-cover"
+              />
+              {/* Dark overlay for better text readability */}
+              <div className="absolute inset-0 bg-black/40"></div>
+            </div>
+          ) : (
+            // Video placeholder (would be actual video in production)
+            <div className="relative w-full h-full bg-gradient-to-br from-blue-900 to-gray-900">
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="text-center text-white">
+                  <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-white mb-4"></div>
+                  <p className="text-xl">Loading Video...</p>
                 </div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Hero Content Overlay */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+          <div className="text-center text-white">
+            
+            {/* Main Hero Content */}
+            <ScrollReveal direction="up" delay={0} duration={800}>
+              <div className="max-w-4xl mx-auto mb-12">
                 
-                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight tracking-tight">
-                  {t('title')}
+                {/* Trust Badge */}
+                {/* <div className="inline-flex items-center bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-6 py-3 mb-8">
+                  <Star className="h-5 w-5 text-yellow-400 mr-2" />
+                  <span className="text-sm font-semibold">India's #1 Rated Solar Company</span>
+                  <div className="flex ml-3 space-x-1">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                    ))}
+                  </div>
+                </div> */}
+
+                {/* Main Headline */}
+                <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black leading-tight mb-6">
+                  <span className="block mb-2">Power Your Home</span>
+                  <span className="block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent">
+                    Save ₹3+ Lakhs
+                  </span>
+                  <span className="block text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-200 mt-2">
+                    Every Year with Solar
+                  </span>
                 </h1>
 
-                <p className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed font-light max-w-xl">
-                  {t('subtitle')}
+                {/* Subtitle */}
+                <p className="text-xl sm:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto leading-relaxed">
+                  Join 2,500+ homeowners across Eastern UP who've slashed their electricity bills by 90% with our premium solar installations.
                 </p>
 
-                {/* Multi-Office Trust Badge - Mobile Optimized */}
-                <div className="bg-white/60 backdrop-blur-sm rounded-xl p-3 sm:p-4 border border-white/20 shadow-lg">
-                  <div className="flex items-center space-x-2 mb-2">
-                    <Building className="h-4 sm:h-5 w-4 sm:w-5 text-orange-500 flex-shrink-0" />
-                    <span className="text-xs sm:text-sm font-semibold text-gray-700">
-                      Serving Eastern Uttar Pradesh
-                    </span>
+                {/* CTA Buttons */}
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+                  <Button 
+                    onClick={() => {
+                      const contactSection = document.getElementById('contact');
+                      if (contactSection) {
+                        contactSection.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }}
+                    size="lg"
+                    className="bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 hover:from-orange-600 hover:via-red-600 hover:to-pink-600 text-white text-lg font-bold px-8 py-4 rounded-2xl shadow-2xl hover:shadow-orange-500/25 transition-all duration-300 hover:scale-105 min-w-[200px]"
+                  >
+                    <Phone className="mr-2 h-6 w-6" />
+                    Get Free Quote
+                  </Button>
+                  
+                  <Button 
+                    onClick={() => {
+                      const calculatorSection = document.querySelector('section:nth-of-type(2)');
+                      if (calculatorSection) {
+                        calculatorSection.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }}
+                    size="lg"
+                    className="bg-white/20 backdrop-blur-md border-2 border-white/60 text-white hover:bg-white/30 hover:border-white/80 text-lg font-bold px-8 py-4 rounded-2xl transition-all duration-300 hover:scale-105 min-w-[200px] shadow-lg"
+                  >
+                    <Calculator className="mr-2 h-6 w-6" />
+                    Calculate Savings
+                  </Button>
+                </div>
+
+                {/* Live Stats Counter */}
+                <div 
+                  ref={statsRef}
+                  className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto"
+                >
+                  <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 text-center">
+                    <div className="text-4xl sm:text-5xl font-black text-green-400 mb-2">
+                      {formatNumber(customersCount.count)}+
+                    </div>
+                    <div className="text-lg font-semibold text-gray-200">Happy Customers</div>
+                    <div className="text-sm text-gray-400 mt-1">Across Eastern UP</div>
                   </div>
-                  <div className="flex flex-wrap items-center gap-1 text-xs sm:text-sm text-gray-600">
-                    <MapPin className="h-3 sm:h-4 w-3 sm:w-4 text-gray-500 flex-shrink-0" />
-                    <span className="mr-1">Offices in:</span>
-                    {offices.map((office, index) => (
-                      <span key={office.name} className="flex items-center">
-                        <span className={office.isHQ ? "font-semibold text-orange-600" : ""}>
-                          {office.name}
-                        </span>
-                        {office.isHQ && <span className="text-xs text-orange-500 ml-1">(HQ)</span>}
-                        {index < offices.length - 1 && <span className="mx-1">•</span>}
-                      </span>
+                  
+                  <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 text-center">
+                    <div className="text-4xl sm:text-5xl font-black text-blue-400 mb-2">
+                      {yearsWarranty.count} Years
+                    </div>
+                    <div className="text-lg font-semibold text-gray-200">Warranty</div>
+                    <div className="text-sm text-gray-400 mt-1">Complete Coverage</div>
+                  </div>
+                  
+                  <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 text-center">
+                    <div className="text-4xl sm:text-5xl font-black text-orange-400 mb-2">
+                      {savingsPercent.count}%
+                    </div>
+                    <div className="text-lg font-semibold text-gray-200">Bill Reduction</div>
+                    <div className="text-sm text-gray-400 mt-1">Average Savings</div>
+                  </div>
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+          <div className="animate-bounce">
+            <ChevronDown className="h-8 w-8 text-white/80" />
+          </div>
+        </div>
+      </section>
+
+      {/* Calculator Section - Separate from Hero */}
+      <section className="py-16 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollReveal direction="up" delay={200} duration={600}>
+            
+            {/* Section Header */}
+            <div className="text-center mb-12">
+              <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-4">
+                Calculate Your Solar Savings
+              </h2>
+              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                See exactly how much you can save with solar panels customized for your home
+              </p>
+            </div>
+
+            {/* Calculator Card */}
+            <div className="bg-white rounded-3xl shadow-2xl p-8 border border-gray-200">
+              
+              {/* Calculator Inputs */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                
+                {/* Bill Amount Input */}
+                <div>
+                  <label className="block text-lg font-bold text-gray-800 mb-4">
+                    Current Monthly Electricity Bill
+                  </label>
+                  <div className="space-y-4">
+                    <input
+                      type="range"
+                      min="5000"
+                      max="50000"
+                      step="1000"
+                      value={calculator.billAmount}
+                      onChange={(e) => calculator.setBillAmount(Number(e.target.value))}
+                      className="w-full h-4 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
+                    />
+                    <div className="flex justify-between text-sm text-gray-500">
+                      <span>₹5,000</span>
+                      <div className="text-center">
+                        <div className="text-2xl font-black text-orange-600">
+                          ₹{formatNumber(calculator.billAmount)}
+                        </div>
+                        <div className="text-xs">Current Bill</div>
+                      </div>
+                      <span>₹50,000</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* System Size Selection */}
+                <div>
+                  <label className="block text-lg font-bold text-gray-800 mb-4">
+                    Recommended System Size
+                  </label>
+                  <div className="grid grid-cols-2 gap-3">
+                    {[
+                      { size: 5, label: '5kW', desc: 'Small Home' },
+                      { size: 8, label: '8kW', desc: 'Medium Home' },
+                      { size: 10, label: '10kW', desc: 'Large Home' },
+                      { size: 15, label: '15kW', desc: 'Villa/Office' }
+                    ].map((option) => (
+                      <button
+                        key={option.size}
+                        onClick={() => calculator.setSystemSize(option.size)}
+                        className={`p-4 rounded-xl font-bold text-center transition-all duration-300 ${
+                          calculator.systemSize === option.size
+                            ? 'bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg transform scale-105'
+                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:shadow-md'
+                        }`}
+                      >
+                        <div className="text-lg">{option.label}</div>
+                        <div className="text-xs opacity-80">{option.desc}</div>
+                      </button>
                     ))}
                   </div>
                 </div>
               </div>
 
-              {/* Key Benefits - Mobile Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
-                {benefitCards.map((item, index) => (
-                  <div key={index} className="group bg-white/60 backdrop-blur-sm p-3 sm:p-4 rounded-xl border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                    <div className={`bg-gradient-to-br ${item.gradient} p-1.5 sm:p-2 rounded-lg w-fit mb-2 sm:mb-3 group-hover:scale-110 transition-transform duration-300`}>
-                      <item.icon className="h-4 sm:h-5 w-4 sm:w-5 text-white" />
+              {/* Results Display */}
+              <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-6 border border-green-200">
+                <h3 className="text-2xl font-black text-gray-800 mb-6 text-center">
+                  Your Solar Savings Breakdown
+                </h3>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                  <div className="bg-white rounded-xl p-4 text-center shadow-md">
+                    <div className="text-sm text-gray-600 mb-1">New Monthly Bill</div>
+                    <div className="text-2xl font-black text-green-600">
+                      ₹{formatNumber(calculator.calculations.newBill)}
                     </div>
-                    <p className="font-bold text-base sm:text-lg lg:text-xl text-gray-900 mb-1">{item.title}</p>
-                    <p className="text-xs sm:text-sm text-gray-600 font-medium leading-relaxed">{item.desc}</p>
                   </div>
-                ))}
+                  
+                  <div className="bg-white rounded-xl p-4 text-center shadow-md">
+                    <div className="text-sm text-gray-600 mb-1">Monthly Savings</div>
+                    <div className="text-2xl font-black text-orange-600">
+                      ₹{formatNumber(calculator.calculations.monthlySavings)}
+                    </div>
+                  </div>
+                  
+                  <div className="bg-white rounded-xl p-4 text-center shadow-md">
+                    <div className="text-sm text-gray-600 mb-1">Annual Savings</div>
+                    <div className="text-2xl font-black text-blue-600">
+                      ₹{formatNumber(calculator.calculations.annualSavings)}
+                    </div>
+                  </div>
+                  
+                  <div className="bg-white rounded-xl p-4 text-center shadow-md">
+                    <div className="text-sm text-gray-600 mb-1">25-Year Total</div>
+                    <div className="text-2xl font-black text-purple-600">
+                      ₹{formatNumber(calculator.calculations.totalSavings)}
+                    </div>
+                  </div>
+                </div>
+
+                {/* CTA */}
+                <div className="text-center mt-8">
+                  <Button 
+                    onClick={() => {
+                      const contactSection = document.getElementById('contact');
+                      if (contactSection) {
+                        contactSection.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }}
+                    size="lg"
+                    className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white text-lg font-bold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                  >
+                    Get Your {calculator.systemSize}kW System Quote
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Demo Modal */}
+      {showDemoModal && (
+        <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-lg flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl shadow-3xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+            
+            {/* Modal Header */}
+            <div className="flex items-center justify-between p-6 border-b border-gray-200">
+              <h3 className="text-2xl font-black text-gray-900">Our Solar Story</h3>
+              <button
+                onClick={closeDemoModal}
+                className="p-2 hover:bg-gray-100 rounded-xl transition-colors"
+              >
+                <X className="h-6 w-6 text-gray-500" />
+              </button>
+            </div>
+
+            {/* Video Content */}
+            <div className="p-6">
+              <div className="aspect-video bg-gradient-to-br from-blue-900 to-gray-900 rounded-2xl mb-6 relative overflow-hidden flex items-center justify-center">
+                <div className="text-center text-white">
+                  <div className="bg-white/20 backdrop-blur-md p-6 rounded-full mx-auto mb-4 w-fit">
+                    <Play className="h-16 w-16" />
+                  </div>
+                  <h4 className="text-2xl font-bold mb-2">Customer Success Stories</h4>
+                  <p className="text-lg opacity-90">See how families across Eastern UP are saving thousands</p>
+                </div>
               </div>
 
-              {/* CTA Buttons - Mobile Stack */}
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2">
+              {/* Modal CTA */}
+              <div className="text-center">
                 <Button 
                   onClick={() => {
+                    closeDemoModal();
                     const contactSection = document.getElementById('contact');
                     if (contactSection) {
                       contactSection.scrollIntoView({ behavior: 'smooth' });
                     }
                   }}
-                  size="lg" 
-                  className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 px-6 py-3 text-sm sm:text-base font-semibold rounded-xl w-full sm:w-auto"
+                  size="lg"
+                  className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white text-lg font-bold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
                 >
-                  {t('getQuoteBtn')}
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                  Start Your Solar Journey Today
+                  <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
-                <Button 
-                  size="lg" 
-                  variant="outline" 
-                  onClick={openDemoModal}
-                  className="border-2 border-gray-300 text-gray-700 hover:bg-white hover:shadow-lg bg-white/60 backdrop-blur-sm transition-all duration-300 px-6 py-3 text-sm sm:text-base font-semibold rounded-xl w-full sm:w-auto"
-                >
-                  <Play className="mr-2 h-4 w-4" />
-                  {t('watchDemo')}
-                </Button>
-              </div>
-            </div>
-          </ScrollReveal>
-
-          {/* Hero Calculator - Mobile Optimized */}
-          <ScrollReveal direction="right" delay={200} duration={500}>
-            <div 
-              ref={calculatorRef}
-              className="relative order-2 lg:order-2"
-            >
-              <div className="bg-gradient-to-br from-white/80 to-white/60 backdrop-blur-xl rounded-2xl p-4 sm:p-5 lg:p-6 shadow-xl border border-white/30 hover:shadow-2xl transition-all duration-300">
-                <div className="space-y-4 sm:space-y-5">
-                  <div className="flex items-center justify-between mb-3 sm:mb-4">
-                    <h3 className="text-lg sm:text-xl font-bold text-gray-900">{t('calculator.title')}</h3>
-                    <div className="bg-gradient-to-r from-orange-400 to-amber-400 p-2 rounded-lg">
-                      <Zap className="h-4 sm:h-5 w-4 sm:w-5 text-white" />
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-3 sm:space-y-4">
-                    <div className="bg-gray-50/80 backdrop-blur-sm p-3 sm:p-4 rounded-xl border border-gray-200/50">
-                      <div className="flex justify-between items-center">
-                        <span className="text-gray-600 font-medium text-sm sm:text-base">{t('calculator.currentBill')}</span>
-                        <span className="font-bold text-base sm:text-lg text-gray-900">
-                          ₹{formatNumber(currentBill.count)}
-                        </span>
-                      </div>
-                    </div>
-                    
-                    <div className="bg-green-50/80 backdrop-blur-sm p-3 sm:p-4 rounded-xl border border-green-200/50">
-                      <div className="flex justify-between items-center">
-                        <span className="text-gray-600 font-medium text-sm sm:text-base">{t('calculator.withSolar')}</span>
-                        <span className="font-bold text-base sm:text-lg text-green-600">
-                          ₹{formatNumber(withSolar.count)}
-                        </span>
-                      </div>
-                    </div>
-                    
-                    <div className="bg-gradient-to-r from-orange-500 to-amber-500 p-4 sm:p-5 rounded-xl text-white">
-                      <div className="flex justify-between items-center mb-2 sm:mb-3">
-                        <span className="font-medium text-sm sm:text-base">{t('calculator.monthlySavings')}</span>
-                        <span className="font-bold text-lg sm:text-xl">
-                          ₹{formatNumber(monthlySavings.count)}
-                        </span>
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <span className="font-medium text-sm sm:text-base">{t('calculator.annualSavings')}</span>
-                        <span className="font-bold text-lg sm:text-xl">
-                          ₹{formatNumber(annualSavings.count)}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="pt-2 sm:pt-3">
-                    <div className="bg-gradient-to-r from-blue-50 to-cyan-50 p-3 sm:p-4 rounded-xl border border-blue-200/50">
-                      <p className="text-xs sm:text-sm text-gray-600 text-center">
-                        <span className="font-semibold text-gray-900">{t('calculator.yearSavings')}</span> 
-                        <span className="font-bold text-base sm:text-lg text-blue-600 ml-2 block sm:inline">
-                          ₹{formatNumber(yearSavings.count)}
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Local Service Badge - Mobile Optimized */}
-                  <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-2.5 sm:p-3 rounded-xl border border-purple-200/50">
-                    <p className="text-xs text-center text-purple-700 leading-relaxed">
-                      <Building className="inline h-3 w-3 mr-1" />
-                      Local service across Basti, Gorakhpur & Sant Kabir Nagar
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </ScrollReveal>
-        </div>
-      </div>
-
-      {/* Demo Modal - Mobile Optimized */}
-      {showDemoModal && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in duration-300">
-          <div className="bg-white rounded-xl shadow-2xl w-full max-w-xl max-h-[90vh] overflow-y-auto animate-in slide-in-from-bottom duration-500">
-            {/* Modal Header */}
-            <div className="flex items-center justify-between p-4 sm:p-5 border-b border-gray-200">
-              <h3 className="text-lg sm:text-xl font-bold text-gray-900">{t('demoModal.title')}</h3>
-              <button
-                onClick={closeDemoModal}
-                className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-                aria-label={t('demoModal.closeButton')}
-              >
-                <X className="h-5 w-5 text-gray-500" />
-              </button>
-            </div>
-
-            {/* Modal Content */}
-            <div className="p-4 sm:p-5">
-              <div className="text-center space-y-4">
-                {/* Placeholder Video Area */}
-                <div className="aspect-video bg-gradient-to-br from-orange-100 to-amber-100 rounded-lg border-2 border-dashed border-orange-300 flex items-center justify-center">
-                  <div className="text-center px-4">
-                    <Play className="h-8 sm:h-12 w-8 sm:w-12 text-orange-500 mx-auto mb-2 sm:mb-3" />
-                    <h4 className="text-base sm:text-lg font-semibold text-gray-700 mb-2">{t('demoModal.comingSoon')}</h4>
-                    <p className="text-gray-500 text-sm">
-                      {t('demoModal.description')}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Demo Features - Mobile Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6">
-                  <div className="text-center p-3 bg-blue-50 rounded-lg">
-                    <Zap className="h-5 sm:h-6 w-5 sm:w-6 text-blue-600 mx-auto mb-2" />
-                    <h5 className="font-semibold text-gray-800 text-sm">{t('demoModal.features.0.title')}</h5>
-                    <p className="text-xs text-gray-600 mt-1">{t('demoModal.features.0.description')}</p>
-                  </div>
-                  <div className="text-center p-3 bg-green-50 rounded-lg">
-                    <Shield className="h-5 sm:h-6 w-5 sm:w-6 text-green-600 mx-auto mb-2" />
-                    <h5 className="font-semibold text-gray-800 text-sm">{t('demoModal.features.1.title')}</h5>
-                    <p className="text-xs text-gray-600 mt-1">{t('demoModal.features.1.description')}</p>
-                  </div>
-                  <div className="text-center p-3 bg-orange-50 rounded-lg">
-                    <DollarSign className="h-5 sm:h-6 w-5 sm:w-6 text-orange-600 mx-auto mb-2" />
-                    <h5 className="font-semibold text-gray-800 text-sm">{t('demoModal.features.2.title')}</h5>
-                    <p className="text-xs text-gray-600 mt-1">{t('demoModal.features.2.description')}</p>
-                  </div>
-                </div>
-
-                {/* CTA */}
-                <div className="mt-6 pt-4 border-t border-gray-200">
-                  <p className="text-gray-600 mb-3 text-sm">{t('demoModal.cta.question')}</p>
-                  <Button 
-                    onClick={closeDemoModal}
-                    className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white px-5 py-2 rounded-lg font-semibold w-full sm:w-auto"
-                  >
-                    {t('demoModal.cta.button')}
-                  </Button>
-                </div>
               </div>
             </div>
           </div>
         </div>
       )}
-    </section>
+
+      <style jsx>{`
+        .slider::-webkit-slider-thumb {
+          appearance: none;
+          height: 24px;
+          width: 24px;
+          border-radius: 50%;
+          background: linear-gradient(45deg, #f97316, #dc2626);
+          cursor: pointer;
+          box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .slider::-moz-range-thumb {
+          height: 24px;
+          width: 24px;
+          border-radius: 50%;
+          background: linear-gradient(45deg, #f97316, #dc2626);
+          cursor: pointer;
+          border: none;
+          box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+      `}</style>
+    </>
   );
 };
 
