@@ -672,18 +672,20 @@
       "1": "💡 **Want to see your actual savings potential?** We offer free energy audits that show exactly how much you could save with solar. No obligations - just valuable insights about your energy future!"
     }
   },
-  "notFound": {
-    "title": "Page Not Found",
-    "description": "The page you're looking for doesn't exist or has been moved.",
-    "goHome": "Go Home",
-    "goBack": "Go Back", 
-    "browseServices": "Browse Services",
-    "needHelp": "Need help? Contact us:"
-  },
-  "error": {
-    "title": "Something went wrong",
-    "description": "We encountered an unexpected error.",
+"errorPage": {
+    "title": "Something went wrong!",
+    "description": "We encountered an unexpected error. Please try again or contact support if the problem persists.",
     "tryAgain": "Try Again",
-    "goHome": "Go Home"
+    "backHome": "Back to Home"
+  },
+  "notFoundPage": {
+    "title": "Page Not Found",
+    "description": "The page you're looking for doesn't exist. It might have been moved, deleted, or you entered the wrong URL.",
+    "backHome": "Back to Home",
+    "contactUs": "Contact Support",
+    "popularPages": "Popular pages:",
+    "services": "Services",
+    "gallery": "Gallery",
+    "about": "About"
   }
 }
