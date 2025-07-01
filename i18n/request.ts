@@ -16,8 +16,8 @@ export default getRequestConfig(async ({locale}) => {
   }
 
   return {
-    locale,          // ← ADD THIS LINE! This was missing
+    locale,          // THIS WAS MISSING!
     messages,
-    timeZone: 'Asia/Kolkata'
+    // timeZone: 'Asia/Kolkata'
   };
 });
