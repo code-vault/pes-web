@@ -130,7 +130,7 @@ const Hero = () => {
   return (
     <section 
       id="home" 
-      className="pt-20 sm:pt-24 md:pt-28 pb-8 sm:pb-12 md:pb-16 bg-gradient-to-br from-slate-50 via-blue-50 to-orange-50 min-h-screen flex items-center relative overflow-hidden"
+      className="pt-16 sm:pt-20 md:pt-24 lg:pt-28 pb-8 sm:pb-12 md:pb-16 bg-gradient-to-br from-slate-50 via-blue-50 to-orange-50 min-h-screen flex items-center relative overflow-hidden"
     >
       {/* Animated background elements - Reduced opacity on mobile */}
       <div className="absolute inset-0 overflow-hidden opacity-30 sm:opacity-100">
@@ -145,10 +145,10 @@ const Hero = () => {
           <ScrollReveal direction="up" delay={0} duration={500}>
             <div className="space-y-4 sm:space-y-6 order-1">
               <div className="space-y-3 sm:space-y-4 md:space-y-5">
-                {/* <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-orange-200/50 shadow-lg">
+                <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-orange-200/50 shadow-lg">
                   <Zap className="h-3 sm:h-4 w-3 sm:w-4 text-orange-500 mr-1.5 sm:mr-2" />
                   <span className="text-xs sm:text-sm font-semibold text-gray-700">{t('badge')}</span>
-                </div> */}
+                </div>
                 
                 <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight tracking-tight">
                   {t('title')}

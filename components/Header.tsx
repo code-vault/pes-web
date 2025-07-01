@@ -37,11 +37,6 @@ const Header = () => {
     { href: "/testimonials", label: t('testimonials') }
   ];
 
-  // Right side navigation items (before CTA button)
-  const rightNavItems = [
-    { href: "/faq", label: "FAQ" }
-  ];
-
   // Handle contact navigation - scroll to contact section on homepage, navigate to contact page on other pages
   const handleContactClick = () => {
     const currentPath = pathname.replace(`/${locale}`, '') || '/';
@@ -111,19 +106,19 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Main Header - Sticks to top when scrolled */}
+      {/* Main Header - Sticks to top when scrolled with proper mobile spacing */}
       <header className={`fixed w-full z-40 transition-all duration-500 ${
         isScrolled 
           ? 'top-0 bg-white/95 backdrop-blur-xl shadow-lg border-b border-white/20 py-3' 
-          : 'top-8 bg-white/90 backdrop-blur-sm py-4'
+          : 'top-0 md:top-8 bg-white/90 backdrop-blur-sm py-3 md:py-4'
       }`}>
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
-            {/* Logo Section */}
-            <div className="flex-shrink-0 lg:w-72 -ml-4">
-              <Link href="/" className="flex items-center space-x-3 hover:scale-105 transition-transform duration-300 group">
-                <div className="bg-gradient-to-br from-orange-600 to-amber-600 p-3 rounded-xl shadow-lg group-hover:shadow-xl transition-shadow">
-                  <svg className="h-8 w-8 text-white" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            {/* Logo Section - Responsive sizing */}
+            <div className="flex-shrink-0 lg:w-72 -ml-2 sm:-ml-4">
+              <Link href="/" className="flex items-center space-x-2 sm:space-x-3 hover:scale-105 transition-transform duration-300 group">
+                <div className="bg-gradient-to-br from-orange-600 to-amber-600 p-2 sm:p-3 rounded-lg sm:rounded-xl shadow-lg group-hover:shadow-xl transition-shadow">
+                  <svg className="h-6 w-6 sm:h-8 sm:w-8 text-white" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                     {/* Sun - positioned higher */}
                     <circle cx="16" cy="8" r="3" fill="currentColor" />
                     <g stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
@@ -152,9 +147,9 @@ const Header = () => {
                     </g>
                   </svg>
                 </div>
-                {/* Show logo text on all screen sizes */}
+                {/* Responsive logo text */}
                 <div>
-                  <div className="text-lg sm:text-xl lg:text-3xl font-black bg-gradient-to-r from-orange-700 via-amber-600 to-orange-800 bg-clip-text text-transparent leading-tight tracking-tight">
+                  <div className="text-base sm:text-lg lg:text-2xl xl:text-3xl font-black bg-gradient-to-r from-orange-700 via-amber-600 to-orange-800 bg-clip-text text-transparent leading-tight tracking-tight">
                     {t('logo.main')}
                   </div>
                   <div className="text-xs sm:text-sm lg:text-base bg-gradient-to-r from-gray-600 to-gray-700 bg-clip-text text-transparent font-semibold tracking-[0.1em] sm:tracking-[0.15em] lg:tracking-[0.2em] uppercase">
@@ -164,7 +159,7 @@ const Header = () => {
               </Link>
             </div>
 
-            {/* Center Navigation - Absolutely centered */}
+            {/* Center Navigation - Hidden on mobile */}
             <nav className="hidden lg:flex items-center space-x-6 flex-1 justify-center">
               {mainNavItems.map((item) => (
                 <Link 
@@ -207,25 +202,25 @@ const Header = () => {
             {/* Mobile Menu Button */}
             <div className="lg:hidden">
               <button
-                className="p-3 rounded-xl hover:bg-gray-100 transition-colors"
+                className="p-2 sm:p-3 rounded-xl hover:bg-gray-100 transition-colors"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 aria-label={t('mobileMenu.toggle')}
               >
-                {isMenuOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
+                {isMenuOpen ? <X className="h-6 w-6 sm:h-7 sm:w-7" /> : <Menu className="h-6 w-6 sm:h-7 sm:w-7" />}
               </button>
             </div>
           </div>
 
-          {/* Mobile Menu */}
+          {/* Mobile Menu - Full width with proper spacing */}
           {isMenuOpen && (
-            <div className="lg:hidden mt-6">
-              <div className="px-4 pt-4 pb-6 space-y-2 bg-white/95 backdrop-blur-xl border border-gray-200/50 rounded-2xl shadow-2xl">
+            <div className="lg:hidden mt-4 sm:mt-6">
+              <div className="px-3 sm:px-4 pt-4 pb-6 space-y-2 bg-white/95 backdrop-blur-xl border border-gray-200/50 rounded-2xl shadow-2xl">
                 {/* Main navigation */}
                 {mainNavItems.map((item) => (
                   <Link 
                     key={item.href}
                     href={item.href} 
-                    className="block px-6 py-4 text-gray-700 hover:text-orange-500 hover:bg-orange-50/50 rounded-xl transition-all font-medium"
+                    className="block px-4 sm:px-6 py-3 sm:py-4 text-gray-700 hover:text-orange-500 hover:bg-orange-50/50 rounded-xl transition-all font-medium text-base sm:text-lg"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {item.label}
@@ -238,7 +233,7 @@ const Header = () => {
                 {/* Contact Navigation */}
                 <button 
                   onClick={handleContactClick}
-                  className="block w-full text-left px-6 py-3 text-gray-600 hover:text-orange-500 hover:bg-orange-50/50 rounded-xl transition-all font-medium text-sm"
+                  className="block w-full text-left px-4 sm:px-6 py-3 text-gray-600 hover:text-orange-500 hover:bg-orange-50/50 rounded-xl transition-all font-medium text-sm sm:text-base"
                 >
                   {t('contact')}
                 </button>
@@ -246,7 +241,7 @@ const Header = () => {
                 {/* FAQ Link */}
                 <Link 
                   href="/faq" 
-                  className="block px-6 py-3 text-gray-600 hover:text-orange-500 hover:bg-orange-50/50 rounded-xl transition-all font-medium text-sm"
+                  className="block px-4 sm:px-6 py-3 text-gray-600 hover:text-orange-500 hover:bg-orange-50/50 rounded-xl transition-all font-medium text-sm sm:text-base"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   FAQ
@@ -256,7 +251,7 @@ const Header = () => {
                 <div className="px-3 py-6 border-t border-gray-200/50 mt-4">
                   <Button 
                     onClick={handleContactClick}
-                    className="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg py-4 rounded-xl font-semibold"
+                    className="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg"
                   >
                     {t('getQuote')}
                   </Button>
