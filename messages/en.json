@@ -16,8 +16,8 @@
     "contact": "Contact",
     "getQuote": "Get Quote",
     "topBar": {
-      "phone": "+91 98765 43210",
-      "email": "info@purvodayaenergy.com"
+      "phone": "+91 91702 28010",
+      "email": "purvodaya.es@gmail.com"
     },
     "social": {
       "facebook": "Follow us on Facebook",
@@ -34,7 +34,7 @@
     }
   },
   "hero": {
-    "badge": "⚡ Go Solar Today",
+    "badge": "Go Solar Today",
     "title": "Switch to Clean Solar Energy & Save Money",
     "subtitle": "Join 2,500+ satisfied customers who have reduced their electricity bills by up to 90% with our premium solar solutions.",
     "save": "Save 90%",
@@ -144,28 +144,210 @@
     }
   },
   "contact": {
-    "badge": "Get In Touch",
-    "title": "Ready to Start Saving?",
-    "subtitle": "Get your free solar consultation today and discover how much you can save with our premium solar solutions.",
-    "form": {
-      "name": "Full Name",
-      "phone": "Phone Number",
-      "email": "Email Address",
-      "message": "Message",
-      "namePlaceholder": "Enter your full name",
-      "phonePlaceholder": "+91 98765 43210",
-      "emailPlaceholder": "your@email.com",
-      "messagePlaceholder": "Tell us about your requirements...",
-      "submit": "Send Message",
-      "sending": "Sending...",
-      "success": "Thank you! We'll contact you within 24 hours.",
-      "error": "Sorry, there was an issue. Please try again."
+    "badge": "Ready to Go Solar?",
+    "title": "Switch to Clean Energy Today",
+    "subtitle": "Join over 2,500 satisfied customers across Eastern Uttar Pradesh. Get your free consultation and start saving today.",
+    "visitOffices": "Visit Our Offices",
+    "backToHome": "Back to Home",
+    "getInTouch": "Get In Touch",
+    "contactTitle": "Contact Purvodaya Energy",
+    "contactSubtitle": "Ready to switch to solar? We have offices across Eastern Uttar Pradesh to serve you better. Get your free consultation today.",
+    "ourOfficeLocations": "Our Office Locations",
+    
+    "offices": {
+      "basti": {
+        "name": "Basti Office (Headquarters)",
+        "shortName": "Basti",
+        "address": "Opposite HDFC Mutual Fund - Malviya Road, Basti, Uttar Pradesh 272001",
+        "phone": "+91 91702 28010",
+        "email": "purvodaya.es@gmail.com",
+        "hours": "Mon-Sat: 9AM-6PM"
+      },
+      "gorakhpur": {
+        "name": "Gorakhpur Office",
+        "shortName": "Gorakhpur",
+        "address": "209-X, Indraprasthpuram,Lane No.4, Gorakhpur, Uttar Pradesh 273014",
+        "phone": "+91 95199 99640",
+        "email": "purvodaya.es@gmail.com",
+        "hours": "Mon-Sat: 9AM-6PM"
+      },
+      "santKabirNagar": {
+        "name": "Sant Kabir Nagar Office",
+        "shortName": "Sant Kabir Nagar",
+        "address": "Near Nathnagar Block Office, Nathnagar, Sant Kabir Nagar, Uttar Pradesh 272176",
+        "phone": "+91 92500 95947",
+        "email": "purvodaya.es@gmail.com",
+        "hours": "Mon-Sat: 9AM-6PM"
+      },
+      "headquarters": "Headquarters",
+      "hqShort": "HQ",
+      "viewOnMaps": "View on Maps"
     },
-    "info": {
-      "phone": "+91 98765 43210",
-      "email": "info@purvodayaenergy.com",
-      "address": "Solar Avenue, Green City, Mumbai, Maharashtra 400001",
-      "hours": "Mon-Sat: 9AM-6PM"
+    
+    "form": {
+      "title": "Contact Us",
+      "subtitle": "We'll respond to your inquiry within 24 hours",
+      "sendMessage": "Send us a Message",
+      "sendMessageSubtitle": "We'll respond within 24 hours",
+      
+      "fields": {
+        "firstName": {
+          "label": "First Name",
+          "placeholder": "First name",
+          "required": true
+        },
+        "lastName": {
+          "label": "Last Name",
+          "placeholder": "Last name",
+          "required": true
+        },
+        "phone": {
+          "label": "Phone Number",
+          "placeholder": "+91 98765 43210",
+          "required": true
+        },
+        "email": {
+          "label": "Email Address",
+          "placeholder": "your@email.com",
+          "required": false
+        },
+        "bill": {
+          "label": "Monthly Electricity Bill",
+          "placeholder": "₹15,000 per month",
+          "required": false
+        },
+        "message": {
+          "label": "Message",
+          "placeholder": "Tell us about your requirements or ask any questions...",
+          "required": false
+        },
+        "additional": {
+          "label": "Additional Information",
+          "placeholder": "Tell us about your requirements, property type, roof space, or any specific questions...",
+          "required": false
+        }
+      },
+      
+      "labels": {
+        "required": "*",
+        "optional": "(Optional)",
+        "requiredField": "required"
+      },
+      
+      "buttons": {
+        "sendMessage": "Send Message",
+        "sending": "Sending Request...",
+        "sendingMessage": "Sending..."
+      },
+      
+      "validation": {
+        "firstNameRequired": "First name is required",
+        "lastNameRequired": "Last name is required",
+        "phoneRequired": "Phone number is required",
+        "phoneInvalid": "Please enter a valid phone number",
+        "emailInvalid": "Please enter a valid email address"
+      },
+      
+      "messages": {
+        "success": "Thank you {name}! We'll get back to you within 24 hours.",
+        "error": "Sorry, there was an issue. Please try again or call us directly.",
+        "responseTime": "We'll get back to you within 24 hours"
+      },
+      
+      "trust": {
+        "responseTime": "We'll get back to you within 24 hours",
+        "noSpam": "No spam",
+        "freeConsultation": "Free consultation",
+        "licensedProfessionals": "Licensed professionals"
+      }
+    },
+    
+    "rightSide": {
+      "title": "Serving Eastern Uttar Pradesh with Premium Solar Solutions",
+      "subtitle": "With offices in Basti, Gorakhpur, and Sant Kabir Nagar, we're your trusted local solar energy experts. Join 2,500+ satisfied customers across the region.",
+      "titleFull": "Serving {region} with Premium Solar Solutions",
+      "region": "Eastern Uttar Pradesh",
+      
+      "benefits": {
+        "save": {
+          "title": "Save up to 90% on electricity bills",
+          "description": "Reduce your monthly costs significantly"
+        },
+        "warranty": {
+          "title": "25-year warranty included",
+          "description": "Complete peace of mind protection"
+        },
+        "installation": {
+          "title": "Professional installation",
+          "description": "Completed in 1-3 days by certified experts"
+        }
+      },
+      
+      "immediateHelp": {
+        "title": "Need Immediate Help?",
+        "callOffice": "Call Basti Office (HQ)",
+        "emailRequirements": "Email us your requirements",
+        "hours": "Mon-Sat: 9AM-6PM",
+        "emergencyHours": "Sunday: Emergency calls only"
+      }
+    },
+    
+    "contactInfo": {
+      "phone": "+91 91702 28010",
+      "email": "purvodaya.es@gmail.com",
+      "address": "Opposite HDFC Mutual Fund - Malviya Road, Basti, Uttar Pradesh 272001",
+      "hours": "Mon-Sat: 9AM-6PM",
+      "emergencyNote": "Emergency calls accepted on Sundays"
+    },
+    
+    "api": {
+      "success": "Thank you {firstName}! Your message has been received successfully. Our team will contact you within 24 hours.",
+      "error": "Sorry, there was a technical issue. Please try again or call us at +91 98765 43210.",
+      "rateLimit": "Too many requests. Please try again in 15 minutes.",
+      "validation": {
+        "invalidSubmission": "Invalid submission",
+        "missingFields": "Missing required fields: {fields}",
+        "invalidName": "Please enter a valid name",
+        "invalidEmail": "Please enter a valid email address",
+        "invalidPhone": "Please enter a valid phone number"
+      },
+      "healthCheck": {
+        "working": "Contact API is working",
+        "failed": "API health check failed"
+      }
+    },
+    
+    "email": {
+      "adminSubject": "🌞 New Solar Lead: {firstName} {lastName} ({bill} monthly bill)",
+      "adminSubjectNoBill": "🌞 New Solar Lead: {firstName} {lastName} (No bill info)",
+      "headerTitle": "New Solar Inquiry!",
+      "headerSubtitle": "A new customer is interested in solar installation",
+      "followUpUrgent": "Follow up immediately!",
+      "followUpDescription": "This is a warm lead - contact within 24 hours",
+      "customerInformation": "Customer Information",
+      "projectDetails": "Project Details",
+      "submissionDetails": "Submission Details",
+      "poweredBy": "Purvodaya Energy Solutions - Lead Management System",
+      "generatedAt": "Generated at:",
+      
+      "fields": {
+        "name": "Name:",
+        "email": "Email:",
+        "phone": "Phone:",
+        "address": "Address:",
+        "monthlyBill": "Monthly Bill:",
+        "additionalInfo": "Additional Info:",
+        "languagePreference": "Language Preference:",
+        "submitted": "Submitted:",
+        "source": "Source:"
+      },
+      
+      "values": {
+        "notProvided": "Not provided",
+        "none": "None",
+        "hindi": "Hindi",
+        "english": "English"
+      }
     }
   },
   "footer": {
@@ -198,9 +380,9 @@
       }
     },
     "contact": {
-      "phone": "+91 98765 43210",
-      "email": "info@purvodayaenergy.com",
-      "address": "Solar Avenue, Green City, Mumbai, Maharashtra 400001"
+      "phone": "+91 91702 28010",
+      "email": "purvodaya.es@gmail.com",
+      "address": "Opposite HDFC Mutual Fund - Malviya Road, Basti, Uttar Pradesh 272001"
     },
     "social": {
       "facebook": "Follow us on Facebook",
@@ -663,7 +845,7 @@
       "maintenance": "🧹 **Solar Maintenance Guide:**\n\n**Monthly:** Visual inspection for debris.\n**Quarterly:** Panel cleaning (more often in dusty areas).\n**Annually:** Professional checkup (recommended).\n\n**Cleaning Tips:**\n• Use a soft brush and water, ideally in the early morning or evening.\n• Avoid harsh chemicals.\n\n**Monitoring:**\n• We provide a mobile app for real-time performance tracking.\n• Our team also monitors your system remotely.\n\nOur systems are designed for low maintenance, but regular cleaning can boost performance by 15-20%! Want to know about our maintenance packages? 🔧"
     },
     "fallback": {
-      "0": "I'd be happy to help you with that! For detailed information about your specific solar needs, I recommend getting a free consultation with our experts. You can call us at +91 98765 43210 or fill out our contact form.",
+      "0": "I'd be happy to help you with that! For detailed information about your specific solar needs, I recommend getting a free consultation with our experts. You can call us at +91 91702 28010 or fill out our contact form.",
       "1": "That's a great question! Our solar specialists can provide you with detailed, personalized information. Would you like to schedule a free consultation or speak with an expert right away?",
       "2": "I want to make sure you get the most accurate information for your situation. Our certified solar consultants can give you specific details. Shall I connect you with them for a free consultation?"
     },
