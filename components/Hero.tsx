@@ -127,46 +127,32 @@ const Hero = () => {
         id="home" 
         className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 sm:pt-24"
       >
-        {/* Background Video */}
+        {/* Background Image - Residential Rooftop Solar */}
         <div className="absolute inset-0 z-0">
           <div className="relative w-full h-full">
-            {/* Hero Video - Local file from public/videos/ */}
-            <video 
-              autoPlay 
-              loop 
-              muted 
-              playsInline
+            {/* Hero Image - Actual Residential Home with Rooftop Solar */}
+            <img 
+              src="/images/rooftop-solar.jpeg"
+              alt="Modern residential home with solar panels installed on the rooftop"
               className="w-full h-full object-cover"
-              poster="/images/solar-installation-poster.jpg" // Optional: create a poster image
-            >
-              <source 
-                src="/videos/solar-installation-hd.mp4" 
-                type="video/mp4" 
-              />
-              {/* Fallback image if video fails */}
-              <img 
-                src="https://images.pexels.com/videos/8853485/pexels-photo-8853485.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=1920"
-                alt="Professional technicians mounting solar panels with precision clamps"
-                className="w-full h-full object-cover"
-              />
-            </video>
+            />
             
-            {/* Video overlay optimized for the bright outdoor solar installation */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/25 sm:from-black/75 sm:via-black/35 sm:to-black/15"></div>
+            {/* Adaptive overlay for rooftop installation */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent"></div>
             
-            {/* Professional installation indicator */}
+            {/* Rooftop installation indicator */}
             <div className="absolute top-6 right-6 z-10">
-              <div className="bg-black/40 backdrop-blur-sm rounded-full px-4 py-2 flex items-center space-x-2 border border-white/20">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="text-white text-xs font-bold tracking-wide">LIVE PROFESSIONAL INSTALL</span>
+              <div className="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 flex items-center space-x-2 border border-white/30 shadow-lg">
+                <Home className="w-4 h-4 text-white" />
+                <span className="text-white text-xs font-bold tracking-wide">ROOFTOP SOLAR SPECIALISTS</span>
               </div>
             </div>
             
-            {/* Installation details overlay */}
+            {/* Home energy savings highlight */}
             <div className="absolute bottom-6 left-6 z-10">
-              <div className="bg-black/40 backdrop-blur-sm rounded-xl p-3 border border-white/20">
-                <div className="text-white text-sm font-semibold mb-1">Professional Installation</div>
-                <div className="text-gray-200 text-xs">Certified technicians • Premium equipment</div>
+              <div className="bg-gradient-to-r from-blue-500/90 to-indigo-600/90 backdrop-blur-sm rounded-xl p-4 border border-white/20 shadow-xl">
+                <div className="text-white text-lg font-black">Your Home. Your Power.</div>
+                <div className="text-blue-100 text-sm">Residential Solar Solutions</div>
               </div>
             </div>
           </div>
@@ -180,11 +166,11 @@ const Hero = () => {
             <ScrollReveal direction="up" delay={0} duration={800}>
               <div className="max-w-4xl mx-auto mb-12">
                 
-                {/* Trust Badge - Updated for professional installation video */}
-                <div className="inline-flex items-center bg-black/50 backdrop-blur-md border border-white/40 rounded-full px-6 py-3 mb-6 sm:mb-8 shadow-2xl">
+                {/* Trust Badge - Rooftop specialists */}
+                <div className="inline-flex items-center bg-white/20 backdrop-blur-md border border-white/40 rounded-full px-6 py-3 mb-6 sm:mb-8 shadow-2xl">
                   <div className="flex items-center mr-3">
-                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse mr-2"></div>
-                    <span className="text-sm font-bold text-white">Certified Installation Team</span>
+                    <Home className="h-5 w-5 text-blue-400 mr-2" />
+                    <span className="text-sm font-bold text-white">Rooftop Solar Experts</span>
                   </div>
                   <div className="flex space-x-1">
                     {[...Array(5)].map((_, i) => (
@@ -193,23 +179,23 @@ const Hero = () => {
                   </div>
                 </div>
 
-                {/* Main Headline - Focused on professional installation */}
+                {/* Main Headline - Rooftop focused */}
                 <h1 className="text-3xl sm:text-5xl lg:text-7xl font-black leading-tight mb-4 sm:mb-6 drop-shadow-2xl">
-                  <span className="block mb-1 sm:mb-2 text-white">Expert Installation</span>
+                  <span className="block mb-1 sm:mb-2 text-white">Power Your Rooftop</span>
                   <span className="block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent drop-shadow-lg">
-                    Guaranteed Savings
+                    Save ₹3+ Lakhs
                   </span>
                   <span className="block text-2xl sm:text-3xl lg:text-5xl font-bold text-white drop-shadow-xl mt-1 sm:mt-2">
-                    ₹3+ Lakhs Annually
+                    Every Year with Solar
                   </span>
                 </h1>
 
-                {/* Subtitle - Emphasizing professional installation */}
+                {/* Subtitle - Residential focused */}
                 <p className="text-lg sm:text-xl lg:text-2xl text-white mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0 drop-shadow-lg font-medium">
-                  Watch our certified technicians install premium solar panels with precision mounting. Professional installation guaranteed in just 1-3 days.
+                  Transform your home's rooftop into a power-generating asset. Join 2,500+ homeowners across Eastern UP who've eliminated their electricity bills with our residential solar installations.
                 </p>
 
-                {/* CTA Buttons - Professional installation focused */}
+                {/* CTA Buttons - Clean and professional */}
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8 sm:mb-12 px-4 sm:px-0">
                   <Button 
                     onClick={() => {
@@ -222,7 +208,7 @@ const Hero = () => {
                     className="w-full sm:w-auto bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 hover:from-orange-600 hover:via-red-600 hover:to-pink-600 text-white text-base sm:text-lg font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-2xl shadow-2xl hover:shadow-orange-500/25 transition-all duration-300 hover:scale-105 min-w-[220px] border-2 border-orange-400/50"
                   >
                     <Phone className="mr-2 h-5 sm:h-6 w-5 sm:w-6" />
-                    Schedule Installation
+                    Get Free Quote
                   </Button>
                   
                   <Button 
@@ -233,40 +219,40 @@ const Hero = () => {
                       }
                     }}
                     size="lg"
-                    className="w-full sm:w-auto bg-black/50 backdrop-blur-md border-2 border-white/70 text-white hover:bg-black/70 hover:border-white/90 text-base sm:text-lg font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-2xl transition-all duration-300 hover:scale-105 min-w-[220px] shadow-2xl"
+                    className="w-full sm:w-auto bg-white/20 backdrop-blur-md border-2 border-white/70 text-white hover:bg-white/30 hover:border-white/90 text-base sm:text-lg font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-2xl transition-all duration-300 hover:scale-105 min-w-[220px] shadow-2xl"
                   >
                     <Calculator className="mr-2 h-5 sm:h-6 w-5 sm:w-6" />
-                    Calculate My Savings
+                    Calculate Savings
                   </Button>
                 </div>
 
-                {/* Live Stats Counter - Professional installation themed */}
+                {/* Live Stats Counter - Clean professional stats */}
                 <div 
                   ref={statsRef}
                   className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 max-w-4xl mx-auto px-4 sm:px-0"
                 >
-                  <div className="bg-black/40 backdrop-blur-md border border-white/40 rounded-2xl p-4 sm:p-6 text-center shadow-2xl">
+                  <div className="bg-white/15 backdrop-blur-md border border-white/40 rounded-2xl p-4 sm:p-6 text-center shadow-2xl">
                     <div className="text-3xl sm:text-4xl lg:text-5xl font-black text-green-400 mb-1 sm:mb-2 drop-shadow-lg">
                       {formatNumber(customersCount.count)}+
                     </div>
-                    <div className="text-base sm:text-lg font-bold text-white drop-shadow-md">Expert Installations</div>
-                    <div className="text-sm text-gray-200 mt-1">Completed Successfully</div>
+                    <div className="text-base sm:text-lg font-bold text-white drop-shadow-md">Happy Customers</div>
+                    <div className="text-sm text-gray-200 mt-1">Across Eastern UP</div>
                   </div>
                   
-                  <div className="bg-black/40 backdrop-blur-md border border-white/40 rounded-2xl p-4 sm:p-6 text-center shadow-2xl">
+                  <div className="bg-white/15 backdrop-blur-md border border-white/40 rounded-2xl p-4 sm:p-6 text-center shadow-2xl">
                     <div className="text-3xl sm:text-4xl lg:text-5xl font-black text-blue-400 mb-1 sm:mb-2 drop-shadow-lg">
-                      1-3 Days
-                    </div>
-                    <div className="text-base sm:text-lg font-bold text-white drop-shadow-md">Installation Time</div>
-                    <div className="text-sm text-gray-200 mt-1">Professional & Fast</div>
-                  </div>
-                  
-                  <div className="bg-black/40 backdrop-blur-md border border-white/40 rounded-2xl p-4 sm:p-6 text-center shadow-2xl">
-                    <div className="text-3xl sm:text-4xl lg:text-5xl font-black text-orange-400 mb-1 sm:mb-2 drop-shadow-lg">
                       {yearsWarranty.count} Years
                     </div>
-                    <div className="text-base sm:text-lg font-bold text-white drop-shadow-md">Full Warranty</div>
+                    <div className="text-base sm:text-lg font-bold text-white drop-shadow-md">Warranty</div>
                     <div className="text-sm text-gray-200 mt-1">Complete Coverage</div>
+                  </div>
+                  
+                  <div className="bg-white/15 backdrop-blur-md border border-white/40 rounded-2xl p-4 sm:p-6 text-center shadow-2xl">
+                    <div className="text-3xl sm:text-4xl lg:text-5xl font-black text-orange-400 mb-1 sm:mb-2 drop-shadow-lg">
+                      {savingsPercent.count}%
+                    </div>
+                    <div className="text-base sm:text-lg font-bold text-white drop-shadow-md">Bill Reduction</div>
+                    <div className="text-sm text-gray-200 mt-1">Average Savings</div>
                   </div>
                 </div>
               </div>
