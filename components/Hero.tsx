@@ -127,30 +127,49 @@ const Hero = () => {
         id="home" 
         className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 sm:pt-24"
       >
-        {/* Background Video/Image */}
+        {/* Background Video */}
         <div className="absolute inset-0 z-0">
-          {!isVideoPlaying ? (
-            // Hero Image
-            <div className="relative w-full h-full">
+          <div className="relative w-full h-full">
+            {/* Hero Video - Local file from public/videos/ */}
+            <video 
+              autoPlay 
+              loop 
+              muted 
+              playsInline
+              className="w-full h-full object-cover"
+              poster="/images/solar-installation-poster.jpg" // Optional: create a poster image
+            >
+              <source 
+                src="/videos/solar-installation-hd.mp4" 
+                type="video/mp4" 
+              />
+              {/* Fallback image if video fails */}
               <img 
-                src="https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?w=1920&h=1080&fit=crop&auto=format&q=80"
-                alt="Beautiful modern home with solar panels on the roof"
+                src="https://images.pexels.com/videos/8853485/pexels-photo-8853485.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=1920"
+                alt="Professional technicians mounting solar panels with precision clamps"
                 className="w-full h-full object-cover"
               />
-              {/* Dark overlay for better text readability */}
-              <div className="absolute inset-0 bg-black/40"></div>
-            </div>
-          ) : (
-            // Video placeholder (would be actual video in production)
-            <div className="relative w-full h-full bg-gradient-to-br from-blue-900 to-gray-900">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center text-white">
-                  <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-white mb-4"></div>
-                  <p className="text-xl">Loading Video...</p>
-                </div>
+            </video>
+            
+            {/* Video overlay optimized for the bright outdoor solar installation */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/25 sm:from-black/75 sm:via-black/35 sm:to-black/15"></div>
+            
+            {/* Professional installation indicator */}
+            <div className="absolute top-6 right-6 z-10">
+              <div className="bg-black/40 backdrop-blur-sm rounded-full px-4 py-2 flex items-center space-x-2 border border-white/20">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                <span className="text-white text-xs font-bold tracking-wide">LIVE PROFESSIONAL INSTALL</span>
               </div>
             </div>
-          )}
+            
+            {/* Installation details overlay */}
+            <div className="absolute bottom-6 left-6 z-10">
+              <div className="bg-black/40 backdrop-blur-sm rounded-xl p-3 border border-white/20">
+                <div className="text-white text-sm font-semibold mb-1">Professional Installation</div>
+                <div className="text-gray-200 text-xs">Certified technicians • Premium equipment</div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Hero Content Overlay */}
@@ -161,35 +180,37 @@ const Hero = () => {
             <ScrollReveal direction="up" delay={0} duration={800}>
               <div className="max-w-4xl mx-auto mb-12">
                 
-                {/* Trust Badge */}
-                {/* <div className="inline-flex items-center bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-6 py-3 mb-8">
-                  <Star className="h-5 w-5 text-yellow-400 mr-2" />
-                  <span className="text-sm font-semibold">India's #1 Rated Solar Company</span>
-                  <div className="flex ml-3 space-x-1">
+                {/* Trust Badge - Updated for professional installation video */}
+                <div className="inline-flex items-center bg-black/50 backdrop-blur-md border border-white/40 rounded-full px-6 py-3 mb-6 sm:mb-8 shadow-2xl">
+                  <div className="flex items-center mr-3">
+                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse mr-2"></div>
+                    <span className="text-sm font-bold text-white">Certified Installation Team</span>
+                  </div>
+                  <div className="flex space-x-1">
                     {[...Array(5)].map((_, i) => (
                       <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                     ))}
                   </div>
-                </div> */}
+                </div>
 
-                {/* Main Headline */}
-                <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black leading-tight mb-6">
-                  <span className="block mb-2">Power Your Home</span>
-                  <span className="block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent">
-                    Save ₹3+ Lakhs
+                {/* Main Headline - Focused on professional installation */}
+                <h1 className="text-3xl sm:text-5xl lg:text-7xl font-black leading-tight mb-4 sm:mb-6 drop-shadow-2xl">
+                  <span className="block mb-1 sm:mb-2 text-white">Expert Installation</span>
+                  <span className="block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent drop-shadow-lg">
+                    Guaranteed Savings
                   </span>
-                  <span className="block text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-200 mt-2">
-                    Every Year with Solar
+                  <span className="block text-2xl sm:text-3xl lg:text-5xl font-bold text-white drop-shadow-xl mt-1 sm:mt-2">
+                    ₹3+ Lakhs Annually
                   </span>
                 </h1>
 
-                {/* Subtitle */}
-                <p className="text-xl sm:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto leading-relaxed">
-                  Join 2,500+ homeowners across Eastern UP who've slashed their electricity bills by 90% with our premium solar installations.
+                {/* Subtitle - Emphasizing professional installation */}
+                <p className="text-lg sm:text-xl lg:text-2xl text-white mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0 drop-shadow-lg font-medium">
+                  Watch our certified technicians install premium solar panels with precision mounting. Professional installation guaranteed in just 1-3 days.
                 </p>
 
-                {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+                {/* CTA Buttons - Professional installation focused */}
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8 sm:mb-12 px-4 sm:px-0">
                   <Button 
                     onClick={() => {
                       const contactSection = document.getElementById('contact');
@@ -198,10 +219,10 @@ const Hero = () => {
                       }
                     }}
                     size="lg"
-                    className="bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 hover:from-orange-600 hover:via-red-600 hover:to-pink-600 text-white text-lg font-bold px-8 py-4 rounded-2xl shadow-2xl hover:shadow-orange-500/25 transition-all duration-300 hover:scale-105 min-w-[200px]"
+                    className="w-full sm:w-auto bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 hover:from-orange-600 hover:via-red-600 hover:to-pink-600 text-white text-base sm:text-lg font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-2xl shadow-2xl hover:shadow-orange-500/25 transition-all duration-300 hover:scale-105 min-w-[220px] border-2 border-orange-400/50"
                   >
-                    <Phone className="mr-2 h-6 w-6" />
-                    Get Free Quote
+                    <Phone className="mr-2 h-5 sm:h-6 w-5 sm:w-6" />
+                    Schedule Installation
                   </Button>
                   
                   <Button 
@@ -212,40 +233,40 @@ const Hero = () => {
                       }
                     }}
                     size="lg"
-                    className="bg-white/20 backdrop-blur-md border-2 border-white/60 text-white hover:bg-white/30 hover:border-white/80 text-lg font-bold px-8 py-4 rounded-2xl transition-all duration-300 hover:scale-105 min-w-[200px] shadow-lg"
+                    className="w-full sm:w-auto bg-black/50 backdrop-blur-md border-2 border-white/70 text-white hover:bg-black/70 hover:border-white/90 text-base sm:text-lg font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-2xl transition-all duration-300 hover:scale-105 min-w-[220px] shadow-2xl"
                   >
-                    <Calculator className="mr-2 h-6 w-6" />
-                    Calculate Savings
+                    <Calculator className="mr-2 h-5 sm:h-6 w-5 sm:w-6" />
+                    Calculate My Savings
                   </Button>
                 </div>
 
-                {/* Live Stats Counter */}
+                {/* Live Stats Counter - Professional installation themed */}
                 <div 
                   ref={statsRef}
-                  className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto"
+                  className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 max-w-4xl mx-auto px-4 sm:px-0"
                 >
-                  <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 text-center">
-                    <div className="text-4xl sm:text-5xl font-black text-green-400 mb-2">
+                  <div className="bg-black/40 backdrop-blur-md border border-white/40 rounded-2xl p-4 sm:p-6 text-center shadow-2xl">
+                    <div className="text-3xl sm:text-4xl lg:text-5xl font-black text-green-400 mb-1 sm:mb-2 drop-shadow-lg">
                       {formatNumber(customersCount.count)}+
                     </div>
-                    <div className="text-lg font-semibold text-gray-200">Happy Customers</div>
-                    <div className="text-sm text-gray-400 mt-1">Across Eastern UP</div>
+                    <div className="text-base sm:text-lg font-bold text-white drop-shadow-md">Expert Installations</div>
+                    <div className="text-sm text-gray-200 mt-1">Completed Successfully</div>
                   </div>
                   
-                  <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 text-center">
-                    <div className="text-4xl sm:text-5xl font-black text-blue-400 mb-2">
+                  <div className="bg-black/40 backdrop-blur-md border border-white/40 rounded-2xl p-4 sm:p-6 text-center shadow-2xl">
+                    <div className="text-3xl sm:text-4xl lg:text-5xl font-black text-blue-400 mb-1 sm:mb-2 drop-shadow-lg">
+                      1-3 Days
+                    </div>
+                    <div className="text-base sm:text-lg font-bold text-white drop-shadow-md">Installation Time</div>
+                    <div className="text-sm text-gray-200 mt-1">Professional & Fast</div>
+                  </div>
+                  
+                  <div className="bg-black/40 backdrop-blur-md border border-white/40 rounded-2xl p-4 sm:p-6 text-center shadow-2xl">
+                    <div className="text-3xl sm:text-4xl lg:text-5xl font-black text-orange-400 mb-1 sm:mb-2 drop-shadow-lg">
                       {yearsWarranty.count} Years
                     </div>
-                    <div className="text-lg font-semibold text-gray-200">Warranty</div>
-                    <div className="text-sm text-gray-400 mt-1">Complete Coverage</div>
-                  </div>
-                  
-                  <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 text-center">
-                    <div className="text-4xl sm:text-5xl font-black text-orange-400 mb-2">
-                      {savingsPercent.count}%
-                    </div>
-                    <div className="text-lg font-semibold text-gray-200">Bill Reduction</div>
-                    <div className="text-sm text-gray-400 mt-1">Average Savings</div>
+                    <div className="text-base sm:text-lg font-bold text-white drop-shadow-md">Full Warranty</div>
+                    <div className="text-sm text-gray-200 mt-1">Complete Coverage</div>
                   </div>
                 </div>
               </div>
