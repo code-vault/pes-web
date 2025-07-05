@@ -8,6 +8,7 @@ import IntlProvider from '@/components/IntlProvider';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatingClickToCall from '@/components/FloatingClickToCall';
+import { WelcomePopupProvider } from '@/components/WelcomePopup';
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -64,12 +65,14 @@ export default async function LocaleLayout({ children, params }: Props) {
       </head>
       <body className={inter.className}>
         <IntlProvider locale={locale} messages={messages}>
-        <ToastProvider>
-          <Header />              {/* ← Make sure this is here */}
-          <main>{children}</main>
-          <Footer />              {/* ← And this */}
-          <FloatingClickToCall /> {/* ← And this */}
-        </ToastProvider>
+          <WelcomePopupProvider>
+            <ToastProvider>
+            <Header />              {/* ← Make sure this is here */}
+            <main>{children}</main>
+            <Footer />              {/* ← And this */}
+            <FloatingClickToCall /> {/* ← And this */}
+            </ToastProvider>
+          </WelcomePopupProvider>
       </IntlProvider>
       </body>
     </html>

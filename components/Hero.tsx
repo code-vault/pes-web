@@ -87,224 +87,358 @@ const useIntersectionObserver = (threshold: number = 0.1) => {
   return { ref, isIntersecting };
 };
 
-// Hero Background Video-like Slideshow Component
+// Hero Background Solar Energy Visualization Component
 const HeroBackgroundSlideshow = () => {
-  // Array of hero images with different solar installations
-  const heroImages = [
+  // Solar story progression - each image tells part of the solar journey
+  const solarStory = [
     {
       src: "/images/rooftop-solar-1.jpg",
-      alt: "Modern residential home with solar panels on rooftop",
-      title: "Residential Solar Excellence",
-      effect: "slow-zoom-in"
+      alt: "Sunrise over residential solar installation",
+      title: "Dawn of Clean Energy",
+      theme: "sunrise",
+      energyLevel: 25
     },
     {
-      src: "/images/rooftop-solar-2.jpg",
-      alt: "Large commercial solar installation", 
-      title: "Commercial Solar Solutions",
-      effect: "pan-left"
+      src: "/images/rooftop-solar-2.jpg", 
+      alt: "Peak sun commercial solar array",
+      title: "Peak Power Generation",
+      theme: "noon",
+      energyLevel: 100
     },
     {
       src: "/images/rooftop-solar-3.jpg",
-      alt: "Solar panels on industrial facility",
-      title: "Industrial Scale Projects", 
-      effect: "pan-right"
+      alt: "Golden hour industrial solar farm",
+      title: "Sustainable Future",
+      theme: "golden",
+      energyLevel: 75
     },
     {
       src: "/images/rooftop-solar-4.jpg",
-      alt: "Solar installation team at work",
-      title: "Professional Installation",
-      effect: "slow-zoom-out"
+      alt: "Evening solar installation with storage",
+      title: "Energy Independence", 
+      theme: "evening",
+      energyLevel: 50
     }
   ];
 
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [energyPulse, setEnergyPulse] = useState(0);
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
-    // Initialize after component mounts
     setIsInitialized(true);
     
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => 
-        (prevIndex + 1) % heroImages.length
-      );
-    }, 8000); // Change image every 8 seconds for longer continuous motion
+    // Main story progression - Slower for smoother transitions
+    const storyInterval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % solarStory.length);
+    }, 12000); // 12 seconds per image
 
-    return () => clearInterval(interval);
+    // Energy pulse animation
+    const pulseInterval = setInterval(() => {
+      setEnergyPulse(prev => (prev + 1) % 100);
+    }, 100);
+
+    return () => {
+      clearInterval(storyInterval);
+      clearInterval(pulseInterval);
+    };
   }, []);
 
-  const getVideoLikeStyle = (index: number, effect: string) => {
-    if (!isInitialized || !heroImages[index]) {
-      return "absolute inset-0 w-full h-full object-cover opacity-0";
-    }
-    
-    const isActive = index === currentImageIndex;
-    const isNext = index === (currentImageIndex + 1) % heroImages.length;
-    
-    let baseStyle = "absolute inset-0 w-full h-full object-cover";
-    
-    if (isActive) {
-      switch (effect) {
-        case "slow-zoom-in":
-          return `${baseStyle} opacity-100 animate-[slowZoomIn_10s_ease-in-out_infinite]`;
-        case "slow-zoom-out":
-          return `${baseStyle} opacity-100 animate-[slowZoomOut_10s_ease-in-out_infinite]`;
-        case "pan-left":
-          return `${baseStyle} opacity-100 animate-[panLeft_12s_linear_infinite]`;
-        case "pan-right":
-          return `${baseStyle} opacity-100 animate-[panRight_12s_linear_infinite]`;
-        default:
-          return `${baseStyle} opacity-100 animate-[slowZoomIn_10s_ease-in-out_infinite]`;
-      }
-    } else if (isNext) {
-      // Smooth fade in for next image
-      return `${baseStyle} opacity-0 scale-100 animate-[smoothFadeIn_2s_ease-in-out_6s_forwards]`;
-    } else {
-      return `${baseStyle} opacity-0 scale-100`;
-    }
-  };
+  const currentStory = solarStory[currentIndex];
 
   return (
     <div className="absolute inset-0 z-0 overflow-hidden">
-      {/* Background Images with Video-like Motion */}
-      {heroImages.map((image, index) => (
-        <div key={index} className="absolute inset-0">
-          <img
-            src={image.src}
-            alt={image.alt}
-            className={getVideoLikeStyle(index, image.effect)}
-            loading={index === 0 ? "eager" : "lazy"}
-          />
+      {/* Ultra-Smooth Layered Image System with Better Text Protection */}
+      {solarStory.map((story, index) => {
+        const isActive = index === currentIndex;
+        
+        return (
+          <div 
+            key={index}
+            className="absolute inset-0"
+          >
+            {/* Base Image - Full brightness, natural colors */}
+            <img
+              src={story.src}
+              alt={story.alt}
+              className={`w-full h-full object-cover ${
+                isActive ? 'opacity-100' : 'opacity-0'
+              } ${isActive ? `animate-solar-${story.theme}` : ''}`}
+              style={{
+                transition: 'opacity 5000ms cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+              }}
+              loading={index === 0 ? "eager" : "lazy"}
+            />
+            
+            {/* Subtle Theme Overlay - Very light */}
+            <div className={`absolute inset-0 ${
+              isActive ? 'opacity-100' : 'opacity-0'
+            } ${
+              story.theme === 'sunrise' ? 'bg-gradient-to-tr from-orange-500/8 via-transparent to-transparent' :
+              story.theme === 'noon' ? 'bg-gradient-to-b from-yellow-400/5 via-transparent to-transparent' :
+              story.theme === 'golden' ? 'bg-gradient-to-bl from-amber-400/10 via-transparent to-transparent' :
+              'bg-gradient-to-tl from-blue-500/8 via-transparent to-transparent'
+            }`}
+            style={{
+              transition: 'opacity 5000ms cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+            }} />
+          </div>
+        );
+      })}
+
+      {/* Minimal overlay - only where text appears */}
+      <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-black/70 via-black/30 to-transparent z-10" />
+
+      {/* Dynamic Energy Visualization */}
+      <div className="absolute inset-0 z-20 pointer-events-none">
+        {/* Animated Solar Rays */}
+        <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          {[...Array(8)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 bg-gradient-to-b from-yellow-300 via-orange-400 to-transparent"
+              style={{
+                height: `${20 + (currentStory.energyLevel / 5)}px`,
+                transform: `rotate(${i * 45}deg)`,
+                transformOrigin: 'bottom center',
+                opacity: currentStory.energyLevel / 200,
+                animation: `solarRay${i} ${3 + i * 0.5}s ease-in-out infinite`
+              }}
+            />
+          ))}
         </div>
-      ))}
-      
-      {/* Enhanced overlay gradients for better text readability */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/30 z-10"></div>
-      <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/40 z-10"></div>
-      <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/70 z-10"></div>
-      
-      {/* Additional text protection overlay */}
-      <div className="absolute inset-0 bg-black/20 z-15"></div>
-      
-      {/* Animated particles overlay - More dynamic */}
-      <div className="absolute inset-0 z-20 opacity-40">
-        <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-yellow-400 rounded-full animate-[floatParticle1_6s_ease-in-out_infinite]"></div>
-        <div className="absolute top-1/3 right-1/3 w-2 h-2 bg-orange-400 rounded-full animate-[floatParticle2_4s_ease-in-out_infinite_1s]"></div>
-        <div className="absolute bottom-1/4 left-1/2 w-2.5 h-2.5 bg-amber-400 rounded-full animate-[floatParticle3_5s_ease-in-out_infinite_2s]"></div>
-        <div className="absolute top-2/3 right-1/4 w-1.5 h-1.5 bg-yellow-300 rounded-full animate-[floatParticle4_3s_ease-in-out_infinite_3s]"></div>
-        <div className="absolute top-1/2 left-1/6 w-2 h-2 bg-orange-300 rounded-full animate-[floatParticle5_7s_ease-in-out_infinite_1.5s]"></div>
-        <div className="absolute bottom-1/3 right-1/2 w-1.5 h-1.5 bg-amber-300 rounded-full animate-[floatParticle6_4.5s_ease-in-out_infinite_2.5s]"></div>
+
+        {/* Energy Particles Flow */}
+        <div className="absolute inset-0">
+          {[...Array(12)].map((_, i) => (
+            <div
+              key={i}
+              className={`absolute w-2 h-2 rounded-full ${
+                currentStory.theme === 'sunrise' ? 'bg-orange-400' :
+                currentStory.theme === 'noon' ? 'bg-yellow-300' :
+                currentStory.theme === 'golden' ? 'bg-amber-400' :
+                'bg-blue-400'
+              }`}
+              style={{
+                top: `${20 + (i * 7)}%`,
+                left: `${10 + (i * 6)}%`,
+                opacity: currentStory.energyLevel / 300,
+                animation: `energyFlow${i % 4} ${4 + i * 0.3}s ease-in-out infinite`
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Circuit-like Energy Connections */}
+        <svg className="absolute inset-0 w-full h-full opacity-30">
+          <defs>
+            <linearGradient id="energyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor={
+                currentStory.theme === 'sunrise' ? '#f97316' :
+                currentStory.theme === 'noon' ? '#eab308' :
+                currentStory.theme === 'golden' ? '#f59e0b' :
+                '#3b82f6'
+              } stopOpacity="0.6" />
+              <stop offset="100%" stopColor="transparent" />
+            </linearGradient>
+          </defs>
+          
+          {/* Animated Connection Lines */}
+          <path
+            d="M100,100 Q300,50 500,150 T900,100"
+            stroke="url(#energyGradient)"
+            strokeWidth="2"
+            fill="none"
+            className="animate-pulse"
+            style={{ 
+              strokeDasharray: '10,5',
+              animation: 'energyFlow 3s linear infinite'
+            }}
+          />
+          <path
+            d="M150,300 Q400,250 600,350 T1000,300"
+            stroke="url(#energyGradient)"
+            strokeWidth="1.5"
+            fill="none"
+            className="animate-pulse"
+            style={{ 
+              strokeDasharray: '8,4',
+              animation: 'energyFlow 4s linear infinite reverse'
+            }}
+          />
+        </svg>
       </div>
-      
-      {/* Dynamic content overlay based on current image */}
+
+      {/* Story Progress Indicator with Strong Background */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30">
+        <div className="flex flex-col items-center space-y-4 bg-black/50 backdrop-blur-xl rounded-2xl px-6 py-4 border border-white/30">
+          {/* Energy Level Meter */}
+          <div className="w-32 h-3 bg-black/40 rounded-full overflow-hidden border border-white/20">
+            <div 
+              className={`h-full rounded-full transition-all duration-1000 ${
+                currentStory.theme === 'sunrise' ? 'bg-gradient-to-r from-orange-400 to-yellow-400' :
+                currentStory.theme === 'noon' ? 'bg-gradient-to-r from-yellow-300 to-white' :
+                currentStory.theme === 'golden' ? 'bg-gradient-to-r from-amber-400 to-orange-500' :
+                'bg-gradient-to-r from-blue-400 to-purple-500'
+              }`}
+              style={{ 
+                width: `${currentStory.energyLevel}%`,
+                boxShadow: `0 0 10px ${
+                  currentStory.theme === 'sunrise' ? '#f97316' :
+                  currentStory.theme === 'noon' ? '#eab308' :
+                  currentStory.theme === 'golden' ? '#f59e0b' :
+                  '#3b82f6'
+                }`
+              }}
+            />
+          </div>
+          
+          {/* Story Progress Dots */}
+          <div className="flex space-x-3">
+            {solarStory.map((_, index) => (
+              <div
+                key={index}
+                className={`w-2.5 h-2.5 rounded-full transition-all duration-500 ${
+                  index === currentIndex
+                    ? `${
+                        currentStory.theme === 'sunrise' ? 'bg-orange-400' :
+                        currentStory.theme === 'noon' ? 'bg-yellow-300' :
+                        currentStory.theme === 'golden' ? 'bg-amber-400' :
+                        'bg-blue-400'
+                      } scale-150 shadow-lg`
+                    : 'bg-white/60 scale-100'
+                }`}
+                style={{
+                  boxShadow: index === currentIndex ? `0 0 12px ${
+                    currentStory.theme === 'sunrise' ? '#f97316' :
+                    currentStory.theme === 'noon' ? '#eab308' :
+                    currentStory.theme === 'golden' ? '#f59e0b' :
+                    '#3b82f6'
+                  }` : 'none'
+                }}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Story Title with Strong Background */}
       <div className="absolute top-6 right-6 z-30">
-        {isInitialized && heroImages[currentImageIndex] && (
-          <div className="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 flex items-center space-x-2 border border-white/30 shadow-lg transition-all duration-1000 animate-[slideInBounce_2s_ease-out]">
-            <Home className="w-4 h-4 text-white" />
-            <span className="text-white text-xs font-bold tracking-wide">
-              {heroImages[currentImageIndex]?.title?.toUpperCase() || 'SOLAR SOLUTIONS'}
-            </span>
+        {isInitialized && currentStory && (
+          <div 
+            className="backdrop-blur-xl rounded-2xl px-6 py-4 border border-white/40 shadow-2xl transition-all duration-1000 bg-black/60"
+            style={{
+              animation: 'storyAppear 2s ease-out'
+            }}
+          >
+            <div className="flex items-center space-x-3">
+              <div className={`w-3 h-3 rounded-full animate-pulse ${
+                currentStory.theme === 'sunrise' ? 'bg-orange-400' :
+                currentStory.theme === 'noon' ? 'bg-yellow-300' :
+                currentStory.theme === 'golden' ? 'bg-amber-400' :
+                'bg-blue-400'
+              }`} />
+              <span className="text-white font-bold text-sm tracking-wide drop-shadow-lg">
+                {currentStory.title.toUpperCase()}
+              </span>
+              <div className="text-white/90 text-xs font-medium">
+                {currentStory.energyLevel}% Energy
+              </div>
+            </div>
           </div>
         )}
       </div>
-      
-      {/* Progress bar instead of dots for video-like feel */}
-      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-30 w-32 h-1 bg-white/30 rounded-full overflow-hidden">
-        <div 
-          className="h-full bg-gradient-to-r from-orange-400 to-amber-400 rounded-full transition-all duration-[8000ms] ease-linear"
-          style={{
-            width: `${((currentImageIndex + 1) / heroImages.length) * 100}%`,
-            animation: 'progressBar 8s linear infinite'
-          }}
-        />
-      </div>
 
-      {/* CSS Animations for Smooth Video-like Effects */}
+      {/* Advanced CSS Animations */}
       <style jsx>{`
-        /* Smooth, slow zoom in - no jitter */
-        @keyframes slowZoomIn {
-          0% { transform: scale(1.0); }
-          100% { transform: scale(1.08); }
+        /* Natural image animations - full brightness, beautiful colors */
+        @keyframes solar-sunrise {
+          0% { transform: translateX(0) translateY(0); }
+          100% { transform: translateX(-0.5%) translateY(0); }
         }
         
-        /* Smooth, slow zoom out - no jitter */
-        @keyframes slowZoomOut {
-          0% { transform: scale(1.08); }
-          100% { transform: scale(1.0); }
+        @keyframes solar-noon {
+          0% { transform: translateY(0); }
+          100% { transform: translateY(-0.5%); }
         }
         
-        /* Smooth pan left - very subtle */
-        @keyframes panLeft {
-          0% { transform: scale(1.05) translateX(2%); }
-          100% { transform: scale(1.05) translateX(-2%); }
+        @keyframes solar-golden {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(0.5%); }
         }
         
-        /* Smooth pan right - very subtle */
-        @keyframes panRight {
-          0% { transform: scale(1.05) translateX(-2%); }
-          100% { transform: scale(1.05) translateX(2%); }
+        @keyframes solar-evening {
+          0% { transform: translateY(0); }
+          100% { transform: translateY(0.5%); }
         }
         
-        /* Smooth fade in transition */
-        @keyframes smoothFadeIn {
-          0% { opacity: 0; }
-          100% { opacity: 1; }
+        /* Energy flow animations */
+        @keyframes energyFlow {
+          0% { stroke-dashoffset: 0; opacity: 0.3; }
+          50% { opacity: 0.8; }
+          100% { stroke-dashoffset: -50; opacity: 0.3; }
         }
         
-        /* Reduced motion floating particles - much smoother */
-        @keyframes floatParticle1 {
-          0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.6; }
-          50% { transform: translateY(-8px) translateX(4px); opacity: 1; }
+        /* Solar ray animations */
+        @keyframes solarRay0 { 0%, 100% { opacity: 0.3; transform: rotate(0deg) scaleY(1); } 50% { opacity: 0.8; transform: rotate(0deg) scaleY(1.5); } }
+        @keyframes solarRay1 { 0%, 100% { opacity: 0.2; transform: rotate(45deg) scaleY(0.8); } 60% { opacity: 0.9; transform: rotate(45deg) scaleY(1.3); } }
+        @keyframes solarRay2 { 0%, 100% { opacity: 0.4; transform: rotate(90deg) scaleY(1.1); } 40% { opacity: 0.7; transform: rotate(90deg) scaleY(1.6); } }
+        @keyframes solarRay3 { 0%, 100% { opacity: 0.3; transform: rotate(135deg) scaleY(0.9); } 70% { opacity: 0.8; transform: rotate(135deg) scaleY(1.4); } }
+        @keyframes solarRay4 { 0%, 100% { opacity: 0.5; transform: rotate(180deg) scaleY(1.2); } 30% { opacity: 0.6; transform: rotate(180deg) scaleY(1.7); } }
+        @keyframes solarRay5 { 0%, 100% { opacity: 0.2; transform: rotate(225deg) scaleY(0.7); } 80% { opacity: 0.9; transform: rotate(225deg) scaleY(1.2); } }
+        @keyframes solarRay6 { 0%, 100% { opacity: 0.4; transform: rotate(270deg) scaleY(1); } 45% { opacity: 0.7; transform: rotate(270deg) scaleY(1.5); } }
+        @keyframes solarRay7 { 0%, 100% { opacity: 0.3; transform: rotate(315deg) scaleY(1.1); } 65% { opacity: 0.8; transform: rotate(315deg) scaleY(1.3); } }
+        
+        /* Energy particle flows */
+        @keyframes energyFlow0 {
+          0% { transform: translateY(0) translateX(0) scale(0.5); opacity: 0; }
+          25% { opacity: 0.8; transform: scale(1); }
+          50% { transform: translateY(-20px) translateX(10px) scale(1.2); }
+          100% { transform: translateY(-40px) translateX(20px) scale(0.3); opacity: 0; }
         }
         
-        @keyframes floatParticle2 {
-          0%, 100% { transform: translateY(0px) translateX(0px) scale(1); opacity: 0.5; }
-          50% { transform: translateY(-6px) translateX(-3px) scale(1.1); opacity: 0.9; }
+        @keyframes energyFlow1 {
+          0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+          30% { opacity: 0.9; }
+          100% { transform: translateY(-30px) translateX(-15px) rotate(180deg); opacity: 0; }
         }
         
-        @keyframes floatParticle3 {
-          0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.7; }
-          33% { transform: translateY(-5px) translateX(3px); opacity: 1; }
-          66% { transform: translateY(-3px) translateX(-2px); opacity: 0.8; }
+        @keyframes energyFlow2 {
+          0% { transform: translateY(0) translateX(0) scale(0.8); opacity: 0; }
+          40% { opacity: 0.7; transform: scale(1.1); }
+          100% { transform: translateY(-25px) translateX(25px) scale(0.4); opacity: 0; }
         }
         
-        @keyframes floatParticle4 {
-          0%, 100% { transform: translateY(0px) translateX(0px) scale(1); opacity: 0.6; }
-          50% { transform: translateY(-7px) translateX(-4px) scale(1.05); opacity: 1; }
+        @keyframes energyFlow3 {
+          0% { transform: translateY(0) translateX(0); opacity: 0; }
+          35% { opacity: 0.8; }
+          100% { transform: translateY(-35px) translateX(-10px); opacity: 0; }
         }
         
-        @keyframes floatParticle5 {
-          0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.5; }
-          40% { transform: translateY(-6px) translateX(3px); opacity: 0.9; }
-          80% { transform: translateY(-4px) translateX(-3px); opacity: 0.7; }
+        /* Story appearance animation */
+        @keyframes storyAppear {
+          0% { transform: translateX(100px) scale(0.8); opacity: 0; }
+          60% { transform: translateX(-10px) scale(1.05); opacity: 0.9; }
+          100% { transform: translateX(0) scale(1); opacity: 1; }
         }
         
-        @keyframes floatParticle6 {
-          0%, 100% { transform: translateY(0px) translateX(0px) scale(1); opacity: 0.6; }
-          50% { transform: translateY(-5px) translateX(2px) scale(1.03); opacity: 0.8; }
-        }
+        /* Apply smooth animations - 12 second duration for perfect sync */
+        .animate-solar-sunrise { animation: solar-sunrise 12s ease-out forwards; }
+        .animate-solar-noon { animation: solar-noon 12s ease-out forwards; }
+        .animate-solar-golden { animation: solar-golden 12s ease-out forwards; }
+        .animate-solar-evening { animation: solar-evening 12s ease-out forwards; }
         
-        /* Smooth content badge animation */
-        @keyframes slideInBounce {
-          0% { transform: translateX(50px); opacity: 0; }
-          70% { transform: translateX(-5px); opacity: 0.9; }
-          100% { transform: translateX(0px); opacity: 1; }
-        }
-        
-        /* Smooth progress bar */
-        @keyframes progressBar {
-          0% { width: 0%; }
-          100% { width: 100%; }
-        }
-        
-        /* Ensure smooth hardware acceleration */
-        .animate-slowZoomIn,
-        .animate-slowZoomOut,
-        .animate-panLeft,
-        .animate-panRight {
-          will-change: transform;
+        /* Ensure perfectly smooth transitions */
+        img {
+          will-change: opacity;
           backface-visibility: hidden;
-          transform-style: preserve-3d;
+          transform: translateZ(0);
+        }
+        
+        /* Force smooth rendering */
+        * {
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
         }
       `}</style>
     </div>
