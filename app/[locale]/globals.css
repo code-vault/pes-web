@@ -256,11 +256,12 @@
       transition-duration: 100ms;
     }
     
-    .hover\\:scale-105:hover {
+    /* Disable hover transforms on mobile */
+    .hover\:scale-105:hover {
       transform: none;
     }
     
-    .hover\\:-translate-y-2:hover {
+    .hover\:-translate-y-2:hover {
       transform: none;
     }
   }
@@ -275,7 +276,8 @@
       @apply text-gray-700;
     }
     
-    .bg-white\\/60 {
+    /* Fixed: Use proper class name without special characters */
+    .bg-white\/60 {
       @apply bg-white;
     }
   }
