@@ -31,6 +31,7 @@ const nextConfig = {
     formats: ['image/webp', 'image/avif'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    qualities: [60, 75, 80, 90],
   },
 
   // Security headers
@@ -64,7 +65,7 @@ const nextConfig = {
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "img-src 'self' data: https: blob:",
               "font-src 'self' https://fonts.gstatic.com",
-              "connect-src 'self' https://api.sanity.io https://api.sendgrid.com",
+              "connect-src 'self' https://*.sanity.io https://api.sendgrid.com",
               "media-src 'self' https:",
               "frame-src 'self' https://www.youtube.com",
             ].join('; ')

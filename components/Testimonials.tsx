@@ -18,7 +18,7 @@ const Testimonials = () => {
   const t = useTranslations('testimonials');
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
 
-  // Using translation keys that now exist in messages
+  // Using translation keys that exist in messages
   const allTestimonials = [
     // Video testimonials
     {
@@ -35,7 +35,7 @@ const Testimonials = () => {
       systemSize: "8kW Residential",
       gradient: "from-red-500 to-pink-500"
     },
-    // Text testimonial - using existing keys from your messages
+    // Text testimonial
     {
       type: 'text',
       name: t('reviews.0.name'),
@@ -168,7 +168,7 @@ const Testimonials = () => {
               loading="lazy"
             />
             
-            {/* Play Button Overlay */}
+            {/* Play Button Overlay - always visible */}
             <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/50 transition-all duration-300">
               <div className="relative">
                 <div className="absolute inset-0 bg-red-600 rounded-full animate-pulse opacity-75"></div>
@@ -180,6 +180,13 @@ const Testimonials = () => {
                 </Button>
               </div>
             </div>
+            
+            {/* Title overlay - only shown on hover if title exists */}
+            {testimonial.title && (
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p className="text-white font-semibold text-sm">{testimonial.title}</p>
+              </div>
+            )}
             
             {/* Duration Badge */}
             <div className="absolute bottom-4 right-4 bg-black/80 text-white px-3 py-1 rounded-lg text-sm font-medium">
@@ -200,8 +207,6 @@ const Testimonials = () => {
               <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
             ))}
           </div>
-          
-          <h3 className="text-lg font-bold text-gray-900 mb-2">{testimonial.title}</h3>
           
           <div className="flex items-center space-x-3 mb-4">
             <div className={`w-10 h-10 bg-gradient-to-br ${testimonial.gradient} rounded-full flex items-center justify-center shadow-lg`}>
@@ -299,7 +304,7 @@ const Testimonials = () => {
         </div>
       </section>
 
-      {/* YouTube Video Modal with enhanced animations */}
+      {/* YouTube Video Modal */}
       {selectedVideo && (
         <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in duration-300">
           <div className="relative w-full max-w-5xl aspect-[16/9]">

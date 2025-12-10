@@ -1,0 +1,122 @@
+{
+  "_info": "Gallery cache - generated from Sanity",
+  "_generated": "2025-12-10T12:31:32.121Z",
+  "_ttl": "Cache is valid for 24 hours. Regenerate to get latest changes.",
+  "projects": [
+    {
+      "_id": "33c747c4-6042-483f-a50f-1e87c105ce82",
+      "title": {
+        "english": "Project6"
+      },
+      "category": "residential",
+      "mediaType": "imageGallery",
+      "featured": false,
+      "images": [
+        {
+          "image": "https://cdn.sanity.io/images/qd7f7kul/production/caf8a267488e3f869e1c05dde5bca604325efc1b-1280x960.jpg?w=800&h=600&fm=webp",
+          "thumbnail": "https://cdn.sanity.io/images/qd7f7kul/production/caf8a267488e3f869e1c05dde5bca604325efc1b-1280x960.jpg?w=400&h=300&fm=webp",
+          "alt": "",
+          "caption": ""
+        }
+      ]
+    },
+    {
+      "_id": "3ec90e35-c468-43e2-b866-0be09bf2f302",
+      "title": {
+        "english": "Project2"
+      },
+      "category": "residential",
+      "mediaType": "imageGallery",
+      "featured": false,
+      "images": [
+        {
+          "image": "https://cdn.sanity.io/images/qd7f7kul/production/981a26a6758036a23d33a0ab67bd03d611cb8132-1280x960.jpg?w=800&h=600&fm=webp",
+          "thumbnail": "https://cdn.sanity.io/images/qd7f7kul/production/981a26a6758036a23d33a0ab67bd03d611cb8132-1280x960.jpg?w=400&h=300&fm=webp",
+          "alt": "",
+          "caption": ""
+        },
+        {
+          "image": "https://cdn.sanity.io/images/qd7f7kul/production/f4e4d949e420fa4e51a4c5e9776364ed50649b01-1280x960.jpg?w=800&h=600&fm=webp",
+          "thumbnail": "https://cdn.sanity.io/images/qd7f7kul/production/f4e4d949e420fa4e51a4c5e9776364ed50649b01-1280x960.jpg?w=400&h=300&fm=webp",
+          "alt": "",
+          "caption": ""
+        }
+      ]
+    },
+    {
+      "_id": "414c17b4-d9c3-48a0-b5af-6d830eabd3b5",
+      "title": {
+        "english": "Project3"
+      },
+      "category": "residential",
+      "mediaType": "imageGallery",
+      "featured": false,
+      "images": [
+        {
+          "image": "https://cdn.sanity.io/images/qd7f7kul/production/e56d3137197ebcce4413a5a469e55532c436ec76-1280x960.jpg?w=800&h=600&fm=webp",
+          "thumbnail": "https://cdn.sanity.io/images/qd7f7kul/production/e56d3137197ebcce4413a5a469e55532c436ec76-1280x960.jpg?w=400&h=300&fm=webp",
+          "alt": "",
+          "caption": ""
+        }
+      ]
+    },
+    {
+      "_id": "8677e7ed-26a0-4879-827c-62a2e35627ea",
+      "title": {
+        "english": "Project1",
+        "hindi": "Project1"
+      },
+      "category": "residential",
+      "mediaType": "imageGallery",
+      "featured": false,
+      "images": [
+        {
+          "image": "https://cdn.sanity.io/images/qd7f7kul/production/d1becab138b191d27803c0b933e1bc1ca19e3a8b-1600x1200.jpg?w=800&h=600&fm=webp",
+          "thumbnail": "https://cdn.sanity.io/images/qd7f7kul/production/d1becab138b191d27803c0b933e1bc1ca19e3a8b-1600x1200.jpg?w=400&h=300&fm=webp",
+          "alt": "",
+          "caption": ""
+        },
+        {
+          "image": "https://cdn.sanity.io/images/qd7f7kul/production/d91955d470d02846fe6461229c846b45c295b8fa-1600x1200.jpg?w=800&h=600&fm=webp",
+          "thumbnail": "https://cdn.sanity.io/images/qd7f7kul/production/d91955d470d02846fe6461229c846b45c295b8fa-1600x1200.jpg?w=400&h=300&fm=webp",
+          "alt": "",
+          "caption": ""
+        }
+      ]
+    },
+    {
+      "_id": "cfd79bdc-f71d-4172-9bf3-f13fd92c4f81",
+      "title": {
+        "english": "Project5"
+      },
+      "category": "residential",
+      "mediaType": "imageGallery",
+      "featured": false,
+      "images": [
+        {
+          "image": "https://cdn.sanity.io/images/qd7f7kul/production/82ff3db6725e3d8a89e258e0f8b379a4d803877a-1280x960.jpg?w=800&h=600&fm=webp",
+          "thumbnail": "https://cdn.sanity.io/images/qd7f7kul/production/82ff3db6725e3d8a89e258e0f8b379a4d803877a-1280x960.jpg?w=400&h=300&fm=webp",
+          "alt": "",
+          "caption": ""
+        }
+      ]
+    },
+    {
+      "_id": "f6701cfc-5f4e-4735-bb36-6f9de73bb262",
+      "title": {
+        "english": "Project4"
+      },
+      "category": "residential",
+      "mediaType": "imageGallery",
+      "featured": false,
+      "images": [
+        {
+          "image": "https://cdn.sanity.io/images/qd7f7kul/production/0ee6f9758e528c28a72e7942ca890ad0763a3851-1280x960.jpg?w=800&h=600&fm=webp",
+          "thumbnail": "https://cdn.sanity.io/images/qd7f7kul/production/0ee6f9758e528c28a72e7942ca890ad0763a3851-1280x960.jpg?w=400&h=300&fm=webp",
+          "alt": "",
+          "caption": ""
+        }
+      ]
+    }
+  ]
+}

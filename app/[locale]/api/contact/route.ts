@@ -1,6 +1,7 @@
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import sgMail from '@sendgrid/mail';
+import { validateContactForm, sanitizeInput } from '@/lib/security';
 
 // Rate limiting store (in production, use Redis or similar)
 const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
@@ -265,7 +266,7 @@ export async function POST(
       );
     }
     
-    // Validate required fields
+    // Validate required fields and input
     const requiredFields = ['firstName', 'lastName', 'phone', 'address'];
     const missingFields = requiredFields.filter(field => !rawData[field]?.trim());
     
@@ -278,6 +279,38 @@ export async function POST(
           error: 'VALIDATION_ERROR',
           missingFields
         }, 
+        { status: 400, headers: { 'X-Content-Type-Options': 'nosniff' } }
+      );
+    }
+
+    // Validate form data structure
+    const validation = validateContactForm(rawData);
+    if (!validation.valid) {
+      return NextResponse.json(
+        { 
+          message: locale === 'hi' 
+            ? 'फॉर्म में त्रुटि है'
+            : 'Form validation failed',
+          error: 'VALIDATION_ERROR',
+          errors: validation.errors
+        }, 
+        { status: 400, headers: { 'X-Content-Type-Options': 'nosniff' } }
+      );
+    }
+
+    // Sanitize inputs to prevent XSS
+    const formData: ContactFormData = {
+      firstName: sanitizeInput(rawData.firstName),
+      lastName: sanitizeInput(rawData.lastName),
+      email: sanitizeInput(rawData.email || ''),
+      phone: sanitizeInput(rawData.phone),
+      address: sanitizeInput(rawData.address),
+      bill: rawData.bill ? sanitizeInput(rawData.bill) : undefined,
+      additional: rawData.additional ? sanitizeInput(rawData.additional) : undefined,
+      submittedAt: new Date().toISOString(),
+      language: locale,
+      source: 'web_form'
+    };
         { status: 400 }
       );
     }
