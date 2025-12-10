@@ -88,7 +88,6 @@ export async function GET(request: NextRequest) {
 
   if (!checkRateLimit(ip)) {
     return NextResponse.json(
-      {
       { success: false, error: 'Rate limit exceeded' },
       { status: 429 }
     );

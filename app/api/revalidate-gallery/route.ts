@@ -23,11 +23,13 @@ export async function POST(request: NextRequest) {
     if (!secret || !signature) {
       return NextResponse.json(
         { error: 'Unauthorized - Missing webhook secret or signature' },
-        { status: 401 },
-        { headers: {
-          'X-Content-Type-Options': 'nosniff',
-          'X-Frame-Options': 'DENY'
-        }}
+        { 
+          status: 401,
+          headers: {
+            'X-Content-Type-Options': 'nosniff',
+            'X-Frame-Options': 'DENY'
+          }
+        }
       )
     }
 
@@ -41,7 +43,7 @@ export async function POST(request: NextRequest) {
       )
     }
     
-    const data = JSON.parse(body) or testimonial update
+    const data = JSON.parse(body); // Handle gallery or testimonial update
     const documentType = data.documentType || data._type
     
     if (documentType === 'galleryProject') {
@@ -86,10 +88,13 @@ export async function POST(request: NextRequest) {
     console.error('Revalidation error:', error)
     return NextResponse.json(
       { error: 'Failed to revalidate' },
-      { status: 500, headers: {
-        'X-Content-Type-Options': 'nosniff',
-        'X-Frame-Options': 'DENY'
-      }}
+      { 
+        status: 500,
+        headers: {
+          'X-Content-Type-Options': 'nosniff',
+          'X-Frame-Options': 'DENY'
+        }
+      }
     )
   }
 }
