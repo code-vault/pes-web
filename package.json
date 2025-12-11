@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run ensure-translations && npm run generate:gallery-cache && npm run generate:testimonials-cache && next build",
+    "build": "next build",
+    "build:production": "npm run ensure-translations && npm run generate:gallery-cache && npm run generate:testimonials-cache && next build",
     "ensure-translations": "node scripts/ensure-translations.js",
     "start": "next start",
     "lint": "next lint",
