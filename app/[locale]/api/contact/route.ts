@@ -79,29 +79,6 @@ const checkHoneypot = (data: any): boolean => {
   return !data.website && !data.url; // These fields should be empty
 };
 
-// Simple email templates (fallback for when SendGrid is not configured)
-const getSimpleEmailContent = (formData: ContactFormData) => {
-  return `
-New Solar Inquiry Received - ${new Date().toLocaleDateString()}
-
-Customer Details:
-- Name: ${formData.firstName} ${formData.lastName}
-- Phone: ${formData.phone}
-- Email: ${formData.email}
-- Address: ${formData.address}
-- Monthly Bill: ${formData.bill || 'Not provided'}
-- Additional Info: ${formData.additional || 'None'}
-- Language: ${formData.language}
-- Source: ${formData.source}
-- Submitted: ${new Date(formData.submittedAt).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}
-
-Please follow up within 24 hours!
-
----
-Purvodaya Energy Solutions Lead Management System
-  `;
-};
-
 // Enhanced email templates for SendGrid
 const getAdminEmailTemplate = (formData: ContactFormData) => {
   const isHindi = formData.language === 'hi';
@@ -142,9 +119,9 @@ const getAdminEmailTemplate = (formData: ContactFormData) => {
                 <div class="info-card">
                     <h3>${isHindi ? 'ग्राहक जानकारी' : 'Customer Information'}</h3>
                     <p><span class="label">${isHindi ? 'नाम:' : 'Name:'}</span><span class="value">${formData.firstName} ${formData.lastName}</span></p>
-                    <p><span class="label">${isHindi ? 'ईमेल:' : 'Email:'}</span><span class="value">${formData.email}</span></p>
+                    <p><span class="label">${isHindi ? 'ईमेल:' : 'Email:'}</span><span class="value">${formData.email || (isHindi ? 'प्रदान नहीं किया गया' : 'Not provided')}</span></p>
                     <p><span class="label">${isHindi ? 'फोन:' : 'Phone:'}</span><span class="value">${formData.phone}</span></p>
-                    <p><span class="label">${isHindi ? 'पता:' : 'Address:'}</span><span class="value">${formData.address}</span></p>
+                    <p><span class="label">${isHindi ? 'स्थान:' : 'Location:'}</span><span class="value">${formData.address}</span></p>
                 </div>
                 
                 <div class="info-card">
@@ -179,7 +156,7 @@ async function sendEmails(formData: ContactFormData) {
       customer: `${formData.firstName} ${formData.lastName}`,
       phone: formData.phone,
       email: formData.email,
-      address: formData.address,
+      location: formData.address,
       bill: formData.bill,
       language: formData.language,
       timestamp: formData.submittedAt
@@ -187,23 +164,27 @@ async function sendEmails(formData: ContactFormData) {
     return;
   }
 
+  // IMPORTANT: You need to use a verified sender email
+  // For now, use your own Gmail that you'll verify in SendGrid
+  // Later, after domain verification, you can use noreply@purvodayaenergy.com
+  
   const adminEmail = {
-    to: process.env.EMAIL_TO || 'leads@purvodayaenergy.com',
-    from: process.env.EMAIL_FROM || 'noreply@purvodayaenergy.com',
-    subject: `🌞 New Solar Lead: ${formData.firstName} ${formData.lastName} (${formData.bill ? formData.bill + ' monthly bill' : 'No bill info'})`,
+    to: process.env.ADMIN_EMAIL || 'your-email@gmail.com', // ← Set your Gmail here
+    from: process.env.VERIFIED_SENDER_EMAIL || 'your-verified-email@gmail.com', // ← Must be verified in SendGrid
+    replyTo: formData.email || undefined, // Customer can reply to the lead's email
+    subject: `🌞 New Solar Lead: ${formData.firstName} ${formData.lastName} from ${formData.address}`,
     html: getAdminEmailTemplate(formData)
   };
 
   try {
     // Send admin notification
     await sgMail.send(adminEmail);
-    console.log('✅ Admin notification sent successfully');
-
-    // Optionally send customer confirmation
-    // (You can enable this later when you want customer confirmations)
-    
-  } catch (emailError) {
+    console.log('✅ Admin notification sent successfully to:', adminEmail.to);
+  } catch (emailError: any) {
     console.error('❌ Email sending failed:', emailError);
+    if (emailError.response) {
+      console.error('SendGrid error response:', emailError.response.body);
+    }
     // Don't throw error - we don't want to fail the API call if email fails
   }
 }
@@ -339,7 +320,7 @@ export async function POST(
       customer: `${formData.firstName} ${formData.lastName}`,
       phone: formData.phone,
       email: formData.email,
-      address: formData.address,
+      location: formData.address,
       bill: formData.bill,
       language: formData.language,
       ip: clientIP,
@@ -364,6 +345,10 @@ export async function POST(
 
   } catch (mainError) {
     console.error('❌ Contact API Error:', mainError);
+    console.error('Error details:', {
+      message: mainError instanceof Error ? mainError.message : 'Unknown error',
+      stack: mainError instanceof Error ? mainError.stack : undefined
+    });
     
     const url = new URL(request.url);
     const locale = url.pathname.includes('/hi/') ? 'hi' : 'en';

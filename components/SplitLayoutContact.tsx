@@ -17,6 +17,8 @@ const SplitLayoutContact = () => {
     lastName: '',
     phone: '',
     email: '',
+    state: 'Uttar Pradesh',
+    district: 'Basti',
     bill: '',
     additional: ''
   });
@@ -24,7 +26,44 @@ const SplitLayoutContact = () => {
   const [submitMessage, setSubmitMessage] = useState('');
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  // Office locations from translations
+  // Indian states
+  const states = [
+    'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh',
+    'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh', 'Jharkhand',
+    'Karnataka', 'Kerala', 'Madhya Pradesh', 'Maharashtra', 'Manipur',
+    'Meghalaya', 'Mizoram', 'Nagaland', 'Odisha', 'Punjab',
+    'Rajasthan', 'Sikkim', 'Tamil Nadu', 'Telangana', 'Tripura',
+    'Uttar Pradesh', 'Uttarakhand', 'West Bengal'
+  ];
+
+  // Districts by state - focusing on UP
+  const districtsByState: Record<string, string[]> = {
+    'Uttar Pradesh': [
+      'Basti', 'Gorakhpur', 'Sant Kabir Nagar',
+      'Agra', 'Aligarh', 'Ambedkar Nagar', 'Amethi', 'Amroha',
+      'Auraiya', 'Azamgarh', 'Baghpat', 'Bahraich', 'Ballia',
+      'Balrampur', 'Banda', 'Barabanki', 'Bareilly', 'Bijnor',
+      'Budaun', 'Bulandshahr', 'Chandauli', 'Chitrakoot', 'Deoria',
+      'Etah', 'Etawah', 'Faizabad', 'Farrukhabad', 'Fatehpur',
+      'Firozabad', 'Gautam Buddha Nagar', 'Ghaziabad', 'Ghazipur', 
+      'Gonda', 'Hamirpur', 'Hapur', 'Hardoi', 'Hathras',
+      'Jalaun', 'Jaunpur', 'Jhansi', 'Kannauj', 'Kanpur Dehat',
+      'Kanpur Nagar', 'Kasganj', 'Kaushambi', 'Kushinagar', 
+      'Lakhimpur Kheri', 'Lalitpur', 'Lucknow', 'Maharajganj', 
+      'Mahoba', 'Mainpuri', 'Mathura', 'Mau', 'Meerut',
+      'Mirzapur', 'Moradabad', 'Muzaffarnagar', 'Pilibhit', 'Pratapgarh',
+      'Prayagraj', 'Raebareli', 'Rampur', 'Saharanpur', 'Sambhal',
+      'Sant Ravidas Nagar', 'Shahjahanpur', 'Shamli', 'Shravasti',
+      'Siddharthnagar', 'Sitapur', 'Sonbhadra', 'Sultanpur', 
+      'Unnao', 'Varanasi'
+    ]
+  };
+
+  const getDefaultDistricts = () => {
+    return ['Select District'];
+  };
+
+  // Office locations
   const offices = [
     {
       name: t('offices.basti.name'),
@@ -58,14 +97,13 @@ const SplitLayoutContact = () => {
     }
   ];
 
-  // Validation functions
   const validatePhone = (phone: string) => {
     const phoneRegex = /^(\+91|91)?[\s-]?[6-9]\d{9}$/;
     return phoneRegex.test(phone.replace(/[\s-]/g, ''));
   };
 
   const validateEmail = (email: string) => {
-    if (!email.trim()) return true; // Email is optional
+    if (!email.trim()) return true;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
@@ -73,7 +111,6 @@ const SplitLayoutContact = () => {
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
 
-    // Required fields
     if (!formData.firstName.trim()) {
       newErrors.firstName = t('form.validation.firstNameRequired');
     }
@@ -88,7 +125,14 @@ const SplitLayoutContact = () => {
       newErrors.phone = t('form.validation.phoneInvalid');
     }
 
-    // Optional email validation
+    if (!formData.state) {
+      newErrors.state = locale === 'hi' ? 'राज्य चुनें' : 'Please select a state';
+    }
+    
+    if (!formData.district) {
+      newErrors.district = locale === 'hi' ? 'जिला चुनें' : 'Please select a district';
+    }
+
     if (formData.email.trim() && !validateEmail(formData.email)) {
       newErrors.email = t('form.validation.emailInvalid');
     }
@@ -97,12 +141,21 @@ const SplitLayoutContact = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    
+    if (name === 'state') {
+      setFormData(prev => ({
+        ...prev,
+        state: value,
+        district: value === 'Uttar Pradesh' ? 'Basti' : ''
+      }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }));
+    }
     
     if (errors[name]) {
       setErrors(prev => ({
@@ -127,7 +180,13 @@ const SplitLayoutContact = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          ...formData,
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          phone: formData.phone,
+          email: formData.email,
+          address: `${formData.district}, ${formData.state}`,
+          bill: formData.bill,
+          additional: formData.additional,
           submittedAt: new Date().toISOString(),
           language: locale,
           source: 'homepage_contact_form'
@@ -145,6 +204,8 @@ const SplitLayoutContact = () => {
             lastName: '',
             phone: '',
             email: '',
+            state: 'Uttar Pradesh',
+            district: 'Basti',
             bill: '',
             additional: ''
           });
@@ -152,6 +213,7 @@ const SplitLayoutContact = () => {
           setSubmitMessage('');
         }, 5000);
       } else {
+        console.error('Form submission error:', result);
         throw new Error(result.message || 'Submission failed');
       }
     } catch (error) {
@@ -162,16 +224,18 @@ const SplitLayoutContact = () => {
     }
   };
 
+  const getDistrictsForState = (state: string) => {
+    return districtsByState[state] || getDefaultDistricts();
+  };
+
   return (
     <section id="contact" className="py-20 bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 relative overflow-hidden">
-      {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 right-10 w-72 h-72 bg-gradient-to-r from-orange-400/20 to-amber-400/20 rounded-full blur-3xl animate-pulse-slow"></div>
         <div className="absolute bottom-20 left-10 w-96 h-96 bg-gradient-to-r from-yellow-400/15 to-orange-400/15 rounded-full blur-3xl animate-pulse-slow delay-1000"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header */}
         <ScrollReveal direction="up" delay={100}>
           <div className="text-center mb-12">
             <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-orange-200/50 shadow-lg mb-6">
@@ -188,7 +252,6 @@ const SplitLayoutContact = () => {
           </div>
         </ScrollReveal>
 
-        {/* Office Locations - Compact Cards */}
         <ScrollReveal direction="up" delay={300}>
           <div className="mb-16">
             <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">{t('visitOffices')}</h3>
@@ -229,8 +292,6 @@ const SplitLayoutContact = () => {
         </ScrollReveal>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          
-          {/* Left Side - Form */}
           <div className="order-2 lg:order-1">
             <ScrollReveal direction="left" delay={500}>
               <Card className="bg-white shadow-2xl border-0 rounded-3xl overflow-hidden">
@@ -241,7 +302,6 @@ const SplitLayoutContact = () => {
                 
                 <CardContent className="p-8">
                   <div className="space-y-6">
-                    {/* Name Fields - Split into First and Last */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -288,7 +348,6 @@ const SplitLayoutContact = () => {
                       </div>
                     </div>
 
-                    {/* Phone Field */}
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-2">
                         {t('form.fields.phone.label')} <span className="text-red-500">{t('form.labels.required')}</span>
@@ -312,7 +371,6 @@ const SplitLayoutContact = () => {
                       )}
                     </div>
 
-                    {/* Email Field */}
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-2">
                         {t('form.fields.email.label')} <span className="text-gray-400 text-xs">{t('form.labels.optional')}</span>
@@ -335,7 +393,62 @@ const SplitLayoutContact = () => {
                       )}
                     </div>
 
-                    {/* Monthly Bill Field */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                          {locale === 'hi' ? 'राज्य' : 'State'} <span className="text-red-500">{t('form.labels.required')}</span>
+                        </label>
+                        <select
+                          name="state"
+                          value={formData.state}
+                          onChange={handleChange}
+                          className={`w-full h-12 text-base border-2 rounded-xl px-4 bg-white ${
+                            errors.state ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-orange-400'
+                          }`}
+                          required
+                        >
+                          {states.map((state) => (
+                            <option key={state} value={state}>
+                              {state}
+                            </option>
+                          ))}
+                        </select>
+                        {errors.state && (
+                          <p className="text-red-500 text-sm mt-1 flex items-center">
+                            <AlertCircle className="h-4 w-4 mr-1" />
+                            {errors.state}
+                          </p>
+                        )}
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                          {locale === 'hi' ? 'जिला' : 'District'} <span className="text-red-500">{t('form.labels.required')}</span>
+                        </label>
+                        <select
+                          name="district"
+                          value={formData.district}
+                          onChange={handleChange}
+                          className={`w-full h-12 text-base border-2 rounded-xl px-4 bg-white ${
+                            errors.district ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-orange-400'
+                          }`}
+                          required
+                        >
+                          {getDistrictsForState(formData.state).map((district) => (
+                            <option key={district} value={district}>
+                              {district}
+                            </option>
+                          ))}
+                        </select>
+                        {errors.district && (
+                          <p className="text-red-500 text-sm mt-1 flex items-center">
+                            <AlertCircle className="h-4 w-4 mr-1" />
+                            {errors.district}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-2">
                         {t('form.fields.bill.label')} <span className="text-gray-400 text-xs">{t('form.labels.optional')}</span>
@@ -349,7 +462,6 @@ const SplitLayoutContact = () => {
                       />
                     </div>
 
-                    {/* Additional Info Field */}
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-2">
                         {t('form.fields.additional.label')} <span className="text-gray-400 text-xs">{t('form.labels.optional')}</span>
@@ -364,7 +476,6 @@ const SplitLayoutContact = () => {
                       />
                     </div>
 
-                    {/* Submit Message */}
                     {submitMessage && (
                       <div className={`p-4 rounded-xl ${
                         submitMessage.includes('Thank you') || submitMessage.includes('धन्यवाद') 
@@ -375,7 +486,6 @@ const SplitLayoutContact = () => {
                       </div>
                     )}
 
-                    {/* Submit Button */}
                     <button 
                       onClick={handleSubmit}
                       disabled={isSubmitting}
@@ -394,7 +504,6 @@ const SplitLayoutContact = () => {
                       )}
                     </button>
 
-                    {/* Trust Message */}
                     <div className="text-center pt-2">
                       <p className="text-sm text-gray-500">
                         <Phone className="inline h-4 w-4 mr-1" />
@@ -413,7 +522,6 @@ const SplitLayoutContact = () => {
             </ScrollReveal>
           </div>
 
-          {/* Right Side - Content */}
           <div className="order-1 lg:order-2 space-y-8">
             <ScrollReveal direction="right" delay={700}>
               <div className="space-y-6">
@@ -427,7 +535,6 @@ const SplitLayoutContact = () => {
               </div>
             </ScrollReveal>
 
-            {/* Benefits */}
             <ScrollReveal direction="right" delay={900}>
               <div className="space-y-4">
                 <div className="flex items-center space-x-4">
@@ -462,7 +569,6 @@ const SplitLayoutContact = () => {
               </div>
             </ScrollReveal>
 
-            {/* Contact Information */}
             <ScrollReveal direction="right" delay={1100}>
               <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/20">
                 <h3 className="text-lg font-bold text-gray-900 mb-4">{t('rightSide.immediateHelp.title')}</h3>
